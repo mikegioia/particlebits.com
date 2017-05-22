@@ -95,8 +95,9 @@ main section.content {
     width: calc(100% - 24rem);
 }
 main section.content h3 {
-    font-size: 1.625em;
+    font-size: 1.5em;
     line-height: 1.125;
+    font-family: 'Signika Negative';
 }
 main section.content article {
     padding: 1rem;
