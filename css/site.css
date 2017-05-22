@@ -1,0 +1,197 @@
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    font-family: 'Alegreya Sans';
+}
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+h2 {
+    color: #bbb;
+    font-size: 0.8125rem;
+    margin: 0.25rem 0 1rem;
+    text-transform: uppercase;
+    font-family: 'Signika Negative';
+}
+header {
+    width: 100%;
+    height: 4rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+}
+header nav.logo {
+    float: left;
+    width: 10rem;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+    padding: 0.5rem 0.5rem 0.25rem;
+}
+header nav.logo h1 {
+    float: left;
+    width: 4rem;
+    font-size: 3rem;
+    line-height: 1.05;
+}
+header nav.logo .name {
+    line-height: 1;
+    margin-left: 1rem;
+    font-size: 1.125rem;
+    padding-top: 0.4rem;
+    font-family: 'Signika Negative';
+}
+header section.subtitle {
+    color: #444;
+    line-height: 1;
+    margin-left: 10rem;
+    font-size: 1.33rem;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem 0;
+}
+header section.subtitle span.smaller {
+    color: #999;
+    font-size: 1rem;
+}
+main nav {
+    top: 4rem;
+    bottom: 0;
+    width: 10rem;
+    position: fixed;
+    padding: 1rem 0.75rem 0;
+    box-sizing: border-box;
+    border-right: 1px solid #eee;
+}
+main nav .contributor .avatar {
+    float: left;
+    margin: 0 0.5rem 0.5rem 0;
+}
+main nav .contributor .name {
+    font-size: 1.125rem;
+    margin-bottom: 0.125rem;
+}
+main nav .contributor .website {
+    font-size: 0.9375rem;
+}
+main nav .contributor .bio {
+    margin: 0;
+    padding: 0;
+    color: #777;
+    font-size: 0.875rem;
+}
+main section.content {
+    padding: 1rem;
+    margin-left: 10rem;
+    box-sizing: border-box;
+    width: calc(100% - 24rem);
+}
+main section.content h3 {
+    font-size: 1.625em;
+    line-height: 1.125;
+}
+main section.content article {
+    padding: 1rem;
+    margin: 0 0 1rem;
+}
+main section.content blockquote {
+    padding: 0;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 1rem 0 0;
+}
+main section.topics {
+    right: 0;
+    top: 4rem;
+    bottom: 0;
+    width: 14rem;
+    position: fixed;
+    padding: 1rem 1rem 0;
+    box-sizing: border-box;
+}
+main section.topics ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+main section.topics li {
+    font-size: 1rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    font-family: 'Signika Negative';
+}
+main section.topics li a {
+    display: block;
+    padding: 0.33rem 0.5rem;
+}
+main section.topics li a span.count {
+    font-size: 0.75rem;
+    border-radius: 1rem;
+    margin-left: 0.25rem;
+    display: inline-block;
+    padding: 0.125rem 0.4rem;
+    background-color:
+}
+
+/* Clear floats */
+.group:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+/* Colors */
+.topic-privacy {
+    background-color: lightskyblue;
+}
+.topic-programming {
+    background-color: paleturquoise;
+}
+.topic-communication {
+    background-color: peachpuff;
+}
+.topic-life-experiences {
+    background-color: lightpink;
+}
+.topic-lifes-work {
+    background-color: khaki;
+}
+
+
+.pallette {
+    margin: 2rem 0.2rem 0 0.6rem;
+}
+.pallette div {
+    border-radius: 0.25rem;
+    width: 4.16rem;
+    height: 4.16rem;
+    display: inline-block;
+    margin: 0 0.5rem 0.5rem 0;
+}
+/* Colors
+
+lightskyblue
+paleturquoise
+peachpuff
+lightpink
+khaki
+lightblue
+sandybrown
+burlywood
+gold
+coral
+salmon
+mediumseagreen
+mediumaquamarine
+plum
+thistle
+*/

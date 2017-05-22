@@ -1,0 +1,87 @@
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 480px) {
+    html {
+        font-size: 15px;
+    }
+}
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+    header nav,
+    main nav {
+        width: 12rem;
+    }
+    header nav.logo h1 {
+        width: 5rem;
+        font-size: 3.75rem;
+        line-height: 0.875;
+    }
+    header nav.logo .name {
+        font-size: 1.33rem;
+        padding-top: 0.2rem;
+    }
+    header section.subtitle {
+        margin-left: 12rem;
+    }
+    main section.content {
+        margin-left: 12rem;
+        width: calc(100% - 28rem);
+    }
+    main section.topics {
+        width: 16rem;
+    }
+}
+@media screen and (min-width: 1024px) {
+    html {
+        font-size: 17px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 18px;
+    }
+    header nav.logo,
+    main nav {
+        width: 14rem;
+    }
+    header section.subtitle {
+        margin-left: 14rem;
+    }
+    main section.content {
+        margin-left: 14rem;
+        width: calc(100% - 32rem);
+    }
+    main section.topics {
+        width: 18rem;
+    }
+}
+@media screen and (min-width: 1400px) {
+    main section.content {
+        width: calc(100% - 34rem);
+    }
+    main section.topics {
+        width: 20rem;
+    }
+    main section.topics li {
+        font-size: 1.125rem;
+    }
+}
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 20px;
+    }
+    main section.content {
+        width: calc(70% - 14rem);
+    }
+    main section.topics {
+        width: calc(30%);
+    }
+    main section.topics li {
+        font-size: 1.25rem;
+    }
+}

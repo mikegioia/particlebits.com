@@ -1,0 +1,35 @@
+/* Regular latin */
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Alegreya Sans Regular'), local('AlegreyaSans-Regular'), url(../fonts/AlegreyaSans-Regular.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* Italic latin */
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Alegreya Sans Italic'), local('AlegreyaSans-Italic'), url(../fonts/AlegreyaSans-Italic.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* Bold latin */
+@font-face {
+    font-family: 'Alegreya Sans';
+    font-style: normal; 
+    font-weight: 700;
+    src: local('Alegreya Sans Bold'), local('AlegreyaSans-Bold'), url(../fonts/AlegreyaSans-Bold.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* Regular latin */
+@font-face {
+    font-family: 'Signika Negative';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Signika Negative Regular'), local('SignikaNegative-Regular'), url(../fonts/SignikaNegative-Regular.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
