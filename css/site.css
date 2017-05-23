@@ -1,7 +1,7 @@
 html {
     width: 100%;
     height: 100%;
-    font-size: 16px;
+    font-size: 14px;
 }
 body {
     margin: 0;
@@ -23,27 +23,44 @@ h2 {
     text-transform: uppercase;
     font-family: 'Signika Negative';
 }
+
+/* Logo, subtitle, and menu nav */
 header {
     width: 100%;
     height: 4rem;
-    box-sizing: border-box;
+    position: fixed;
     border-bottom: 1px solid #ddd;
 }
 header nav.logo {
-    float: left;
+    top: 0;
+    left: 0;
     width: 10rem;
-    height: 100%;
+    height: 4rem;
+    position: fixed;
     box-sizing: border-box;
     border-right: 1px solid #ddd;
-    padding: 0.5rem 0.5rem 0.25rem;
 }
-header nav.logo h1 {
+header nav.logo a {
+    color: #333;
+    height: 4rem;
+    display: block;
+    padding: 0.5rem;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+header nav.logo a:hover {
+    background-color: #f9f9f9;
+}
+header nav.logo .brand {
     float: left;
     width: 4rem;
+    display: block;
     font-size: 3rem;
     line-height: 1.05;
+    font-family: 'Signika Negative';
 }
 header nav.logo .name {
+    display: block;
     line-height: 1;
     margin-left: 1rem;
     font-size: 1.125rem;
@@ -52,16 +69,49 @@ header nav.logo .name {
 }
 header section.subtitle {
     color: #444;
-    line-height: 1;
+    height: 4rem;
+    background: #fff;
     margin-left: 10rem;
     font-size: 1.33rem;
+    line-height: 0.96875;
+    padding: 0.75rem 1rem;
     box-sizing: border-box;
-    padding: 0.75rem 1rem 0;
+    width: calc(100% - 18rem);
 }
 header section.subtitle span.smaller {
     color: #999;
     font-size: 1rem;
 }
+header nav.menu {
+    top: 0;
+    right: 0;
+    width: 8rem;
+    height: 4rem;
+    position: fixed;
+    text-align: right;
+    background-color: #fff;
+}
+header nav.menu a.button {
+    color: #666;
+    margin: 0.75rem;
+    background: #eee;
+    font-size: 1.125rem;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    padding: 0.625rem 0.75rem;
+}
+header nav.menu a.button:hover {
+    color: #333;
+    background: #ddd;
+}
+
+/* Content area */
+main {
+    padding-top: 4rem;
+}
+
+/* Left side list of contributors */
 main nav {
     top: 4rem;
     bottom: 0;
@@ -88,6 +138,8 @@ main nav .contributor .bio {
     color: #777;
     font-size: 0.875rem;
 }
+
+/* Articles */
 main section.content {
     padding: 1rem;
     margin-left: 10rem;
@@ -95,9 +147,13 @@ main section.content {
     width: calc(100% - 24rem);
 }
 main section.content h3 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     line-height: 1.125;
     font-family: 'Signika Negative';
+}
+main section.content h3 a {
+    color: #222;
+    text-decoration: none;
 }
 main section.content article {
     padding: 1rem;
@@ -110,13 +166,16 @@ main section.content blockquote {
     line-height: 1.4;
     margin: 1rem 0 0;
 }
+
+/* Topic list */
 main section.topics {
     right: 0;
     top: 4rem;
     bottom: 0;
     width: 14rem;
+    padding: 1rem;
     position: fixed;
-    padding: 1rem 1rem 0;
+    overflow-y: auto;
     box-sizing: border-box;
 }
 main section.topics ul {
@@ -132,7 +191,9 @@ main section.topics li {
     font-family: 'Signika Negative';
 }
 main section.topics li a {
+    color: #111;
     display: block;
+    text-decoration: none;
     padding: 0.33rem 0.5rem;
 }
 main section.topics li a span.count {
@@ -140,8 +201,10 @@ main section.topics li a span.count {
     border-radius: 1rem;
     margin-left: 0.25rem;
     display: inline-block;
+    vertical-align: middle;
     padding: 0.125rem 0.4rem;
-    background-color:
+    color: rgba(0, 0, 0, 0.66);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 /* Clear floats */
@@ -150,49 +213,57 @@ main section.topics li a span.count {
     content: "";
     display: table;
 }
-/* Colors */
+
+/*
+This should be injected into HTML */
 .topic-privacy {
-    background-color: lightskyblue;
+    background-color: rgb(135, 206, 250);
+}
+.topic-privacy-light {
+    background-color: rgba(135, 206, 250, 0.2);
 }
 .topic-programming {
-    background-color: paleturquoise;
+    background-color: rgb(175, 238, 238);
+}
+.topic-programming-light {
+    background-color: rgba(175, 238, 238, 0.3);
 }
 .topic-communication {
-    background-color: peachpuff;
+    background-color: rgb(255, 218, 185);
 }
-.topic-life-experiences {
-    background-color: lightpink;
+.topic-communication-light {
+    background-color: rgba(255, 218, 185, 0.3);
+}
+.topic-fun-games {
+    background-color: rgb(255, 215, 0);
+}
+.topic-fun-games-light {
+    background-color: rgba(255, 215, 0, 0.2);
 }
 .topic-lifes-work {
-    background-color: khaki;
+    background-color: rgb(240, 230, 140);
+}
+.topic-lifes-work-light {
+    background-color: rgba(240, 230, 140, 0.3);
 }
 
 
-.pallette {
-    margin: 2rem 0.2rem 0 0.6rem;
-}
-.pallette div {
-    border-radius: 0.25rem;
-    width: 4.16rem;
-    height: 4.16rem;
-    display: inline-block;
-    margin: 0 0.5rem 0.5rem 0;
-}
-/* Colors
+/*
+Colors
 
-lightskyblue
-paleturquoise
-peachpuff
-lightpink
-khaki
-lightblue
-sandybrown
-burlywood
-gold
-coral
-salmon
-mediumseagreen
-mediumaquamarine
-plum
-thistle
+135, 206, 250 lightskyblue
+175, 238, 238 paleturquoise
+255, 218, 185 peachpuff
+255, 182, 193 lightpink
+240, 230, 140 khaki
+173, 216, 230 lightblue
+244, 164,  96 sandybrown
+222, 184, 135 burlywood
+255, 215,   0 gold
+255, 127,  80 coral
+250, 128, 114 salmon
+144, 238, 144 lightgreen
+102, 205, 170 mediumaquamarine
+221, 160, 221 plum
+216, 191, 216 thistle
 */
