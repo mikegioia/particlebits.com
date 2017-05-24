@@ -238,7 +238,7 @@ This should be injected into HTML */
     background-color: rgb(255, 215, 0);
 }
 .topic-fun-games-light {
-    background-color: rgba(255, 215, 0, 0.2);
+    background-color: rgba(255, 215, 0, 0.15);
 }
 .topic-lifes-work {
     background-color: rgb(240, 230, 140);
@@ -251,19 +251,19 @@ This should be injected into HTML */
 /*
 Colors
 
-135, 206, 250 lightskyblue
-175, 238, 238 paleturquoise
-255, 218, 185 peachpuff
-255, 182, 193 lightpink
-240, 230, 140 khaki
-173, 216, 230 lightblue
-244, 164,  96 sandybrown
-222, 184, 135 burlywood
-255, 215,   0 gold
-255, 127,  80 coral
-250, 128, 114 salmon
-144, 238, 144 lightgreen
-102, 205, 170 mediumaquamarine
-221, 160, 221 plum
-216, 191, 216 thistle
+135, 206, 250 0.2  lightskyblue
+175, 238, 238 0.3  paleturquoise
+255, 218, 185 0.3  peachpuff
+255, 182, 193 0.25 lightpink
+240, 230, 140 0.3  khaki
+173, 216, 230 0.3  lightblue
+244, 164,  96 0.25 sandybrown
+222, 184, 135 0.25 burlywood
+255, 215,   0 0.15 gold
+255, 127,  80 0.15 coral
+250, 128, 114 0.2  salmon
+144, 238, 144 0.2  lightgreen
+102, 205, 170 0.15 mediumaquamarine
+221, 160, 221 0.22 plum
+216, 191, 216 0.3  thistle
 */
