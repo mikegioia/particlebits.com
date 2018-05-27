@@ -1,0 +1,141 @@
+{
+    "name": "ParticleBits",
+    "logo": "Pb",
+    "logoTagline": "Particle\nBits",
+    "title": "[Pb] Thought Collection by Mike Gioia",
+    "subtitle": "Collection of Thoughts and Works",
+    "subtitleTagline": "on a wide variety of topics",
+    "contributors": [
+        {
+            "name": "Mike Gioia",
+            "avatar": "mike.jpeg",
+            "title": "Author",
+            "email": "mike@particlebits.com",
+            "website": "https://mikegioia.com",
+            "description": "Chief Architect at TeachBoost. FOSS and digital privacy enthusiast. Environmentalist."
+        }
+    ],
+    "topics": {
+        "privacy": {
+            "label": "Privacy",
+            "color": "lightskyblue",
+            "articles": [
+                "intro-privacy-security",
+                "six-spheres-privacy",
+                "disseminating-info-total-anonymity"
+            ]
+        },
+        "programming": {
+            "label": "Programming",
+            "color": "paleturquoise",
+            "articles": [
+                "importance-free-software",
+                "freedom-of-expression"
+            ]
+        },
+        "communication": {
+            "label": "Communication",
+            "color": "peachpuff",
+            "topics": {
+                "management": {
+                    "label": "Management",
+                    "articles": [
+                        "do-first-ten-percent",
+                        "problem-solving-data-in-head",
+                        "move-single-direction",
+                        "repeat-back-for-clarity",
+                        "building-culture-of-feedback"
+                    ]
+                },
+                "relationships": {
+                    "label": "Relationships",
+                    "articles": [
+                        "establish-common-ground",
+                        "respect-others",
+                        "empathy-communication-proportional",
+                        "marriage-is-a-team",
+                        "love-yourself-first"
+                    ]
+                }
+            }
+        },
+        "experiences": {
+            "label": "Life Experiences",
+            "color": "",
+            "articles": [
+                "starting-business-raising-child",
+                "coping-with-death-nature",
+                "memories-time-travel",
+                "slowing-time-mindfulness",
+                "hugging-every-day",
+                "environmentalism",
+                "zero-waste-living"
+            ]
+        },
+        "fungames": {
+            "label": "Fun & Games",
+            "color": "gold",
+            "articles": [
+                "wheel-of-fortune"
+            ]
+        },
+        "lifeswork": {
+            "label": "Life's Work",
+            "color": "khaki",
+            "topics": {
+                "legacy": {
+                    "label": "Legacy",
+                    "articles": [
+                        "what-we-leave-the-world",
+                        "software"
+                    ]
+                },
+                "libremail": {
+                    "label": "LibreMail",
+                    "articles": [
+                        "intelligent-life-management",
+                        "software"
+                    ]
+                },
+                "earthboost": {
+                    "label": "EarthBoost",
+                    "articles": [
+                        "importance-of-trees",
+                        "mission-renaturalize-earth"
+                    ]
+                },
+                "linguini": {
+                    "label": "Linguini Language Program",
+                    "articles": [
+                        "learning-new-languages",
+                        "workbook"
+                    ]
+                },
+                "music": {
+                    "label": "Music Recordings"
+                },
+                "cartoons": {
+                    "label": "Cartoons",
+                    "articles": [
+                        "walnuts",
+                        "brown-and-white",
+                        "apokalips",
+                        "pj-and-billy-bottoms"
+                    ]
+                },
+                "notes": {
+                    "label": "Notes, Letters, and Drawings"
+                },
+                "writings": {
+                    "label": "Journals and Writings",
+                    "articles": [
+                        "childhood",
+                        "adolescence",
+                        "young-adulthood",
+                        "adulthood"
+                    ]
+                }
+            }
+        }
+    }
+}

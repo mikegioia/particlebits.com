@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title><?php echo $title; ?></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- @TODO favicon -->
+
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/site.css">
+        <link rel="stylesheet" href="css/media.css">
+
+        <style type="text/css">
+        <?php
+        foreach ($topics as $slug => $topic):
+            echo sprintf(".topic-%s { background-color: rgb(%s); }\n", $slug, $topic->rgb());
+            echo sprintf(".topic-%s.light { background-color: rgba(%s); }\n", $slug, $topic->rgba());
+        endforeach;
+            echo $css; ?>
+        </style>
+    </head>
+    <body class="<?php echo $page; ?>">
+        <header class="group">
+            <nav class="logo group">
+                <a href="">
+                    <span class="brand"><?php echo $logo; ?></span>
+                    <span class="name"><?php echo nl2br( $logoTagline ); ?></span>
+                </a>
+            </nav>
+            <section class="subtitle" title="Site description">
+                <span class="larger"><?php echo $subtitle; ?></span><br>
+                <span class="smaller"><?php echo $subtitleTagline; ?></span>
+            </section>
+            <nav class="menu group">
+                <a class="button sitemap" href="sitemap">
+                    <span>Sitemap</span>
+                </a>
+            </nav>
+        </header>
+        <main class="group">
+            <nav class="sidebar">
+                <h2>Contributors</h2>
+            <?php
+            foreach ($contributors as $contributor):
+                $websiteUrl = parse_url( $contributor->website ); ?>
+                <div class="contributor" title="Primary contributor">
+                    <div class="meta group">
+                        <img class="avatar" src="images/<?php echo $contributor->avatar; ?>" width="50" alt="<?php echo $contributor->name; ?>" />
+                        <div class="name"><?php echo $contributor->name; ?></div>
+                        <div class="website">
+                            <a href="<?php echo $contributor->website; ?>">
+                                <?php echo $websiteUrl[ 'host' ]; ?>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bio"><?php echo $contributor->description; ?></div>
+                </div>
+            <?php
+            endforeach;
+            if (! $contributors): ?>
+                <div class="no-results">No contributors yet</div>
+            <?php
+            endif; ?>
+            </nav>
+            <section class="content">
+                <?php echo $content; ?>
+            </section>
+            <section class="topics">
+                <h2>Topics</h2>
+            <?php
+            if ($topics): ?>
+                <ul>
+                <?php
+                foreach ($topics as $topic): ?>
+                    <li>
+                        <a href="<?php echo $topic->url; ?>" class="topic-<?php echo $topic->slug; ?>">
+                            <span class="label"><?php echo $topic->label; ?></span>
+                            <span class="count"><?php echo $topic->count; ?></span>
+                        </a>
+                    </li>
+                <?php
+                endforeach; ?>
+                </ul>
+            <?php
+            else: ?>
+                <div class="no-results">No topics yet</div>
+            <?php
+            endif; ?>
+            </section>
+        </main>
+    </body>
+</html>

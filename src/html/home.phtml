@@ -1,0 +1,31 @@
+<h2>Recent Articles</h2>
+<section id="recent-articles" class="articles">
+
+<?php
+foreach ($articles as $article):
+    $classes = ['light', 'topic-'.$article->getTopic()->slug];
+
+    if ($article->featured === TRUE):
+        $classes[] = 'featured';
+    endif; ?>
+
+    <article class="<?php echo implode( ' ', $classes ); ?>">
+        <h3>
+            <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
+        </h3>
+        <blockquote>
+            <em class="date"><?php echo $article->date; ?></em>
+            <span>&mdash;</span>
+            <span class="snippet"><?php echo $article->snippet; ?></span>
+        </blockquote>
+    </article>
+
+<?php
+endforeach;
+
+if (! $articles): ?>
+
+<div class="no-results">No articles yet</div>
+
+<?php
+endif; ?>

@@ -1,0 +1,433 @@
+<aside>
+    Since publication two more people won:
+    <a href="<?php $wl('abc7ny'); ?>">Autumn Erhard</a> on May 30, 2013, and
+    <a href="<?php $wl('myfox8'); ?>">Sarah Manchester</a> won the third million
+    on September 17, 2014. That's three winners in 5 years!
+</aside>
+
+<figure class="r-1">
+    <img src="<?php a('wedge'); ?>" />
+    <figcaption>Fig 1: Million dollar wedge</figcaption>
+</figure>
+
+<p>
+    Michelle Loewenstein became the first-ever <i>Wheel of Fortune</i> millionaire on
+    October 14, 2008&mdash;a mere four days after her honeymoon and six weeks after
+    the Million Dollar Wedge was first introduced. It was perfect timing: Wheel's new
+    million-dollar fanfare was very much at its peak, Ms. Loewenstein&mdash;a
+    young florist née teacher and newlywed from New Jersey&mdash;had just come home
+    from Hawaii, and on the very first spin of the game<sup>1</sup> and with a fresh
+    field of letters Ms. Loewenstein landed on the sparkly wedge.
+</p>
+<p>
+    While the Million Dollar Wedge (MDW) has certainly added renewed spectacle and a
+    much higher ceiling to the game, no one has won the million since Ms. Loewenstein
+    and few others have even had the opportunity. Just how winnable <i>is</i>
+    this million, and just how peculiar is Ms. Loewenstein's win? The odds are so
+    low and her circumstances so peculiar that Michelle Loewenstein's million dollar
+    game is in all likelihood a Sony Television Pictures<sup>2</sup> creation.
+</p>
+
+<h3>A Closer Look</h3>
+
+<figure class="r-1">
+    <iframe src="<?php wl('million-1'); ?>" frameborder="0" allowfullscreen></iframe>
+    <p>Fig 2: First million dollar win<sup>3</sup></p>
+</div>
+
+<p>
+    Such a bold claim requires some explanation! Before getting into the data,
+    however, let's first take a look at the Path to Victory, or PtV, in winning a
+    million dollars:
+</p>
+
+<ol>
+    <li>Spin and land on the Million Dollar Wedge</li>
+    <li>Guess a correct consonant</li>
+    <li>Win that round</li>
+    <li>Go the rest of the game without hitting a Bankrupt</li>
+    <li>Finish the game with the most winnings (i.e. win the game)</li>
+    <li>Spin the correct Bonus Round card</li>
+    <li>Solve the Bonus Round puzzle</li>
+</ol>
+
+<p>
+    Unfortunately, the networks don't release any data whatsoever about
+    _Wheel of Fortune_ (or any game show for that matter). Path to Victory steps
+    1, 3, 5, and 6 can all be mathematically assumed (more on that in a moment!)
+    but steps 2, 4, and 7 present somewhat of a problem in requiring real-world
+    data. With that in mind, I decided to watch <?php d('game_count'); ?>
+    games<sup>4</sup> and record the following set of data points as a
+    representative<sup>5</sup>:
+</p>
+
+<ul>
+    <li>Player and round</li>
+    <li>Letter guessed</li>
+    <li>If they guessed correctly</li>
+    <li>Who won the round and each round's prize (in USD)</li>
+    <li>If they spun the MDW</li>
+    <li>If they spun a Bankrupt</li>
+    <li>If the spin should be ignored (i.e. Pat's final spin)</li>
+</ul>
+
+<p>
+    This data serves to calculate the odds of guessing a letter correctly and how
+    often players are spinning a Bankrupt in a given game. The remaining data that
+    needs to be gathered are the odds of solving the Bonus Puzzle. For that, I used
+    six years of historic data gathered from the The <i>Wheel of Fortune</i> Bonus
+    Puzzle Compendium<sup>6</sup>, which can be seen in sheet "Bonus Rounds" of the
+    spreadsheet.
+</p>
+
+<h3>Calculating the Odds</h3>
+
+<p>
+    The probability calculations for each step in the PtV are defined as follows:
+</p>
+
+<table class="centered">
+    <tr>
+        <th>Step</th>
+        <th>Formula</th>
+        <th>Probability</th>
+    </tr>
+    <tr>
+        <td>Odds of player spinning million (A)</td>
+        <td>1 &divide; 72 &times; [valid spins per game]</td>
+        <td class="centered-text"><?php d('odds_a'); ?></td>
+    </tr>
+    <tr>
+        <td>Odds of guessing letter correctly (B)</td>
+        <td><em>from collected data</em></td>
+        <td class="centered-text"><?php d('odds_b'); ?></td>
+    </tr>
+    <tr>
+        <td>Odds of winning round (C)</td>
+        <td>1 &divide; 3</td>
+        <td class="centered-text"><?php d('odds_c'); ?></td>
+    </tr>
+    <tr>
+        <td>Odds of post-million Bankrupt (D)</td>
+        <td><em>from collected data</em></td>
+        <td class="centered-text"><?php d('odds_d'); ?></td>
+    </tr>
+    <tr>
+        <td>Odds of winning game (E)</td>
+        <td>1 &divide; 3</td>
+        <td class="centered-text"><?php d('odds_e'); ?></td>
+    </tr>
+    <tr>
+        <td>Odds of spinning $1M bonus card (F)</td>
+        <td>1 &divide; 24</td>
+        <td class="centered-text"><?php d('odds_f'); ?></td>
+    </tr>
+    <tr>
+        <td>Odds of solving bonus puzzle (G)</td>
+        <td><em>historic data used</em></td>
+        <td class="centered-text"><?php d('odds_g'); ?></td>
+    </tr>
+</table>
+
+<p>
+    Before we calculate the final probability, I'd like to cover a few assumptions
+    and calculations I made:
+</p>
+
+<ol>
+    <li>
+        The odds of <b>winning the puzzle and the game</b> are 1:3. I made no attempt
+        to calculate the odds to win the round and game given any other factors. The
+        main reason why I feel 1:3 is a valid assumption is because the game itself
+        is subject to many random factors, and winning a big round (and thus the
+        game) can happen at any moment.
+    </li>
+    <li>
+        <b>Valid spins per game</b> is the average number of actual spins a
+        singular player will make during a given game. Valid spins are any that
+        occur in Rounds 1 through 3, are not vowel guesses, and are not part of
+        Pat's final spin. As of this article's publishing, each player only actually
+        takes and average of <?php d('mp_spins'); ?> of these "million possible"
+        spins per game.
+    </li>
+    <li>
+        The odds of a <b>post-million Bankrupt</b> are an attempt to calculate the
+        likelihood of spinning a Bankrupt wedge *after* spinning the MDW (and thus
+        losing the MDW). To calculate this we take the average number of Bankrupts
+        from Rounds 1 through 3 and divide that number in half, assuming a 50/50
+        likelihood that you spin it after or before you actually hit the MDW. Then,
+        we add on the odds of spinning a Bankrupt after Round 3.
+    </li>
+    <li>
+        The odds of <b>solving the bonus puzzle</b> come from six years worth of
+        historic data and thus can be assumed to be "complete".
+    </li>
+</ol>
+
+<h4>The Grand Probability</h4>
+
+<p>
+    With our table above, the final probability can be calculated using the formula:
+</p>
+
+<blockquote>
+    A &times; B &times; C &times; (1 - D) &times; E &times; F &times; G
+</blockquote>
+
+<p>
+    resulting in a final probability of:
+</p>
+
+<blockquote>
+    <b><?php d('prob_1'); ?></b>
+</blockquote>
+
+<p>
+    That's about 1 in <?php d('prob_1_players'); ?> players,
+    <?php d('prob_1_games'); ?> games, or
+    <b>every <?php d('prob_1_timeframe'); ?></b><sup>7</sup>!
+</p>
+
+<h4>The Grand Probability&hellip; With the Producers' Help</h4>
+
+<p>
+    Throughout the course of this project I've made a few notable discoveries, all
+    of which have led me to believe that the producers manufactured this million
+    dollar win.
+</p>
+<p>
+    One obvious oddity regarding Ms. Loewenstein's victory is that it happened a
+    mere <b>27 games</b> after Wheel even debuted the MDW!
+</p>
+<p>
+    This is absolutely astonishing given the proposed
+    <?php d('prob_1_games_est'); ?>-game average timespan for a million dollar
+    game. While this may be attributed to common luck, it becomes much less
+    likely when looking at the two variables the producers control and assuming
+    foul play:
+</p>
+
+<blockquote>
+    Odds of spinning $1M bonus card (F)<br>
+    Odds of solving bonus puzzle (G)
+</blockquote>
+
+<p>
+    For (F), Wheel could put Million Dollar Bonus Cards for all 24 cards in the Bonus
+    Wheel very easily, with neither Ms. Loewenstein nor the audience the wiser.
+    I'll cover (G) in the next section more thoroughly,but for now it can be assumed
+    trivial for Wheel to issue a very easy Bonus Puzzle.
+</p>
+<p>
+    Removing (F) and (G) from our formula results in a final probability of:
+</p>
+
+<blockquote>
+    <b><?php d('prob_2'); ?></b>
+</blockquote>
+
+<p>
+    That's about 1 in <?php d('prob_2_players'); ?> players&mdash;or <b>every
+    <?php d('prob_2_games'); ?> games</b>!&mdash;much closer to the 27 game mark
+    when Ms. Loewenstein won. The show merely controlling for (F) and (G) allows for
+    much more mathematical sense.
+</p>
+
+<h4>The CDMA Assumption</h4>
+
+<figure class="r-1">
+    <img src="<?php a('leaky_faucet'); ?>" />
+    <figcaption>Fig 3: Michelle's Bonus Puzzle</figcaption>
+</figure>
+
+<p>
+    How could the producers know that Ms. Loewenstein would solve the Bonus Puzzle,
+    though? If she failed to solve this, it would be politically difficult for Wheel to
+    orchestrate <i>another</i> contestant spinning one million dollars from the Bonus
+    Wheel. She simply had to get a
+    <a href="<?php a('leaky_faucet'); ?>">ridiculously easy one</a> (see Figure 3).
+</p>
+<p>
+    First, <i>Wheel of Fortune</i> provides RSTLNE for the Bonus Puzzle right out of the
+    gate. Applying these letters to Ms. Loewenstein's Bonus Puzzle, "Leaky Faucet",
+    only yields:
+</p>
+
+<blockquote>
+    L E _ _ _<br>
+    _ _ _ _ E T
+</blockquote>
+
+<p>
+    While this isn't <i>immediately solvable</i>, it still contains the beginning and
+    ending letters of the phrase.
+</p>
+<p>
+    However, both Wheel-Watchers and a quick look at the underlying Bonus Puzzle
+    data will tell you that CDMA (by far) represents the four most commonly selected
+    Bonus Round letters<sup>8</sup>. Additionally, there are only <b>11 words in the
+    English language ending in the suffix "cet"</b>&mdash;only two of which would ever
+    appear in a puzzle or ever be generally known by a contestant (i.e., "facet" and
+    "faucet")<sup>9</sup>.
+</p>
+
+<h4>The Financial Gains</h4>
+
+<figure class="r-1">
+    <img src="<?php a('10k_wedge'); ?>" />
+    <figcaption>Fig 4: $10,000 wedge</figcaption>
+</div>
+
+<p>
+    Finally, <i>Wheel</i> introduced the MDW to replace the $10,000 Wedge. As can be
+    expected, this wedge had the same requirements to win as any other normal cash
+    wedge:
+</p>
+
+<ol>
+    <li>Spin the $10,000 Wedge</li>
+    <li>Guess the correct consonant</li>
+    <li>Win the round</li>
+</ol>
+
+<p>
+    The probability here is <b><?php d('prob_3'); ?></b>. That's about 1 in
+    <?php d('prob_3_players'); ?> players, or once every
+    <?php d('prob_3_games'); ?> games.
+</p>
+<p>
+    Now, if <i>Wheel</i> pays out $10,000 from this wedge once every
+    <?php d('prob_3_games'); ?> games that would mean the wedge has a cost per game
+    (CPG) of $10,000 &divide; <?php d('prob_3_games'); ?>, or
+    <?php d('prob_3_cost_1'); ?>. The MDW, however, has a CPG of $1,000,000 &divide;
+    <?php d('prob_1_games'); ?>, or <?php d('prob_3_cost_2'); ?>.
+</p>
+<p>
+    The difference between these costs (<?php d('prob_3_cost_1'); ?> -
+    <?php d('prob_3_cost_1'); ?>) reveals the savings <i>Wheel</i> realizes each game
+    upon switching to the MDW: an average of <?php d('prob_3_cost_3'); ?> every
+    game. The peculiarity here grows when we extend these cost savings throughout
+    the <?php d('prob_1_games'); ?> game (or <?php d('prob_1_timeframe'); ?>)
+    timespan:
+</p>
+
+<blockquote>
+    <?php d('prob_3_cost_3'); ?> &times; <?php d('prob_1_games'); ?> =
+    <b><?php d('prob_3_savings'); ?></b>
+</blockquote>
+
+<p>
+    By switching over from the $10,000 Wedge to the Million Dollar Wedge, Sony has
+    effectively saved themselves more than <?php d('prob_3_savings_est'); ?> over
+    the probabilistic estimate for each Million Dollar Winner!
+</p>
+
+<h3>Final Thoughts</h3>
+
+<p>
+    Given the extremely low odds of winning $1 million, the speed with which Ms.
+    Loewenstein won, the relative ease with which Sony may control the Bonus Wheel
+    and Bonus Puzzle, and the hype and positive press Sony stood to gain from getting
+    an early winner, it becomes much more likely that Sony did in fact fix the
+    million dollar win from 2008.
+</p>
+<p>
+    This is pure speculation, however, and I have no actual evidence that Sony did
+    anything that I'm claiming. I'm a huge fan of the show and I've loved watching
+    and recording this game data &mdash; it was a lot of fun and I've grown to love
+    Wheel and Wheel culture. I will more than likely continue recording more and more
+    game data and updating the spreadsheet for a while.
+</p>
+<p>
+    Finally, I think Sony and other game show networks should release historical data
+    (as much as possible) to allow hobbyists and fans to do interesting and fun
+    things. There's so many insights that we can get from these games and having
+    structured data would be fantastic!
+</p>
+<p>
+    Please feel free to leave comments below, and I would greatly appreciate any
+    corrections or fixes if you've noticed anything from my analysis and spreadsheet
+    calculations.
+</p>
+
+<h3>References</h3>
+
+<ol id="appendix">
+    <li>
+        <a href="<?php wl('abc7ny'); ?>">Article about Michelle Lowenstein's Win</a>,
+        <i>ABC 7 NY</i>
+    </li>
+    <li>
+        <a href="<?php wl('sony'); ?>">Sony Pictures Television</a> is the parent
+        company that owns the rights to <i>Wheel of Fortune</i>, <i>Web Archive</i>
+    </li>
+    <li>
+        <a href="<?php wl('million-1'); ?>">Video of Michelle's winning game</a>,
+        <i>YouTube</i>
+    </li>
+    <li>
+        I originally chose 40 as the number of games' data to collect. I felt like
+        40 games was more than enough to get the numbers I needed.
+    </li>
+    <li>
+        <a href="<?php wl('data'); ?>">Data collected</a>, <i>Google Spreadsheet</i>
+    </li>
+    <li>
+        <a href="<?php wl('compendium'); ?>">The Wheel of Fortune Bonus Puzzle Compendium</a>,
+        <i>CactusBob</i><br>Contains many years worth of historic Bonus Puzzle results
+    </li>
+    <li>
+        It should be noted that the final probability has been calculated using
+        <?php d('game_count'); ?> games worth of data at the time of writing this.
+        I will continue to add more game data to the spreadsheet in the future;
+        however, the probabilities have not fluctuated very much at all after about
+        10-20 games' worth of data.
+    </li>
+    <li>
+        Sheet "Letter Frequency" in the collected data spreadsheet shows a
+        calculated letter frequency for the letters selected in the Bonus Round from
+        2007 through 2012. The letters "C", "D", "M", and "A" account for 57% of
+        possible letters guessed.
+    </li>
+    <li>
+        <a href="<?php wl('cet'); ?>">Possible words ending in CET</a>,
+        <i>Scrabblefinder</i>
+    </li>
+    <li>
+        <a href="<?php wl('bonus'); ?>">Wheel of Fortune puzzle solutions</a>,
+        <i>James E. Pettis</i><br>
+        A large collection of puzzles used in games over the years
+    </li>
+    <li>
+        <a href="<?php wl('buyavowel'); ?>">Buy a Vowel Boards, A Wheel of Fortune Community</a>
+    </li>
+    <li>
+        <a href="<?php wl('recap'); ?>">Weekly stat recap</a>, <i>Buy a Vowel Boards</i>
+    </li>
+    <li>
+        <a href="<?php wl('wikia'); ?>">Wheel of Fortune History Wiki</a>,
+        <i>Wikia</i><br />
+        Comprehensive wiki and historical resource covering all aspects of the game's
+        colorful history.
+    </li>
+</ol>
+
+
+<h3>Special Thanks</h3>
+
+<p>
+    A lot of work went into this analysis and I would like to thank:
+</p>
+
+<ol>
+    <li>
+        Cactus Bob for his <b>unbelievably</b> comprehensive Bonus Puzzle Compendium,
+        and James E. Pettis at <i>Wheel of Fortune</i> Solutions<sup>10</sup>.
+    </li>
+    <li>
+        The Buy a Vowel Boards userbase, for their incredible vigilance in
+        record-keeping and providing public services like their
+        weekly stat recaps<sup>11</sup>&nbsp;<sup>12</sup> and Wheel of Fortune
+        History Wiki<sup>13</sup>.
+    </li>
+</ol>

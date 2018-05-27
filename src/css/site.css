@@ -24,6 +24,16 @@ h2 {
     font-family: 'Signika Negative';
 }
 
+/* Common classes */
+.no-results {
+    color: #aaa;
+    text-align: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.125rem;
+    background-color: #fafafa;
+    box-shadow: 0 1px 1px #ddd;
+}
+
 /* Logo, subtitle, and menu nav */
 header {
     width: 100%;
@@ -44,9 +54,9 @@ header nav.logo a {
     color: #333;
     height: 4rem;
     display: block;
-    padding: 0.5rem;
     text-decoration: none;
     box-sizing: border-box;
+    padding: 0.5rem 0.5rem 0.5rem 0.75rem;
 }
 header nav.logo a:hover {
     background-color: #f9f9f9;
@@ -68,19 +78,25 @@ header nav.logo .name {
     font-family: 'Signika Negative';
 }
 header section.subtitle {
-    color: #444;
+    color: #999;
     height: 4rem;
     background: #fff;
-    margin-left: 10rem;
+    line-height: 1.05;
     font-size: 1.33rem;
-    line-height: 0.96875;
+    margin-left: 10rem;;
     padding: 0.75rem 1rem;
     box-sizing: border-box;
     width: calc(100% - 18rem);
 }
 header section.subtitle span.smaller {
-    color: #999;
+    color: #ccc;
     font-size: 1rem;
+}
+header section.subtitle:hover {
+    color: #444;
+}
+header section.subtitle:hover span.smaller {
+    color: #999;
 }
 header nav.menu {
     top: 0;
@@ -99,7 +115,7 @@ header nav.menu a.button {
     display: inline-block;
     text-decoration: none;
     border-radius: 0.25rem;
-    padding: 0.625rem 0.75rem;
+    padding: 0.625rem 0.875rem;
 }
 header nav.menu a.button:hover {
     color: #333;
@@ -117,7 +133,7 @@ main nav {
     bottom: 0;
     width: 10rem;
     position: fixed;
-    padding: 1rem 0.75rem 0;
+    padding: 1rem 1rem 0;
     box-sizing: border-box;
     border-right: 1px solid #eee;
 }
@@ -193,6 +209,7 @@ main section.topics li {
 main section.topics li a {
     color: #111;
     display: block;
+    line-height: 1.4;
     text-decoration: none;
     padding: 0.33rem 0.5rem;
 }
@@ -214,40 +231,6 @@ main section.topics li a span.count {
     content: "";
     display: table;
 }
-
-/*
-This should be injected into HTML */
-.topic-privacy {
-    background-color: rgb(135, 206, 250);
-}
-.topic-privacy-light {
-    background-color: rgba(135, 206, 250, 0.2);
-}
-.topic-programming {
-    background-color: rgb(175, 238, 238);
-}
-.topic-programming-light {
-    background-color: rgba(175, 238, 238, 0.3);
-}
-.topic-communication {
-    background-color: rgb(255, 218, 185);
-}
-.topic-communication-light {
-    background-color: rgba(255, 218, 185, 0.3);
-}
-.topic-fun-games {
-    background-color: rgb(255, 215, 0);
-}
-.topic-fun-games-light {
-    background-color: rgba(255, 215, 0, 0.15);
-}
-.topic-lifes-work {
-    background-color: rgb(240, 230, 140);
-}
-.topic-lifes-work-light {
-    background-color: rgba(240, 230, 140, 0.3);
-}
-
 
 /*
 Colors
