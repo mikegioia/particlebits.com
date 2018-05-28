@@ -7,9 +7,9 @@
     "featured": false,
     "snippet": "Michelle Loewenstein became the first-ever Wheel of Fortune millionaire 6 weeks after the wedge was introduced. Just how winnable is this million, and just how peculiar is Ms. Loewenstein's win?",
     "assets": {
-        "wedge": "million_dollar_wedge_in_board_pub.png",
-        "leaky_faucet": "leaky_faucet_pub.png",
-        "10k_wedge": "10000_dollar_wedge_in_board_pub.png"
+        "wedge": "million_dollar_wedge_in_board.png",
+        "leaky_faucet": "leaky_faucet.png",
+        "10k_wedge": "10000_dollar_wedge_in_board.png"
     },
     "weblinks": {
         "million-1": "https://www.youtube.com/embed/Q_rLkEXU4o4",

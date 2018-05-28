@@ -5,8 +5,8 @@
     on September 17, 2014. That's three winners in 5 years!
 </aside>
 
-<figure class="r-1">
-    <img src="<?php a('wedge'); ?>" />
+<figure class="r-2">
+    <img src="<?php $a('wedge'); ?>" />
     <figcaption>Fig 1: Million dollar wedge</figcaption>
 </figure>
 
@@ -30,10 +30,10 @@
 
 <h3>A Closer Look</h3>
 
-<figure class="r-1">
-    <iframe src="<?php wl('million-1'); ?>" frameborder="0" allowfullscreen></iframe>
-    <p>Fig 2: First million dollar win<sup>3</sup></p>
-</div>
+<figure class="r-2">
+    <iframe src="<?php $wl('million-1'); ?>" frameborder="0" allowfullscreen></iframe>
+    <figcaption>Fig 2: First million dollar win<sup>3</sup></figcaption>
+</figure>
 
 <p>
     Such a bold claim requires some explanation! Before getting into the data,
@@ -56,7 +56,7 @@
     _Wheel of Fortune_ (or any game show for that matter). Path to Victory steps
     1, 3, 5, and 6 can all be mathematically assumed (more on that in a moment!)
     but steps 2, 4, and 7 present somewhat of a problem in requiring real-world
-    data. With that in mind, I decided to watch <?php d('game_count'); ?>
+    data. With that in mind, I decided to watch <?php $d('game_count'); ?>
     games<sup>4</sup> and record the following set of data points as a
     representative<sup>5</sup>:
 </p>
@@ -95,37 +95,37 @@
     <tr>
         <td>Odds of player spinning million (A)</td>
         <td>1 &divide; 72 &times; [valid spins per game]</td>
-        <td class="centered-text"><?php d('odds_a'); ?></td>
+        <td class="centered-text"><?php $d('odds_a'); ?></td>
     </tr>
     <tr>
         <td>Odds of guessing letter correctly (B)</td>
         <td><em>from collected data</em></td>
-        <td class="centered-text"><?php d('odds_b'); ?></td>
+        <td class="centered-text"><?php $d('odds_b'); ?></td>
     </tr>
     <tr>
         <td>Odds of winning round (C)</td>
         <td>1 &divide; 3</td>
-        <td class="centered-text"><?php d('odds_c'); ?></td>
+        <td class="centered-text"><?php $d('odds_c'); ?></td>
     </tr>
     <tr>
         <td>Odds of post-million Bankrupt (D)</td>
         <td><em>from collected data</em></td>
-        <td class="centered-text"><?php d('odds_d'); ?></td>
+        <td class="centered-text"><?php $d('odds_d'); ?></td>
     </tr>
     <tr>
         <td>Odds of winning game (E)</td>
         <td>1 &divide; 3</td>
-        <td class="centered-text"><?php d('odds_e'); ?></td>
+        <td class="centered-text"><?php $d('odds_e'); ?></td>
     </tr>
     <tr>
         <td>Odds of spinning $1M bonus card (F)</td>
         <td>1 &divide; 24</td>
-        <td class="centered-text"><?php d('odds_f'); ?></td>
+        <td class="centered-text"><?php $d('odds_f'); ?></td>
     </tr>
     <tr>
         <td>Odds of solving bonus puzzle (G)</td>
         <td><em>historic data used</em></td>
-        <td class="centered-text"><?php d('odds_g'); ?></td>
+        <td class="centered-text"><?php $d('odds_g'); ?></td>
     </tr>
 </table>
 
@@ -147,7 +147,7 @@
         singular player will make during a given game. Valid spins are any that
         occur in Rounds 1 through 3, are not vowel guesses, and are not part of
         Pat's final spin. As of this article's publishing, each player only actually
-        takes and average of <?php d('mp_spins'); ?> of these "million possible"
+        takes and average of <?php $d('mp_spins'); ?> of these "million possible"
         spins per game.
     </li>
     <li>
@@ -179,13 +179,13 @@
 </p>
 
 <blockquote>
-    <b><?php d('prob_1'); ?></b>
+    <b><?php $d('prob_1'); ?></b>
 </blockquote>
 
 <p>
-    That's about 1 in <?php d('prob_1_players'); ?> players,
-    <?php d('prob_1_games'); ?> games, or
-    <b>every <?php d('prob_1_timeframe'); ?></b><sup>7</sup>!
+    That's about 1 in <?php $d('prob_1_players'); ?> players,
+    <?php $d('prob_1_games'); ?> games, or
+    <b>every <?php $d('prob_1_timeframe'); ?></b><sup>7</sup>!
 </p>
 
 <h4>The Grand Probability&hellip; With the Producers' Help</h4>
@@ -201,7 +201,7 @@
 </p>
 <p>
     This is absolutely astonishing given the proposed
-    <?php d('prob_1_games_est'); ?>-game average timespan for a million dollar
+    <?php $d('prob_1_games_est'); ?>-game average timespan for a million dollar
     game. While this may be attributed to common luck, it becomes much less
     likely when looking at the two variables the producers control and assuming
     foul play:
@@ -223,20 +223,20 @@
 </p>
 
 <blockquote>
-    <b><?php d('prob_2'); ?></b>
+    <b><?php $d('prob_2'); ?></b>
 </blockquote>
 
 <p>
-    That's about 1 in <?php d('prob_2_players'); ?> players&mdash;or <b>every
-    <?php d('prob_2_games'); ?> games</b>!&mdash;much closer to the 27 game mark
+    That's about 1 in <?php $d('prob_2_players'); ?> players&mdash;or <b>every
+    <?php $d('prob_2_games'); ?> games</b>!&mdash;much closer to the 27 game mark
     when Ms. Loewenstein won. The show merely controlling for (F) and (G) allows for
     much more mathematical sense.
 </p>
 
 <h4>The CDMA Assumption</h4>
 
-<figure class="r-1">
-    <img src="<?php a('leaky_faucet'); ?>" />
+<figure class="r-2">
+    <img src="<?php $a('leaky_faucet'); ?>" />
     <figcaption>Fig 3: Michelle's Bonus Puzzle</figcaption>
 </figure>
 
@@ -245,7 +245,7 @@
     though? If she failed to solve this, it would be politically difficult for Wheel to
     orchestrate <i>another</i> contestant spinning one million dollars from the Bonus
     Wheel. She simply had to get a
-    <a href="<?php a('leaky_faucet'); ?>">ridiculously easy one</a> (see Figure 3).
+    <a href="<?php $a('leaky_faucet'); ?>">ridiculously easy one</a> (see Figure 3).
 </p>
 <p>
     First, <i>Wheel of Fortune</i> provides RSTLNE for the Bonus Puzzle right out of the
@@ -274,9 +274,9 @@
 <h4>The Financial Gains</h4>
 
 <figure class="r-1">
-    <img src="<?php a('10k_wedge'); ?>" />
+    <img src="<?php $a('10k_wedge'); ?>" />
     <figcaption>Fig 4: $10,000 wedge</figcaption>
-</div>
+</figure>
 
 <p>
     Finally, <i>Wheel</i> introduced the MDW to replace the $10,000 Wedge. As can be
@@ -291,34 +291,34 @@
 </ol>
 
 <p>
-    The probability here is <b><?php d('prob_3'); ?></b>. That's about 1 in
-    <?php d('prob_3_players'); ?> players, or once every
-    <?php d('prob_3_games'); ?> games.
+    The probability here is <b><?php $d('prob_3'); ?></b>. That's about 1 in
+    <?php $d('prob_3_players'); ?> players, or once every
+    <?php $d('prob_3_games'); ?> games.
 </p>
 <p>
     Now, if <i>Wheel</i> pays out $10,000 from this wedge once every
-    <?php d('prob_3_games'); ?> games that would mean the wedge has a cost per game
-    (CPG) of $10,000 &divide; <?php d('prob_3_games'); ?>, or
-    <?php d('prob_3_cost_1'); ?>. The MDW, however, has a CPG of $1,000,000 &divide;
-    <?php d('prob_1_games'); ?>, or <?php d('prob_3_cost_2'); ?>.
+    <?php $d('prob_3_games'); ?> games that would mean the wedge has a cost per game
+    (CPG) of $10,000 &divide; <?php $d('prob_3_games'); ?>, or
+    <?php $d('prob_3_cost_1'); ?>. The MDW, however, has a CPG of $1,000,000 &divide;
+    <?php $d('prob_1_games'); ?>, or <?php $d('prob_3_cost_2'); ?>.
 </p>
 <p>
-    The difference between these costs (<?php d('prob_3_cost_1'); ?> -
-    <?php d('prob_3_cost_1'); ?>) reveals the savings <i>Wheel</i> realizes each game
-    upon switching to the MDW: an average of <?php d('prob_3_cost_3'); ?> every
+    The difference between these costs (<?php $d('prob_3_cost_1'); ?> -
+    <?php $d('prob_3_cost_1'); ?>) reveals the savings <i>Wheel</i> realizes each game
+    upon switching to the MDW: an average of <?php $d('prob_3_cost_3'); ?> every
     game. The peculiarity here grows when we extend these cost savings throughout
-    the <?php d('prob_1_games'); ?> game (or <?php d('prob_1_timeframe'); ?>)
+    the <?php $d('prob_1_games'); ?> game (or <?php $d('prob_1_timeframe'); ?>)
     timespan:
 </p>
 
 <blockquote>
-    <?php d('prob_3_cost_3'); ?> &times; <?php d('prob_1_games'); ?> =
-    <b><?php d('prob_3_savings'); ?></b>
+    <?php $d('prob_3_cost_3'); ?> &times; <?php $d('prob_1_games'); ?> =
+    <b><?php $d('prob_3_savings'); ?></b>
 </blockquote>
 
 <p>
     By switching over from the $10,000 Wedge to the Million Dollar Wedge, Sony has
-    effectively saved themselves more than <?php d('prob_3_savings_est'); ?> over
+    effectively saved themselves more than <?php $d('prob_3_savings_est'); ?> over
     the probabilistic estimate for each Million Dollar Winner!
 </p>
 
@@ -354,15 +354,15 @@
 
 <ol id="appendix">
     <li>
-        <a href="<?php wl('abc7ny'); ?>">Article about Michelle Lowenstein's Win</a>,
+        <a href="<?php $wl('abc7ny'); ?>">Article about Michelle Lowenstein's Win</a>,
         <i>ABC 7 NY</i>
     </li>
     <li>
-        <a href="<?php wl('sony'); ?>">Sony Pictures Television</a> is the parent
+        <a href="<?php $wl('sony'); ?>">Sony Pictures Television</a> is the parent
         company that owns the rights to <i>Wheel of Fortune</i>, <i>Web Archive</i>
     </li>
     <li>
-        <a href="<?php wl('million-1'); ?>">Video of Michelle's winning game</a>,
+        <a href="<?php $wl('million-1'); ?>">Video of Michelle's winning game</a>,
         <i>YouTube</i>
     </li>
     <li>
@@ -370,15 +370,15 @@
         40 games was more than enough to get the numbers I needed.
     </li>
     <li>
-        <a href="<?php wl('data'); ?>">Data collected</a>, <i>Google Spreadsheet</i>
+        <a href="<?php $wl('data'); ?>">Data collected</a>, <i>Google Spreadsheet</i>
     </li>
     <li>
-        <a href="<?php wl('compendium'); ?>">The Wheel of Fortune Bonus Puzzle Compendium</a>,
+        <a href="<?php $wl('compendium'); ?>">The Wheel of Fortune Bonus Puzzle Compendium</a>,
         <i>CactusBob</i><br>Contains many years worth of historic Bonus Puzzle results
     </li>
     <li>
         It should be noted that the final probability has been calculated using
-        <?php d('game_count'); ?> games worth of data at the time of writing this.
+        <?php $d('game_count'); ?> games worth of data at the time of writing this.
         I will continue to add more game data to the spreadsheet in the future;
         however, the probabilities have not fluctuated very much at all after about
         10-20 games' worth of data.
@@ -390,22 +390,22 @@
         possible letters guessed.
     </li>
     <li>
-        <a href="<?php wl('cet'); ?>">Possible words ending in CET</a>,
+        <a href="<?php $wl('cet'); ?>">Possible words ending in CET</a>,
         <i>Scrabblefinder</i>
     </li>
     <li>
-        <a href="<?php wl('bonus'); ?>">Wheel of Fortune puzzle solutions</a>,
+        <a href="<?php $wl('bonus'); ?>">Wheel of Fortune puzzle solutions</a>,
         <i>James E. Pettis</i><br>
         A large collection of puzzles used in games over the years
     </li>
     <li>
-        <a href="<?php wl('buyavowel'); ?>">Buy a Vowel Boards, A Wheel of Fortune Community</a>
+        <a href="<?php $wl('buyavowel'); ?>">Buy a Vowel Boards, A Wheel of Fortune Community</a>
     </li>
     <li>
-        <a href="<?php wl('recap'); ?>">Weekly stat recap</a>, <i>Buy a Vowel Boards</i>
+        <a href="<?php $wl('recap'); ?>">Weekly stat recap</a>, <i>Buy a Vowel Boards</i>
     </li>
     <li>
-        <a href="<?php wl('wikia'); ?>">Wheel of Fortune History Wiki</a>,
+        <a href="<?php $wl('wikia'); ?>">Wheel of Fortune History Wiki</a>,
         <i>Wikia</i><br />
         Comprehensive wiki and historical resource covering all aspects of the game's
         colorful history.

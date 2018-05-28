@@ -1,5 +1,5 @@
 /* Readability */
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 880px) {
     main section.topics {
         display: none;
     }

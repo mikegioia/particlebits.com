@@ -25,7 +25,7 @@ class Articles
         $this->sites = $sites;
     }
 
-    public function load($site, $siteTopics)
+    public function load($site, $config)
     {
         $this->articles = [];
         $this->topics = new Topics;
@@ -42,18 +42,18 @@ class Articles
                 }
 
                 foreach ($this->sites->listContents($year['path']) as $slug) {
-                    $this->loadArticle($slug, $topic);
+                    $this->loadArticle($slug, $topic, $config);
                 }
             }
         }
 
         // Set up the topics and attach them to the articles
-        $this->loadTopics($siteTopics);
+        $this->loadTopics($config->topics);
 
         return $this->articles;
     }
 
-    private function loadArticle($slug, $topic)
+    private function loadArticle($slug, $topic, $config)
     {
         if ($slug['type'] !== TYPE_DIR) {
             return;
@@ -76,8 +76,17 @@ class Articles
             return;
         }
 
+        $meta->medias = [];
+
+        // Build index of media assets if they exist
+        if ($this->sites->has("{$slug['path']}/media")) {
+            foreach ($this->sites->listContents("{$slug['path']}/media") as $media) {
+                $meta->medias[] = $media;
+            }
+        }
+
         $this->incrementTopicCount($topic['basename']);
-        $this->addArticle($meta, $slug);
+        $this->addArticle($meta, $slug, $config);
     }
 
     private function loadTopics($siteTopics)
@@ -100,9 +109,9 @@ class Articles
         $this->topicCounts[$topicSlug] += 1;
     }
 
-    private function addArticle($meta, $slug)
+    private function addArticle($meta, $slug, $config)
     {
-        $article = new Article($meta, $slug['path']);
+        $article = new Article($meta, $slug['path'], $config->urlFormat);
 
         $this->articles[] = $article;
     }

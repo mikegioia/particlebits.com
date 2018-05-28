@@ -35,11 +35,19 @@ h2 {
     box-shadow: 0 1px 1px #ddd;
 }
 
+/* Clear floats */
+.group:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
 /* Logo, subtitle, and menu nav */
 header {
     width: 100%;
     height: 4rem;
     position: fixed;
+    background-color: #fff;
     border-bottom: 1px solid #ddd;
 }
 header nav.logo {
@@ -227,11 +235,31 @@ main section.topics li a span.count {
     background-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Clear floats */
-.group:after {
-    clear: both;
-    content: "";
-    display: table;
+/* Articles */
+article figure {
+    color: #999;
+    padding: 0.5rem;
+    border-radius: 0.125rem;
+    background-color: #fafafa;
+    box-shadow: 0 1px 1px #ddd;
+}
+article figure.r-1,
+article figure.r-2,
+article figure.r-3 {
+    width: 25%;
+    float: right;
+    margin: 0 0 1rem 1rem;
+}
+article figure.r-2 {
+    width: 33%;
+}
+article figure.r-3 {
+    width: 50%;
+}
+article figure img,
+article figure iframe {
+    width: 100%;
+    display: block;
 }
 
 /*
@@ -260,6 +288,9 @@ body.theme-paper {
 }
 body.theme-paper h2 {
     color: #bbbdb5;
+}
+body.theme-paper header {
+    background-color: #fffdf5;
 }
 body.theme-paper header nav.menu a.button {
     background-color: #eeede5;

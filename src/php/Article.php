@@ -16,15 +16,22 @@ class Article
     public $snippet;
     public $data = [];
     public $assets = [];
+    public $medias = [];
     public $weblinks = [];
     public $featured = false;
 
-    // Path to article content file
+    // Path to article's directory
     private $path;
+    // Collection of config data
+    private $meta;
     // Topic object
     private $_topic;
 
-    public function __construct($data, $path)
+    const NOT_FOUND = 'notfound.jpg';
+    const ASSET_URL_FORMAT = 'media/%YEAR%/%SLUG%/';
+    const URL_FORMAT = 'articles/%YEAR%/%SLUG%.html';
+
+    public function __construct($data, $path, $urlFormat = null)
     {
         foreach ($data as $property => $value) {
             if (property_exists($this, $property)) {
@@ -35,8 +42,12 @@ class Article
         $this->convertHtml($this->title);
         $this->convertHtml($this->snippet);
 
-        $this->path = "$path/article.phtml";
-        $this->url = $this->makeUrl($path);
+        $this->path = $path;
+        $this->meta = $data;
+        $this->urlFormat = $urlFormat ?: self::URL_FORMAT;
+
+        // Uses path and urlFormat
+        $this->url = $this->getUrl();
     }
 
     public function dateString($format = 'F jS, Y')
@@ -56,9 +67,26 @@ class Article
         return $this->_topic;
     }
 
-    public function write(Filesystem $build)
+    public function render()
     {
-        //
+        $data = (array)$this->meta;
+
+        // Set up helper functions for processing config
+        $data['a'] = function ($key) {
+            echo $this->getAssetUrl(get($this->assets, $key, self::NOT_FOUND));
+        };
+
+        $data['d'] = function ($key) {
+            echo get($this->data, $key, '');
+        };
+
+        $data['wl'] = function ($key) {
+            echo get($this->weblinks, $key, '#notfound' );
+        };
+
+        $data['content'] = render("{$this->path}/article.phtml", $data, false);
+
+        return render(TPL_ARTICLE, $data);
     }
 
     private function convertHtml(&$text)
@@ -79,10 +107,32 @@ class Article
         }
     }
 
-    private function makeUrl($path)
+    /**
+     * Default format is `/articles/YYYY/slug.html`
+     */
+    public function getUrl()
     {
-        $parts = explode("/", $path);
+        return $this->makeUrl($this->urlFormat);
+    }
 
-        return date('Y', strtotime($this->date)) ."/". array_pop($parts);
+    public function getAssetUrl($filename)
+    {
+        return $this->makeUrl(self::ASSET_URL_FORMAT . $filename);
+    }
+
+    private function makeUrl($format)
+    {
+        // Available parts are the year, the month, and the slug
+        $time = strtotime($this->date);
+        $year = date("Y", $time);
+        $month = date("m", $time);
+        $pathParts = explode("/", $this->path);
+        $slug = array_pop($pathParts);
+
+        $url = str_replace('%YEAR%', $year, $format );
+        $url = str_replace('%MONTH%', $month, $url);
+        $url = str_replace('%SLUG%', $slug, $url);
+
+        return $url;
     }
 }
