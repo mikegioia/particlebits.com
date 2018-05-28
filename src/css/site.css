@@ -6,6 +6,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    color: #333;
     width: 100%;
     height: 100%;
     font-size: 1rem;
@@ -80,7 +81,6 @@ header nav.logo .name {
 header section.subtitle {
     color: #999;
     height: 4rem;
-    background: #fff;
     line-height: 1.05;
     font-size: 1.33rem;
     margin-left: 10rem;;
@@ -105,7 +105,6 @@ header nav.menu {
     height: 4rem;
     position: fixed;
     text-align: right;
-    background-color: #fff;
 }
 header nav.menu a.button {
     color: #666;
@@ -164,16 +163,19 @@ main section.content {
 }
 main section.content h3 {
     font-size: 1.4em;
-    line-height: 1.125;
+    line-height: 1.25;
     font-family: 'Signika Negative';
 }
 main section.content h3 a {
     color: #222;
-    text-decoration: none;
+    /*text-decoration: none;*/
+}
+main section.content h3 a:hover {
+    text-decoration: underline;
 }
 main section.content article {
-    padding: 1rem;
     margin: 0 0 1rem;
+    padding: 0.875rem 1rem;
 }
 main section.content blockquote {
     padding: 0;
@@ -251,3 +253,45 @@ Colors
 221, 160, 221 0.22 plum
 216, 191, 216 0.3  thistle
 */
+
+body.theme-paper {
+    color: #333d35;
+    background-color: #fffdf5;
+}
+body.theme-paper h2 {
+    color: #bbbdb5;
+}
+body.theme-paper header nav.menu a.button {
+    background-color: #eeede5;
+}
+body.theme-paper header nav.menu a.button:hover {
+    background-color: #ddddd5;
+}
+body.theme-paper main nav {
+    border-right-color: #eeede5;
+}
+body.theme-paper header section.subtitle,
+body.theme-paper header section.subtitle:hover span.smaller {
+    color: #999d95;
+}
+body.theme-paper header section.subtitle:hover {
+    color: #444d45;
+}
+body.theme-paper header section.subtitle span.smaller {
+    color: #cccdc5;
+}
+body.theme-paper header nav.logo a:hover {
+    background-color: #fbf7e8;
+}
+body.theme-paper main nav {
+    border-right-color: #ddddd5;
+}
+body.theme-paper .no-results {
+    color: #aaada5;
+    background-color: #fbf7e8;
+    box-shadow: 0 1px 1px #ddddd5;
+}
+body.theme-paper header,
+body.theme-paper header nav.logo {
+    border-color: #ddddd5;
+}

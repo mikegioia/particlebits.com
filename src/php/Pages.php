@@ -12,6 +12,7 @@ class Pages
 
     private $defaults = [
         'css' => '',
+        'theme' => '',
         'logo' => 'AZ',
         'title' => 'TITLE',
         'contributors' => [],

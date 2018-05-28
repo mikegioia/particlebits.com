@@ -11,7 +11,7 @@ class Topics
     private $build;
     private $COLORS = [
         'none' => [240, 240, 240, 0.15],
-        'gold' => [255, 215, 0, 0.15],
+        'gold' => [255, 215, 0, 0.25],
         'plum' => [221, 160, 221, 0.22],
         'khaki' => [240, 230, 140, 0.3],
         'coral' => [255, 127, 80, 0.15],
@@ -42,9 +42,15 @@ class Topics
 
     public function getActive()
     {
-        return array_filter($this->topics, function ($topic) {
+        $active = array_filter($this->topics, function ($topic) {
             return $topic->isActive();
         });
+
+        uasort($active, function ($a, $b) {
+            return strcmp($a->sort, $b->sort);
+        });
+
+        return $active;
     }
 
     public function find($topicSlug)

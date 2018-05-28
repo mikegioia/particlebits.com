@@ -36,7 +36,7 @@ class Article
         $this->convertHtml($this->snippet);
 
         $this->path = "$path/article.phtml";
-        $this->url = implode("/", array_slice(explode("/", $path), -2));
+        $this->url = $this->makeUrl($path);
     }
 
     public function dateString($format = 'F jS, Y')
@@ -56,7 +56,7 @@ class Article
         return $this->_topic;
     }
 
-    public function render(Filesystem $build)
+    public function write(Filesystem $build)
     {
         //
     }
@@ -77,5 +77,12 @@ class Article
 
             $this->markdown($text, $code, $tag, !$open);
         }
+    }
+
+    private function makeUrl($path)
+    {
+        $parts = explode("/", $path);
+
+        return date('Y', strtotime($this->date)) ."/". array_pop($parts);
     }
 }

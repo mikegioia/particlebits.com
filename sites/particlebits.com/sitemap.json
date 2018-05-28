@@ -5,6 +5,7 @@
     "title": "[Pb] Thought Collection by Mike Gioia",
     "subtitle": "Collection of Thoughts and Works",
     "subtitleTagline": "on a wide variety of topics",
+    "theme": "paper",
     "contributors": [
         {
             "name": "Mike Gioia",
@@ -17,6 +18,7 @@
     ],
     "topics": {
         "privacy": {
+            "sort": 1,
             "label": "Privacy",
             "color": "lightskyblue",
             "articles": [
@@ -26,6 +28,7 @@
             ]
         },
         "programming": {
+            "sort": 2,
             "label": "Programming",
             "color": "paleturquoise",
             "articles": [
@@ -34,10 +37,12 @@
             ]
         },
         "communication": {
+            "sort": 3,
             "label": "Communication",
             "color": "peachpuff",
             "topics": {
                 "management": {
+                    "sort": 3.1,
                     "label": "Management",
                     "articles": [
                         "do-first-ten-percent",
@@ -48,6 +53,7 @@
                     ]
                 },
                 "relationships": {
+                    "sort": 3.2,
                     "label": "Relationships",
                     "articles": [
                         "establish-common-ground",
@@ -60,6 +66,7 @@
             }
         },
         "experiences": {
+            "sort": 4,
             "label": "Life Experiences",
             "color": "",
             "articles": [
@@ -73,6 +80,7 @@
             ]
         },
         "fungames": {
+            "sort": 5,
             "label": "Fun & Games",
             "color": "gold",
             "articles": [
@@ -80,6 +88,7 @@
             ]
         },
         "lifeswork": {
+            "sort": 6,
             "label": "Life's Work",
             "color": "khaki",
             "topics": {

@@ -6,6 +6,7 @@ class Topic
 {
     public $url;
     public $slug;
+    public $sort;
     public $color;
     public $count;
     public $label;

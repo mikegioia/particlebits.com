@@ -14,7 +14,7 @@ foreach ($articles as $article):
             <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
         </h3>
         <blockquote>
-            <em class="date"><?php echo $article->date; ?></em>
+            <em class="date"><?php echo $article->dateString('j F Y'); ?></em>
             <span>&mdash;</span>
             <span class="snippet"><?php echo $article->snippet; ?></span>
         </blockquote>

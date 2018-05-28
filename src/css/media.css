@@ -102,6 +102,9 @@
     main section.topics {
         width: 18rem;
     }
+    main section.topics li a {
+        padding: 0.33rem 0.5rem 0.25rem
+    }
 }
 @media screen and (min-width: 1400px) {
     main section.content {

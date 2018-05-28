@@ -22,7 +22,7 @@
             echo $css; ?>
         </style>
     </head>
-    <body class="<?php echo $page; ?>">
+    <body class="<?php echo $page; ?><?php echo $theme ? ' theme-'.$theme : ''; ?>">
         <header class="group">
             <nav class="logo group">
                 <a href="">
