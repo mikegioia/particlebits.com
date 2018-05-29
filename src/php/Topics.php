@@ -30,13 +30,14 @@ class Topics
 
     const NOCOLOR = 'none';
 
-    public function load($topics, $topicCounts)
+    public function load($topics, $topicCounts, $env)
     {
         foreach ($topics as $slug => $topic) {
             $topic->slug = $slug;
+            $topic->count = get($topicCounts, $slug, 0);
             $color = get($topic, 'color', self::NOCOLOR);
             $rgb = get($this->COLORS, $color, $this->COLORS[self::NOCOLOR]);
-            $this->topics[$slug] = new Topic($topic, $rgb, get($topicCounts, $slug, 0));
+            $this->topics[$slug] = new Topic($topic, $rgb, $env);
         }
     }
 

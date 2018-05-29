@@ -9,6 +9,8 @@ use League\Flysystem\Filesystem;
 
 class Articles
 {
+    // Environment
+    public $env;
     // Container for Topics
     public $topics;
     // Stores Article objects
@@ -19,9 +21,10 @@ class Articles
     private $src;
     private $sites;
 
-    public function __construct(Filesystem $src, Filesystem $sites)
+    public function __construct(Filesystem $src, Filesystem $sites, $env)
     {
         $this->src = $src;
+        $this->env = $env;
         $this->sites = $sites;
     }
 
@@ -51,6 +54,17 @@ class Articles
         $this->loadTopics($config->topics);
 
         return $this->articles;
+    }
+
+    public function getSorted()
+    {
+        $sorted = $this->articles;
+
+        usort($sorted, function ($a, $b) {
+            return $a->date < $b->date;
+        });
+
+        return $sorted;
     }
 
     private function loadArticle($slug, $topic, $config)
@@ -92,7 +106,7 @@ class Articles
     private function loadTopics($siteTopics)
     {
         // Process the topics from the config file and article meta
-        $this->topics->load($siteTopics, $this->topicCounts);
+        $this->topics->load($siteTopics, $this->topicCounts, $this->env);
 
         // Attach topic objects to all active articles
         foreach ($this->articles as $article) {

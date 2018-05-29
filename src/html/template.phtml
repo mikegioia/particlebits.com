@@ -26,7 +26,7 @@
     <body class="<?php echo $page; ?><?php echo $theme ? ' theme-'.$theme : ''; ?>">
         <header class="group">
             <nav class="logo group">
-                <a href="">
+                <a href="<?php echo $local ? 'index.html' : ''; ?>">
                     <span class="brand"><?php echo $logo; ?></span>
                     <span class="name"><?php echo nl2br( $logoTagline ); ?></span>
                 </a>
@@ -36,35 +36,14 @@
                 <span class="smaller"><?php echo $subtitleTagline; ?></span>
             </section>
             <nav class="menu group">
-                <a class="button sitemap" href="sitemap">
+                <a class="button sitemap" href="<?php echo $local ? 'sitemap.html' : 'sitemap'; ?>">
                     <span>Sitemap</span>
                 </a>
             </nav>
         </header>
         <main class="group">
             <nav class="sidebar">
-                <h2>Contributors</h2>
-            <?php
-            foreach ($contributors as $contributor):
-                $websiteUrl = parse_url( $contributor->website ); ?>
-                <div class="contributor" title="Primary contributor">
-                    <div class="meta group">
-                        <img class="avatar" src="media/<?php echo $contributor->avatar; ?>" width="50" alt="<?php echo $contributor->name; ?>" />
-                        <div class="name"><?php echo $contributor->name; ?></div>
-                        <div class="website">
-                            <a href="<?php echo $contributor->website; ?>">
-                                <?php echo $websiteUrl[ 'host' ]; ?>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bio"><?php echo $contributor->description; ?></div>
-                </div>
-            <?php
-            endforeach;
-            if (! $contributors): ?>
-                <div class="no-results">No contributors yet</div>
-            <?php
-            endif; ?>
+                <?php echo render(TPL_CONTRIBUTORS, ['contributors' => $contributors]); ?>
             </nav>
             <section class="content">
                 <?php echo $content; ?>
@@ -90,6 +69,9 @@
                 <div class="no-results">No topics yet</div>
             <?php
             endif; ?>
+            </section>
+            <section class="contributors">
+                <?php echo render(TPL_CONTRIBUTORS, ['contributors' => $contributors]); ?>
             </section>
         </main>
     </body>

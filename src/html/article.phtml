@@ -1,5 +1,9 @@
 <article>
-    <h1><?php echo $title; ?></h1>
+    <h1><?php echo $article->title; ?></h1>
+    <div class="meta">
+        <?php echo $article->author; ?> wrote this on
+        <?php echo $article->dateString(); ?>
+    </div>
 
     <?php echo $content; ?>
 </article>

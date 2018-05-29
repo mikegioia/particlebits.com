@@ -24,20 +24,29 @@ $WD = __DIR__;
 require("$WD/vendor/autoload.php");
 // Application constants
 define('WD', $WD);
+define('DIST', 'dist');
+define('BUILD', 'build');
 define('TYPE_DIR', 'dir');
 define('TYPE_FILE', 'file');
 define('TPL_HOME', 'home.phtml');
 define('TPL_MAIN', 'template.phtml');
 define('TPL_ARTICLE', 'article.phtml');
+define('TPL_CONTRIBUTORS', 'contributors.phtml');
 // Set up directories if they don't exist
 @mkdir("$WD/build", 0755, true);
 @mkdir("$WD/sites", 0755, true);
-// Set up system libraries
-$sites = new Filesystem(new Local("$WD/sites"));
-$build = new Filesystem(new Local("$WD/build"));
+// Environment can be one of 'build' or 'dist'
+$env = get($argv, 1, BUILD);
+$env = in_array($env, [BUILD, DIST]) ? $env : BUILD;
+// Set up file system drivers
 $src = new FileSystem(new Local("$WD/src"));
-$articles = new Articles($src, $sites);
-$pages = new Pages($build, $sites);
+$dist = new FileSystem(new Local("$WD/dist"));
+$build = new Filesystem(new Local("$WD/build"));
+$sites = new Filesystem(new Local("$WD/sites"));
+$target = $env === BUILD ? $build : $dist;
+// Set up system classes
+$pages = new Pages($target, $sites, $env);
+$articles = new Articles($src, $sites, $env);
 
 if (! $argc) {
     exit("Must be run from the command line!");
@@ -73,10 +82,6 @@ function render($file, $data = [], $useSrc = true) {
     return ob_get_clean();
 }
 
-// Target can be one of 'build' or 'dist'
-$target = get($argv, 1, 'build');
-$target = in_array($target, ['build', 'dist']) ? $target : 'build';
-
 // Read in all of the sites and process each one, writing
 // the entire site HTML and assets to /build.
 foreach ($sites->listContents() as $site) {
@@ -96,7 +101,7 @@ foreach ($sites->listContents() as $site) {
         continue;
     }
 
-    extend($config, get($config, $target, []));
+    extend($config, get($config, $env, []));
 
     if (! get($config, 'topics')) {
         error("Sitemap missing topics array in sites/{$site['basename']}");
@@ -104,20 +109,27 @@ foreach ($sites->listContents() as $site) {
     }
 
     // Create base directories for assets
-    $build->createDir($site['basename']);
-    $build->createDir("{$site['basename']}/css");
-    $build->createDir("{$site['basename']}/fonts");
-    $build->createDir("{$site['basename']}/media");
-    $build->createDir("{$site['basename']}/topics");
+    $target->createDir($site['basename']);
+    $target->createDir("{$site['basename']}/css");
+    $target->createDir("{$site['basename']}/fonts");
+    $target->createDir("{$site['basename']}/media");
+    $target->createDir("{$site['basename']}/topics");
 
     // Copy site assets to build target
     // @TODO -- Maybe move to build script?
+    foreach (['css', 'fonts', 'media'] as $type) {
+        foreach ($sites->listContents($type) as $meta) {
+            $file = new File($sites, $meta['path']);
+            $target->put("{$site['basename']}/{$meta['path']}", $file->read());
+        }
+    }
 
     // Copy system assets to build target
+    // @TODO -- Maybe move to build script?
     foreach (['css', 'fonts', 'media'] as $type) {
         foreach ($src->listContents($type) as $meta) {
             $file = new File($src, $meta['path']);
-            $build->put("{$site['basename']}/{$meta['path']}", $file->read());
+            $target->put("{$site['basename']}/{$meta['path']}", $file->read());
         }
     }
 

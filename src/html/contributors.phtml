@@ -1,0 +1,22 @@
+    <h2>Contributors</h2>
+<?php
+foreach ($contributors as $contributor):
+    $websiteUrl = parse_url( $contributor->website ); ?>
+    <div class="contributor" title="Primary contributor">
+        <div class="meta group">
+            <img class="avatar" src="media/<?php echo $contributor->avatar; ?>" width="50" alt="<?php echo $contributor->name; ?>" />
+            <div class="name"><?php echo $contributor->name; ?></div>
+            <div class="website">
+                <a href="<?php echo $contributor->website; ?>">
+                    <?php echo $websiteUrl[ 'host' ]; ?>
+                </a>
+            </div>
+        </div>
+        <div class="bio"><?php echo $contributor->description; ?></div>
+    </div>
+<?php
+endforeach;
+if (! $contributors): ?>
+    <div class="no-results">No contributors yet</div>
+<?php
+endif; ?>

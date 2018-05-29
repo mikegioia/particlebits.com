@@ -11,10 +11,11 @@ class Topic
     public $count;
     public $label;
 
+    private $env;
     private $articles; // TBD
     private $rgbValues;
 
-    public function __construct($data, $rgbValues, $count)
+    public function __construct($data, $rgbValues, $env)
     {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
@@ -22,9 +23,9 @@ class Topic
             }
         }
 
-        $this->count = $count;
+        $this->env = $env;
+        $this->url = $this->getUrl();
         $this->rgbValues = $rgbValues;
-        $this->url = "topics/{$this->slug}";
     }
 
     public function rgb()
@@ -40,5 +41,12 @@ class Topic
     public function isActive()
     {
         return $this->count > 0;
+    }
+
+    public function getUrl()
+    {
+        $filename = $this->env === BUILD ? '/index.html' : '';
+
+        return "topics/{$this->slug}{$filename}";
     }
 }

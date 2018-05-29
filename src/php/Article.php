@@ -69,21 +69,20 @@ class Article
 
     public function render()
     {
-        $data = (array)$this->meta;
-
         // Set up helper functions for processing config
-        $data['a'] = function ($key) {
-            echo $this->getAssetUrl(get($this->assets, $key, self::NOT_FOUND));
-        };
+        $data = [
+            'a' => function ($key) {
+                echo $this->getAssetUrl(get($this->assets, $key, self::NOT_FOUND));
+            },
+            'd' => function ($key) {
+                echo get($this->data, $key, '');
+            },
+            'wl' => function ($key) {
+                echo get($this->weblinks, $key, '#notfound' );
+            }
+        ];
 
-        $data['d'] = function ($key) {
-            echo get($this->data, $key, '');
-        };
-
-        $data['wl'] = function ($key) {
-            echo get($this->weblinks, $key, '#notfound' );
-        };
-
+        $data['article'] = $this;
         $data['content'] = render("{$this->path}/article.phtml", $data, false);
 
         return render(TPL_ARTICLE, $data);

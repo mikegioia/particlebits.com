@@ -1,5 +1,5 @@
 /* Readability */
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 768px) {
     main section.topics {
         display: none;
     }
@@ -23,6 +23,17 @@
         width: 100%;
         margin-left: 0;
     }
+    main section.topics {
+        padding: 0;
+        width: 100%;
+        display: block;
+        position: static;
+        margin-top: 1.5rem;
+    }
+    main section.contributors {
+        display: block;
+        margin-top: 1rem;
+    }
 }
 @media screen and (max-width: 260px) {
     header nav.menu {
@@ -32,7 +43,7 @@
         display: none;
     }
     header nav.menu a.sitemap:before {
-        content:'\2630';
+        content: '\2630';
     }
 }
 

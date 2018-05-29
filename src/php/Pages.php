@@ -8,15 +8,16 @@ use League\Flysystem\Filesystem;
 
 class Pages
 {
+    private $env;
     private $site;
     private $sites;
-    private $build;
     private $config;
-
+    private $target;
     private $defaults = [
         'css' => '',
         'theme' => '',
         'logo' => 'AZ',
+        'local' => true,
         'basepath' => '',
         'title' => 'TITLE',
         'contributors' => [],
@@ -30,10 +31,11 @@ class Pages
     const PAGE_TOPIC = 'topic';
     const PAGE_ARTICLE = 'article';
 
-    public function __construct(Filesystem $build, Filesystem $sites)
+    public function __construct(Filesystem $target, Filesystem $sites, $env)
     {
-        $this->build = $build;
+        $this->env = $env;
         $this->sites = $sites;
+        $this->target = $target;
     }
 
     public function configure($site, $config)
@@ -70,13 +72,14 @@ class Pages
 
         // Set up page content
         $data['page'] = self::PAGE_HOME;
+        $data['local'] = $this->env === BUILD;
         $data['topics'] = $articles->topics->getActive();
         $data['content'] = render(TPL_HOME, [
-            'articles' => $articles->articles
+            'articles' => $articles->getSorted()
         ]);
 
         // Write out the file
-        $this->build->put(
+        $this->target->put(
             "{$this->site['basename']}/index.html",
             render(TPL_MAIN, $data));
     }
@@ -97,7 +100,7 @@ class Pages
 
             // Write out the article file. Writing file implicitly
             // creates directories
-            $this->build->put(
+            $this->target->put(
                 "{$this->site['basename']}/{$article->url}",
                 render(TPL_MAIN, $data));
 
@@ -105,7 +108,7 @@ class Pages
             foreach ($article->medias as $media) {
                 $assetUrl = $article->getAssetUrl($media['basename']);
 
-                $this->build->put(
+                $this->target->put(
                     "{$this->site['basename']}/{$assetUrl}",
                     $this->sites->read($media['path']));
             }
