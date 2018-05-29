@@ -3,7 +3,8 @@
 
 <?php
 foreach ($articles as $article):
-    $classes = ['light', 'topic-'.$article->getTopic()->slug];
+    $topic = $article->getTopic();
+    $classes = ['light', 'topic-'.$topic->slug];
 
     if ($article->featured === TRUE):
         $classes[] = 'featured';
@@ -12,6 +13,7 @@ foreach ($articles as $article):
     <article class="<?php echo implode( ' ', $classes ); ?>">
         <h3>
             <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
+            <span class="topic-<?php echo $topic->slug; ?> topic-<?php echo $topic->slug; ?>-text badge"><?php echo $topic->label; ?></span>
         </h3>
         <blockquote>
             <em class="date"><?php echo $article->dateString('j F Y'); ?></em>

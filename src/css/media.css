@@ -13,8 +13,30 @@
     }
 }
 @media screen and (max-width: 440px) {
+    header {
+        position: static;
+    }
+    header,
+    header nav.menu,
+    header nav.logo,
+    header nav.logo a {
+        height: 3.5rem;
+    }
     header section.subtitle {
         display: none;
+    }
+    header nav.logo .name {
+        font-size: 1.2rem;
+    }
+    header nav.logo a {
+        padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    }
+    header nav.menu a.button {
+        margin: 0.5rem;
+        padding: 0.5625rem 0.875rem;
+    }
+    main {
+        padding-top: 0;
     }
     main nav {
         display: none;
@@ -34,6 +56,20 @@
         display: block;
         margin-top: 1rem;
     }
+    body.article section.topics {
+        margin-top: 0;
+        padding: 0 1rem;
+    }
+    body.article section.contributors {
+        padding: 0 1rem 1rem;
+    }
+    article h1 {
+        padding-top: 0.5rem;
+    }
+    article figure.r-1,
+    article figure.r-2 {
+        width: 50%;
+    }
 }
 @media screen and (max-width: 260px) {
     header nav.menu {
@@ -51,12 +87,12 @@
 @media screen and (min-width: 320px) {}
 @media screen and (min-width: 480px) {
     html {
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 @media screen and (min-width: 768px) {
     html {
-        font-size: 16px;
+        font-size: 17px;
     }
     header nav.logo,
     main nav {
@@ -88,12 +124,12 @@
 }
 @media screen and (min-width: 1024px) {
     html {
-        font-size: 17px;
+        font-size: 18px;
     }
 }
 @media screen and (min-width: 1200px) {
     html {
-        font-size: 18px;
+        font-size: 19px;
     }
     header nav.logo,
     main nav {

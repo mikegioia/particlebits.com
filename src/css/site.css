@@ -64,7 +64,7 @@ header nav.logo {
     left: 0;
     width: 10rem;
     height: 4rem;
-    position: fixed;
+    position: absolute;
     box-sizing: border-box;
     border-right: 1px solid #ddd;
 }
@@ -120,8 +120,8 @@ header nav.menu {
     right: 0;
     width: 8rem;
     height: 4rem;
-    position: fixed;
     text-align: right;
+    position: absolute;
 }
 header nav.menu a.button {
     color: #666;
@@ -182,19 +182,17 @@ main section.content {
     width: calc(100% - 24rem);
 }
 main section.content h3 {
-    font-size: 1.4em;
-    line-height: 1.25;
     font-family: 'Signika Negative';
 }
 main section.content h3 a {
     color: #222;
-    /*text-decoration: none;*/
 }
 main section.content h3 a:hover {
-    text-decoration: underline;
+    color: #111;
 }
 main section.content article {
     margin: 0 0 1rem;
+    position: relative;
     padding: 0.875rem 1rem;
 }
 main section.content blockquote {
@@ -203,6 +201,14 @@ main section.content blockquote {
     font-size: 1rem;
     line-height: 1.4;
     margin: 1rem 0 0;
+}
+main section.content h3 span.badge {
+    line-height: 1.25;
+    font-size: 0.8125rem;
+    display: inline-block;
+    border-radius: 0.125rem;
+    padding: 0.25rem 0.35rem 0.15rem;
+    transform: translateX(0.125rem) translateY(-0.125rem);
 }
 
 /* Topic list */
@@ -229,7 +235,6 @@ main section.topics li {
     font-family: 'Signika Negative';
 }
 main section.topics li a {
-    color: #111;
     display: block;
     line-height: 1.4;
     text-decoration: none;
@@ -288,7 +293,7 @@ article h1 {
     line-height: 1.25;
     font-size: 2.25rem;
     text-align: center;
-    padding: 1rem 0 0.25rem;
+    padding: 1.25rem 0 0.25rem;
 }
 body.article main section.content article h3 {
     line-height: 1;

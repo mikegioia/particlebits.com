@@ -28,9 +28,14 @@ class Topic
         $this->rgbValues = $rgbValues;
     }
 
-    public function rgb()
+    public function rgb($darkness = 1)
     {
-        return implode(', ', array_slice($this->rgbValues, 0, 3));
+        $rgb = array_slice($this->rgbValues, 0, 3);
+        $rgb = array_map(function ($i) use ($darkness) {
+            return round($i/$darkness);
+        }, $rgb);
+
+        return implode(', ', $rgb);
     }
 
     public function rgba()
