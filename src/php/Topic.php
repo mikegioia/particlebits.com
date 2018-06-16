@@ -38,9 +38,12 @@ class Topic
         return implode(', ', $rgb);
     }
 
-    public function rgba()
+    public function rgba($lightness = 1)
     {
-        return implode(', ', $this->rgbValues);
+        $rgb = $this->rgbValues;
+        $rgb[3] = round($rgb[3]/$lightness, 2);
+
+        return implode(', ', $rgb);
     }
 
     public function isActive()

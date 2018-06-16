@@ -204,6 +204,9 @@ main section.content article {
     position: relative;
     padding: 0.875rem 1rem;
 }
+main section.content article:last-child {
+    margin-bottom: 0;
+}
 main section.content blockquote {
     padding: 0;
     color: #444;
@@ -230,6 +233,10 @@ main section.topics {
     position: fixed;
     overflow-y: auto;
     box-sizing: border-box;
+}
+body.article main section.topics {
+    bottom: auto;
+    position: absolute;
 }
 main section.topics ul {
     margin: 0;
@@ -411,6 +418,47 @@ section.topic h1 span {
 section.topic article {
     border-left-style: solid;
     border-left-width: 0.33em;
+}
+
+/* Sitemap */
+body.sitemap section.topics {
+    display: none;
+}
+body.sitemap main section.content {
+    width: calc(100% - 14rem);
+}
+main section.content section.sitemap h3 {
+    margin: 0 0 0.5em;
+    font-size: 1.125em;
+}
+main section.content section.sitemap h3 span {
+    padding: 0.25em 0.5em;
+    display: inline-block;
+    border-radius: 0.25rem;
+}
+section.sitemap .columns {
+    column-count: 3;
+    column-gap: 1.5em;
+}
+section.sitemap .column {
+    break-inside: avoid;
+    margin-bottom: 1.75em;
+}
+section.sitemap .column:last-child {
+    margin-bottom: 0;
+}
+section.sitemap .column article {
+    font-size: 1em;
+    margin-bottom: 0.75em;
+    padding: 0.5em 0.5625em;
+}
+section.sitemap .column article a {
+    margin-right: 0.5em;
+}
+section.sitemap .column article em.date {
+    opacity: 0.75;
+    font-size: 0.875em;
+    white-space: nowrap;
 }
 
 /*

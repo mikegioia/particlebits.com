@@ -63,8 +63,8 @@ class Pages
 
         $this->home($articles, $data, $fileWriteCount);
         $this->topics($articles, $data, $fileWriteCount);
+        $this->sitemap($articles, $data, $fileWriteCount);
         $this->articles($articles, $data, $fileWriteCount);
-        //$this->sitemap();
     }
 
     /**
@@ -130,5 +130,18 @@ class Pages
                 render(TPL_MAIN, $data));
             $fileWriteCount++;
         }
+    }
+
+    private function sitemap(Articles $articles, $data, &$fileWriteCount)
+    {
+        $data['articles'] = $articles;
+        $data['page'] = self::PAGE_SITEMAP;
+        $data['content'] = render(TPL_SITEMAP, $data);
+
+        // Write out the file
+        $this->target->put(
+            "{$this->site['basename']}/sitemap.html",
+            render(TPL_MAIN, $data));
+        $fileWriteCount++;
     }
 }

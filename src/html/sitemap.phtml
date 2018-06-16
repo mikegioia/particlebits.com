@@ -1,7 +1,59 @@
 <h2>Sitemap</h2>
 
 <section id="sitemap" class="sitemap">
+    <div class="columns">
+
+    <?php
+    foreach ($topics as $topic):
+        $classes = [
+            'lighter',
+            'topic-'.$topic->slug
+        ];
+        $headerClasses = [
+            'topic-'.$topic->slug,
+            'topic-'.$topic->slug.'-text'
+        ];
+        $topicArticles = $articles->getArticles($topic->articles); ?>
+
+        <div class="column">
+            <h3>
+                <span class="<?php echo implode(' ', $headerClasses); ?>">
+                    <?php echo $topic->label; ?>
+                </span>
+            </h3>
+
+        <?php
+        if ($topicArticles): ?>
+            <?php
+            foreach ($topicArticles as $article): ?>
+
+            <article class="<?php echo implode(' ', $classes); ?>">
+                <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
+                <em class="date"><?php echo $article->dateString('j F Y'); ?></em>
+            </article>
+
+            <?php
+            endforeach;
+        else: ?>
+
+            <div class="no-results">No articles yet</div>
+
+        <?php
+        endif; ?>
+
+        </div>
+
+    <?php
+    endforeach; ?>
+
+    </div><!-- /columns -->
+
+<?php
+if (! $topics): ?>
 
     <div class="no-results">No topics yet</div>
+
+<?php
+endif; ?>
 
 </section>

@@ -21,6 +21,7 @@
             echo sprintf(".topic-%s-text { color: rgb(%s); }\n", $slug, $topic->rgb(3));
             echo sprintf(".topic-%s-text:visited { color: rgb(%s); }\n", $slug, $topic->rgb(3));
             echo sprintf(".topic-%s.light { background-color: rgba(%s); }\n", $slug, $topic->rgba());
+            echo sprintf(".topic-%s.lighter { background-color: rgba(%s); }\n", $slug, $topic->rgba(2));
             echo sprintf(".topic-%s-border { border-color: rgb(%s); }\n", $slug, $topic->rgb());
             echo sprintf(".topic-%s-border.light-border { border-color: rgba(%s); }\n", $slug, $topic->rgba());
         endforeach;
