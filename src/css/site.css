@@ -54,6 +54,7 @@ a:visited {
 /* Logo, subtitle, and menu nav */
 header {
     width: 100%;
+    z-index: 10;
     height: 4rem;
     position: fixed;
     background-color: #fff;
@@ -96,7 +97,7 @@ header nav.logo .name {
     font-family: 'Signika Negative';
 }
 header section.subtitle {
-    color: #999;
+    color: #444;
     height: 4rem;
     line-height: 1.05;
     font-size: 1.33rem;
@@ -105,9 +106,15 @@ header section.subtitle {
     box-sizing: border-box;
     width: calc(100% - 18rem);
 }
+header section.subtitle.muted {
+    color: #999;
+}
 header section.subtitle span.smaller {
-    color: #ccc;
+    color: #999;
     font-size: 1rem;
+}
+header section.subtitle.muted span.smaller {
+    color: #ccc;
 }
 header section.subtitle:hover {
     color: #444;
@@ -207,7 +214,7 @@ main section.content h3 span.badge {
     font-size: 0.8125rem;
     display: inline-block;
     border-radius: 0.125rem;
-    padding: 0.25rem 0.35rem 0.15rem;
+    padding: 0.25rem 0.35rem 0.21875rem;
     transform: translateX(0.125rem) translateY(-0.125rem);
 }
 
@@ -293,12 +300,13 @@ article h1 {
     line-height: 1.25;
     font-size: 2.25rem;
     text-align: center;
-    padding: 1.25rem 0 0.25rem;
+    position: relative;
+    padding: 1.75rem 0 0.25rem
 }
 body.article main section.content article h3 {
     line-height: 1;
     color: #5a39ac;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     text-align: center;
     margin: 2rem 0 1.25rem;
 }
@@ -314,12 +322,24 @@ article .meta {
     font-size: 1.125rem;
     margin-bottom: 2rem;
 }
+article .meta a.topic {
+    line-height: 1.25;
+    margin-left: 0.125em;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 0.125rem;
+    padding: 0.1875rem 0.25rem 0.21875rem;
+    transform: translateX(0.125rem) translateY(-0.125rem);
+}
 article aside {
+    color: #999;
     padding: 1rem;
+    text-align: center;
     margin-bottom: 1.5rem;
     border-radius: 0.125rem;
-    background-color: #fafafa;
-    box-shadow: 0 1px 1px #ddd;
+    background-color: #fcfcfc;
+    box-shadow: 0 1px 1px #eee;
 }
 article p {
     text-indent: 2rem;
@@ -414,16 +434,19 @@ body.theme-paper header nav.menu a.button:hover {
 body.theme-paper main nav {
     border-right-color: #eeede5;
 }
-body.theme-paper article h2,
-body.theme-paper article figure,
 body.theme-paper header section.subtitle,
-body.theme-paper header section.subtitle:hover span.smaller {
-    color: #999d95;
-}
 body.theme-paper header section.subtitle:hover {
     color: #444d45;
 }
-body.theme-paper header section.subtitle span.smaller {
+body.theme-paper article h2,
+body.theme-paper article aside,
+body.theme-paper article figure,
+body.theme-paper header section.subtitle.muted,
+body.theme-paper header section.subtitle span.smaller,
+body.theme-paper header section.subtitle:hover span.smaller {
+    color: #999d95;
+}
+body.theme-paper header section.subtitle.muted span.smaller {
     color: #cccdc5;
 }
 body.theme-paper article table th {

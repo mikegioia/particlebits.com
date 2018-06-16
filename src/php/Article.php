@@ -71,6 +71,9 @@ class Article
     {
         // Set up helper functions for processing config
         $data = [
+            'e' => function ($string) {
+                echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+            },
             'a' => function ($key) {
                 echo $this->getAssetUrl(get($this->assets, $key, self::NOT_FOUND));
             },

@@ -4,7 +4,10 @@
 <?php
 foreach ($articles as $article):
     $topic = $article->getTopic();
-    $classes = ['light', 'topic-'.$topic->slug];
+    $classes = [
+        'light',
+        'topic-'.$topic->slug
+    ];
 
     if ($article->featured === TRUE):
         $classes[] = 'featured';
