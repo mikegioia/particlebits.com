@@ -1,7 +1,7 @@
 <h2>Sitemap</h2>
 
 <section id="sitemap" class="sitemap">
-    <div class="columns">
+    <div class="columns topics">
 
     <?php
     foreach ($topics as $topic):
@@ -16,9 +16,10 @@
         $topicArticles = $articles->getArticles($topic->articles); ?>
 
         <div class="column">
-            <h3>
+            <h3 class="topic">
                 <span class="<?php echo implode(' ', $headerClasses); ?>">
-                    <?php echo $topic->label; ?>
+                    <span class="label"><?php echo $topic->label; ?></span>
+                    <span class="count"><?php echo $topic->count; ?></span>
                 </span>
             </h3>
 

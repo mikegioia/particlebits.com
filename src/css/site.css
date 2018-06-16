@@ -259,7 +259,7 @@ main section.topics li a {
 main section.topics li a:hover {
     color: inherit;
 }
-main section.topics li a span.count {
+.topics .topic span.count {
     font-size: 0.75rem;
     border-radius: 1rem;
     margin-left: 0.25rem;
@@ -431,7 +431,7 @@ main section.content section.sitemap h3 {
     margin: 0 0 0.5em;
     font-size: 1.125em;
 }
-main section.content section.sitemap h3 span {
+main section.content section.sitemap h3 > span {
     padding: 0.25em 0.5em;
     display: inline-block;
     border-radius: 0.25rem;
