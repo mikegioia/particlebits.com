@@ -10,9 +10,9 @@ class Topic
     public $color;
     public $count;
     public $label;
+    public $articles;
 
     private $env;
-    private $articles; // TBD
     private $rgbValues;
 
     public function __construct($data, $rgbValues, $env)

@@ -9,9 +9,9 @@
  * in your /sites directory.
  */
 
+use Legacy\Site;
 use Legacy\Pages;
 use Legacy\Articles;
-use League\Flysystem\File;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local;
 
@@ -29,8 +29,10 @@ define('BUILD', 'build');
 define('TYPE_DIR', 'dir');
 define('TYPE_FILE', 'file');
 define('TPL_HOME', 'home.phtml');
+define('TPL_TOPIC', 'topic.phtml');
 define('TPL_MAIN', 'template.phtml');
 define('TPL_ARTICLE', 'article.phtml');
+define('TPL_SITEMAP', 'sitemap.phtml');
 define('TPL_CONTRIBUTORS', 'contributors.phtml');
 // Set up directories if they don't exist
 @mkdir("$WD/build", 0755, true);
@@ -47,9 +49,10 @@ $target = $env === BUILD ? $build : $dist;
 // Set up system classes
 $pages = new Pages($target, $sites, $env);
 $articles = new Articles($src, $sites, $env);
+$site = new Site($src, $target, $sites, $env);
 
 if (! $argc) {
-    exit("Must be run from the command line!");
+    exit('Must be run from the command line!');
 }
 
 // Get by key, return default if not set
@@ -57,6 +60,10 @@ function get($mixed, $key, $default = null) {
     return is_array($mixed)
         ? (isset($mixed[$key]) ? $mixed[$key] : $default)
         : (isset($mixed->$key) ? $mixed->$key : $default);
+}
+
+function message($message) {
+    echo "\033[0;32m", $message, "\033[0m", PHP_EOL;
 }
 
 function error($message, $halt = false) {
@@ -84,59 +91,6 @@ function render($file, $data = [], $useSrc = true) {
 
 // Read in all of the sites and process each one, writing
 // the entire site HTML and assets to /build.
-foreach ($sites->listContents() as $site) {
-    if ($site['type'] !== TYPE_DIR) {
-        continue;
-    }
-
-    if (! $sites->has("{$site['basename']}/sitemap.json")) {
-        error("Missing sitemap.json in sites/{$site['basename']}");
-        continue;
-    }
-
-    $config = json_decode($sites->read("{$site['basename']}/sitemap.json"));
-
-    if (! $config) {
-        error("Bad sitemap.json formatting");
-        continue;
-    }
-
-    extend($config, get($config, $env, []));
-
-    if (! get($config, 'topics')) {
-        error("Sitemap missing topics array in sites/{$site['basename']}");
-        continue;
-    }
-
-    // Create base directories for assets
-    $target->createDir($site['basename']);
-    $target->createDir("{$site['basename']}/css");
-    $target->createDir("{$site['basename']}/fonts");
-    $target->createDir("{$site['basename']}/media");
-    $target->createDir("{$site['basename']}/topics");
-
-    // Copy site assets to build target
-    // @TODO -- Maybe move to build script?
-    foreach (['css', 'fonts', 'media'] as $type) {
-        foreach ($sites->listContents($type) as $meta) {
-            $file = new File($sites, $meta['path']);
-            $target->put("{$site['basename']}/{$meta['path']}", $file->read());
-        }
-    }
-
-    // Copy system assets to build target
-    // @TODO -- Maybe move to build script?
-    foreach (['css', 'fonts', 'media'] as $type) {
-        foreach ($src->listContents($type) as $meta) {
-            $file = new File($src, $meta['path']);
-            $target->put("{$site['basename']}/{$meta['path']}", $file->read());
-        }
-    }
-
-    // Process sites directory for articles
-    $articles->load($site, $config);
-    // Extend the config object with the environment options
-    $pages->configure($site, $config);
-    // Write out all the HTML pages
-    $pages->write($articles);
+foreach ($sites->listContents() as $siteDir) {
+    $site->run($pages, $articles, $siteDir);
 }

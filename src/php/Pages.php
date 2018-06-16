@@ -2,8 +2,6 @@
 
 namespace Legacy;
 
-use Legacy\Article;
-use Legacy\Articles;
 use League\Flysystem\Filesystem;
 
 class Pages
@@ -30,6 +28,7 @@ class Pages
     const PAGE_HOME = 'home';
     const PAGE_TOPIC = 'topic';
     const PAGE_ARTICLE = 'article';
+    const PAGE_SITEMAP = 'sitemap';
 
     public function __construct(Filesystem $target, Filesystem $sites, $env)
     {
@@ -55,25 +54,25 @@ class Pages
         }
     }
 
-    public function write(Articles $articles)
+    public function write(Articles $articles, &$fileWriteCount)
     {
-        $this->home($articles);
-        $this->articles($articles);
-        //$this->topics();
+        $data = $this->config;
+        // Set up common base data
+        $data['local'] = $this->env === BUILD;
+        $data['topics'] = $articles->topics->getActive();
+
+        $this->home($articles, $data, $fileWriteCount);
+        $this->topics($articles, $data, $fileWriteCount);
+        $this->articles($articles, $data, $fileWriteCount);
         //$this->sitemap();
     }
 
     /**
      * Write the index HTML page
      */
-    private function home(Articles $articles)
+    private function home(Articles $articles, $data, &$fileWriteCount)
     {
-        $data = $this->config;
-
-        // Set up page content
         $data['page'] = self::PAGE_HOME;
-        $data['local'] = $this->env === BUILD;
-        $data['topics'] = $articles->topics->getActive();
         $data['content'] = render(TPL_HOME, [
             'articles' => $articles->getSorted()
         ]);
@@ -82,18 +81,15 @@ class Pages
         $this->target->put(
             "{$this->site['basename']}/index.html",
             render(TPL_MAIN, $data));
+        $fileWriteCount++;
     }
 
     /**
-     * Write each article page to the artciles folder.
+     * Write each article page to the articles folder.
      */
-    private function articles(Articles $articles)
+    private function articles(Articles $articles, $data, &$fileWriteCount)
     {
-        $data = $this->config;
-
-        // Set up page content
         $data['page'] = self::PAGE_ARTICLE;
-        $data['topics'] = $articles->topics->getActive();
 
         foreach ($articles->articles as $article) {
             $data['content'] = $article->render();
@@ -103,6 +99,7 @@ class Pages
             $this->target->put(
                 "{$this->site['basename']}/{$article->url}",
                 render(TPL_MAIN, $data));
+            $fileWriteCount++;
 
             // Copy all assets to the assets directory
             foreach ($article->medias as $media) {
@@ -111,7 +108,27 @@ class Pages
                 $this->target->put(
                     "{$this->site['basename']}/{$assetUrl}",
                     $this->sites->read($media['path']));
+                $fileWriteCount++;
             }
+        }
+    }
+
+    private function topics(Articles $articles, $data, &$fileWriteCount)
+    {
+        $data['articles'] = $articles;
+        $data['page'] = self::PAGE_TOPIC;
+
+        foreach ($articles->topics->getActive() as $topic) {
+            $data['topic'] = $topic;
+            $data['articles'] = $articles->getArticles($topic->articles);
+            $data['content'] = render(TPL_TOPIC, $data);
+
+            // Write out the article file. Writing file implicitly
+            // creates directories
+            $this->target->put(
+                "{$this->site['basename']}/{$topic->url}",
+                render(TPL_MAIN, $data));
+            $fileWriteCount++;
         }
     }
 }

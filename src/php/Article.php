@@ -2,7 +2,6 @@
 
 namespace Legacy;
 
-use Legacy\Topic;
 use League\Flysystem\Filesystem;
 
 class Article

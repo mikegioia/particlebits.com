@@ -18,6 +18,7 @@
         }
     },
     "scripts": {
-        "server": "php -d variables_order=EGPCS -S localhost:8000 web/index.php"
+        "server": "php -d variables_order=EGPCS -S localhost:8000 index.php",
+        "watch": "watch -b -c -e -n 5 php compile.php"
     }
 }

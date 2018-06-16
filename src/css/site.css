@@ -38,10 +38,12 @@ a:visited {
     padding: 0.5rem 0.75rem;
     border-radius: 0.125rem;
     background-color: #fafafa;
-    box-shadow: 0 1px 1px #ddd;
 }
 .fixed-width {
     font-family: Courier, monospace;
+}
+.topic-neutral {
+    background: #fafafa;
 }
 
 /* Clear floats */
@@ -214,8 +216,8 @@ main section.content h3 span.badge {
     font-size: 0.8125rem;
     display: inline-block;
     border-radius: 0.125rem;
-    padding: 0.25rem 0.35rem 0.21875rem;
-    transform: translateX(0.125rem) translateY(-0.125rem);
+    padding: 0.25rem 0.35rem 0.1875rem;
+    transform: translateX(0.125rem) translateY(-0.1875rem);
 }
 
 /* Topic list */
@@ -246,6 +248,9 @@ main section.topics li a {
     line-height: 1.4;
     text-decoration: none;
     padding: 0.33rem 0.5rem;
+}
+main section.topics li a:hover {
+    color: inherit;
 }
 main section.topics li a span.count {
     font-size: 0.75rem;
@@ -339,7 +344,6 @@ article aside {
     margin-bottom: 1.5rem;
     border-radius: 0.125rem;
     background-color: #fcfcfc;
-    box-shadow: 0 1px 1px #eee;
 }
 article p {
     text-indent: 2rem;
@@ -392,6 +396,21 @@ body.article main section.content blockquote {
     margin-bottom: 1rem;
     padding: 1rem 1rem 1rem 1.5rem;
     border-left: 0.5rem solid #ddd;
+}
+
+/* Topic Pages */
+section.topic h1 {
+    font-size: 1.5em;
+    margin: 0.25em 0 1.25em;
+}
+section.topic h1 span {
+    padding: 0.25em 0.5em;
+    display: inline-block;
+    border-radius: 0.25rem;
+}
+section.topic article {
+    border-left-style: solid;
+    border-left-width: 0.33em;
 }
 
 /*
@@ -452,6 +471,7 @@ body.theme-paper header section.subtitle.muted span.smaller {
 body.theme-paper article table th {
     border-color: #ddddd5;
 }
+body.theme-paper .topic-neutral,
 body.theme-paper header nav.logo a:hover {
     background-color: #fbf7e8;
 }
@@ -478,7 +498,6 @@ body.theme-paper .no-results,
 body.theme-paper article aside,
 body.theme-paper article figure {
     background-color: #fbf7e8;
-    box-shadow: 0 1px 1px #ddddd5;
 }
 body.theme-paper article h4,
 body.theme-paper article table th {

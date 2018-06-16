@@ -19,6 +19,7 @@
         foreach ($topics as $slug => $topic):
             echo sprintf(".topic-%s { background-color: rgb(%s); }\n", $slug, $topic->rgb());
             echo sprintf(".topic-%s-text { color: rgb(%s); }\n", $slug, $topic->rgb(3));
+            echo sprintf(".topic-%s-text:visited { color: rgb(%s); }\n", $slug, $topic->rgb(3));
             echo sprintf(".topic-%s.light { background-color: rgba(%s); }\n", $slug, $topic->rgba());
             echo sprintf(".topic-%s-border { border-color: rgb(%s); }\n", $slug, $topic->rgb());
             echo sprintf(".topic-%s-border.light-border { border-color: rgba(%s); }\n", $slug, $topic->rgba());
@@ -34,7 +35,7 @@
                     <span class="name"><?php echo nl2br( $logoTagline ); ?></span>
                 </a>
             </nav>
-            <section class="subtitle" title="Site description">
+            <section class="subtitle">
                 <span class="larger"><?php echo $subtitle; ?></span><br>
                 <span class="smaller"><?php echo $subtitleTagline; ?></span>
             </section>

@@ -1,23 +1,21 @@
-<h2>Recent Articles</h2>
-
-<section id="recent-articles" class="articles">
+<section id="topic" class="topic">
+    <h1>
+        <span class="topic-<?php echo $topic->slug; ?> topic-<?php echo $topic->slug; ?>-text">
+            <?php echo $topic->label; ?>
+        </span>
+    </h1>
 
 <?php
 foreach ($articles as $article):
-    $topic = $article->getTopic();
     $classes = [
-        'light',
-        'topic-'.$topic->slug
-    ];
+        //'light-border',
+        'topic-neutral',
+        'topic-'.$topic->slug.'-border'
+    ]; ?>
 
-    if ($article->featured === TRUE):
-        $classes[] = 'featured';
-    endif; ?>
-
-    <article class="<?php echo implode( ' ', $classes ); ?>">
+    <article class="<?php echo implode(' ', $classes); ?>">
         <h3>
             <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
-            <span class="topic-<?php echo $topic->slug; ?> topic-<?php echo $topic->slug; ?>-text badge"><?php echo $topic->label; ?></span>
         </h3>
         <blockquote>
             <em class="date"><?php echo $article->dateString('j F Y'); ?></em>

@@ -2,9 +2,6 @@
 
 namespace Legacy;
 
-use Legacy\Pages;
-use Legacy\Topics;
-use Legacy\Article;
 use League\Flysystem\Filesystem;
 
 class Articles
@@ -67,6 +64,26 @@ class Articles
         return $sorted;
     }
 
+    public function getArticle($slug)
+    {
+        return isset($this->articles[$slug])
+            ? $this->articles[$slug]
+            : new Article;
+    }
+
+    public function getArticles($slugs)
+    {
+        $articles = [];
+
+        foreach ($slugs as $slug) {
+            if (isset($this->articles[$slug])) {
+                $articles[] = $this->articles[$slug];
+            }
+        }
+
+        return $articles;
+    }
+
     private function loadArticle($slug, $topic, $config)
     {
         if ($slug['type'] !== TYPE_DIR) {
@@ -127,6 +144,6 @@ class Articles
     {
         $article = new Article($meta, $slug['path'], $config->urlFormat);
 
-        $this->articles[] = $article;
+        $this->articles[$article->slug] = $article;
     }
 }
