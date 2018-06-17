@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <base href="<?php echo $basepath; ?>">
 
-        <!-- @TODO favicon -->
+        <link rel="icon" href="<?php echo $basepath; ?>/favicon.ico">
 
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/site.css">
@@ -31,7 +31,7 @@
     <body class="<?php echo $page; ?><?php echo $theme ? ' theme-'.$theme : ''; ?>">
         <header class="group">
             <nav class="logo group">
-                <a href="<?php echo $local ? 'index.html' : ''; ?>">
+                <a href="<?php echo $homeUrl; ?>">
                     <span class="brand"><?php echo $logo; ?></span>
                     <span class="name"><?php echo nl2br( $logoTagline ); ?></span>
                 </a>
@@ -41,7 +41,7 @@
                 <span class="smaller"><?php echo $subtitleTagline; ?></span>
             </section>
             <nav class="menu group">
-                <a class="button sitemap" href="<?php echo $local ? 'sitemap.html' : 'sitemap'; ?>">
+                <a class="button sitemap" href="<?php echo $sitemapUrl; ?>">
                     <span>Sitemap</span>
                 </a>
             </nav>

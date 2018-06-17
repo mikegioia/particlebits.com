@@ -1,0 +1,202 @@
+/* Readability */
+@media screen and (max-width: 1024px) {
+    section.sitemap .columns {
+        column-count: 2;
+    }
+}
+@media screen and (max-width: 768px) {
+    main section.topics {
+        display: none;
+    }
+    main section.content {
+        width: calc(100% - 10rem);
+    }
+    body.sitemap main section.content {
+        width: calc(100% - 10rem);
+    }
+}
+@media screen and (max-width: 560px) {
+    header section.subtitle .smaller {
+        display: none;
+    }
+    section.sitemap .columns {
+        column-count: 1;
+    }
+}
+@media screen and (max-width: 440px) {
+    header {
+        position: static;
+    }
+    header,
+    header nav.menu,
+    header nav.logo,
+    header nav.logo a {
+        height: 3.5rem;
+    }
+    header section.subtitle {
+        display: none;
+    }
+    header nav.logo .name {
+        font-size: 1.2rem;
+    }
+    header nav.logo a {
+        padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    }
+    header nav.menu a.button {
+        margin: 0.5rem;
+        padding: 0.5625rem 0.875rem;
+    }
+    main {
+        padding-top: 0;
+    }
+    main nav {
+        display: none;
+    }
+    main section.content,
+    body.sitemap main section.content {
+        width: 100%;
+        margin-left: 0;
+    }
+    main section.topics {
+        width: 100%;
+        display: block;
+        padding: 0 1rem;
+        position: static;
+        margin-top: 1.5rem;
+    }
+    main section.contributors {
+        padding: 1rem;
+        display: block;
+        margin-top: 1rem;
+    }
+    body.article section.topics {
+        margin-top: 0;
+        padding: 0 1rem;
+    }
+    body.article section.contributors {
+        padding: 0 1rem 1rem;
+    }
+    article h1 {
+        padding-top: 0.5rem;
+    }
+    article figure.r-1,
+    article figure.r-2 {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 260px) {
+    header nav.menu {
+        width: 4rem;
+    }
+    header nav.menu a.sitemap span {
+        display: none;
+    }
+    header nav.menu a.sitemap:before {
+        content: '\2630';
+    }
+}
+
+/* Mobile-first overrides */
+@media screen and (min-width: 320px) {}
+@media screen and (min-width: 480px) {
+    html {
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 17px;
+    }
+    header nav.logo,
+    main nav {
+        width: 12rem;
+    }
+    header nav.logo .brand {
+        width: 5rem;
+        font-size: 3.75rem;
+        line-height: 0.875;
+    }
+    header nav.logo .name {
+        font-size: 1.33rem;
+        padding-top: 0.25rem;
+    }
+    header section.subtitle {
+        margin-left: 12rem;
+        width: calc(100% - 20rem);
+    }
+    main section.content {
+        margin-left: 12rem;
+        width: calc(100% - 24rem);
+    }
+    main section.content h3 {
+        font-size: 1.5em;
+    }
+    main section.topics {
+        width: 12rem;
+    }
+    body.sitemap main section.content {
+        width: calc(100% - 12rem);
+    }
+}
+@media screen and (min-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 19px;
+    }
+    header nav.logo,
+    main nav {
+        width: 14rem;
+    }
+    header nav.logo .name {
+        padding-top: 0.2rem;
+    }
+    header section.subtitle {
+        margin-left: 14rem;
+        width: calc(100% - 22rem);
+    }
+    main section.content {
+        margin-left: 14rem;
+        width: calc(100% - 32rem);
+    }
+    main section.topics {
+        width: 18rem;
+    }
+    main section.topics li a {
+        padding: 0.33rem 0.5rem 0.25rem
+    }
+    body.sitemap main section.content {
+        width: calc(100% - 14rem);
+    }
+}
+@media screen and (min-width: 1400px) {
+    main section.content {
+        width: calc(100% - 34rem);
+    }
+    main section.topics {
+        width: 20rem;
+    }
+    main section.topics li {
+        font-size: 1.125rem;
+    }
+}
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 20px;
+    }
+    main section.content {
+        width: calc(70% - 14rem);
+    }
+    main section.topics {
+        width: calc(30%);
+    }
+    main section.topics li {
+        font-size: 1.25rem;
+    }
+    main section.topics li a span.count {
+        transform: translateY(-0.1rem);
+    }
+}

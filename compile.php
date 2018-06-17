@@ -66,6 +66,10 @@ function message($message) {
     echo "\033[0;32m", $message, "\033[0m", PHP_EOL;
 }
 
+function info($message) {
+    echo $message, PHP_EOL;
+}
+
 function error($message, $halt = false) {
     echo 'Error: ', $message, PHP_EOL;
     $halt && exit;

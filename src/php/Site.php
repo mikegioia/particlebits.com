@@ -59,6 +59,12 @@ class Site
         $pages->write($articles, $fileWriteCount);
 
         message("Wrote $fileWriteCount files");
+
+        if ($this->env === BUILD) {
+            info("Open file://". WD ."/build/{$site['basename']}/index.html");
+        } else {
+            info("Open {$config->basepath}");
+        }
     }
 
     private function getConfig($site)
@@ -111,6 +117,15 @@ class Site
                 $fileWriteCount++;
                 $file = new File($this->src, $meta['path']);
                 $this->target->put("{$site['basename']}/{$meta['path']}", $file->read());
+            }
+        }
+
+        // Copy any favicon files
+        foreach(['favicon.ico', 'favicon-256.png'] as $icon) {
+            if ($this->sites->has("{$site['basename']}/$icon")) {
+                $fileWriteCount++;
+                $file = new File($this->sites, "{$site['basename']}/$icon");
+                $this->target->put("{$site['basename']}/$icon", $file->read());
             }
         }
     }

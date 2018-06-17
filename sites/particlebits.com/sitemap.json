@@ -2,15 +2,21 @@
     "name": "ParticleBits",
     "logo": "Pb",
     "logoTagline": "Particle\nBits",
-    "title": "[Pb] Thought Collection by Mike Gioia",
+    "title": "Thought Collection by Mike Gioia",
     "subtitle": "Collection of Thoughts and Works",
     "subtitleTagline": "on a wide variety of topics",
     "theme": "paper",
     "build": {
+        "basepath": null,
+        "homeUrl": "index.html",
+        "sitemapUrl": "sitemap.html",
         "urlFormat": "articles/%YEAR%/%SLUG%.html"
     },
     "dist": {
-        "urlFormat": "%YEAR%/%SLUG%/index.html"
+        "basepath": "https://particlebits.com",
+        "homeUrl": "https://particlebits.com",
+        "sitemapUrl": "sitemap",
+        "urlFormat": "%YEAR%/%SLUG%.html"
     },
     "contributors": [
         {

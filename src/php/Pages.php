@@ -20,6 +20,8 @@ class Pages
         'title' => 'TITLE',
         'contributors' => [],
         'subtitle' => 'SUBTITLE',
+        'homeUrl' => 'index.html',
+        'sitemapUrl' => 'sitemap.html',
         'logoTagline' => 'LOGO TAG LINE',
         'urlFormat' => Article::URL_FORMAT,
         'subtitleTagline' => 'SUBTITLE TAG LINE'

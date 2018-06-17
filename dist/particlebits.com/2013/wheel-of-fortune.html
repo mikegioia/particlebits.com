@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Thought Collection by Mike Gioia</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="https://particlebits.com">
+
+        <link rel="icon" href="https://particlebits.com/favicon.ico">
+
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/site.css">
+        <link rel="stylesheet" href="css/media.css">
+
+        <style type="text/css">
+        .topic-privacy { background-color: rgb(135, 206, 250); }
+.topic-privacy-text { color: rgb(45, 69, 83); }
+.topic-privacy-text:visited { color: rgb(45, 69, 83); }
+.topic-privacy.light { background-color: rgba(135, 206, 250, 0.2); }
+.topic-privacy.lighter { background-color: rgba(135, 206, 250, 0.1); }
+.topic-privacy-border { border-color: rgb(135, 206, 250); }
+.topic-privacy-border.light-border { border-color: rgba(135, 206, 250, 0.2); }
+.topic-fungames { background-color: rgb(255, 215, 0); }
+.topic-fungames-text { color: rgb(85, 72, 0); }
+.topic-fungames-text:visited { color: rgb(85, 72, 0); }
+.topic-fungames.light { background-color: rgba(255, 215, 0, 0.25); }
+.topic-fungames.lighter { background-color: rgba(255, 215, 0, 0.13); }
+.topic-fungames-border { border-color: rgb(255, 215, 0); }
+.topic-fungames-border.light-border { border-color: rgba(255, 215, 0, 0.25); }
+        </style>
+    </head>
+    <body class="article theme-paper">
+        <header class="group">
+            <nav class="logo group">
+                <a href="https://particlebits.com">
+                    <span class="brand">Pb</span>
+                    <span class="name">Particle<br />
+Bits</span>
+                </a>
+            </nav>
+            <section class="subtitle">
+                <span class="larger">Collection of Thoughts and Works</span><br>
+                <span class="smaller">on a wide variety of topics</span>
+            </section>
+            <nav class="menu group">
+                <a class="button sitemap" href="sitemap">
+                    <span>Sitemap</span>
+                </a>
+            </nav>
+        </header>
+        <main class="group">
+            <nav class="sidebar">
+                    <h2>Contributors</h2>
+    <div class="contributor" title="Primary contributor">
+        <div class="meta group">
+            <img class="avatar" src="media/mike.jpeg" width="50" alt="Mike Gioia" />
+            <div class="name">Mike Gioia</div>
+            <div class="website">
+                <a href="https://mikegioia.com">
+                    mikegioia.com                </a>
+            </div>
+        </div>
+        <div class="bio">Chief Architect at TeachBoost. FOSS and digital privacy enthusiast. Environmentalist.</div>
+    </div>
+            </nav>
+            <section class="content">
+                <article>
+    <h1>No Spin Zone: <em>Wheel of Fortune</em> and the Million Dollar Set-up</h1>
+    <div class="meta">
+        Mike Gioia wrote this on
+        March 11th, 2013 in
+        <a class="topic topic-fungames topic-fungames-text" href="topics/fungames">Fun & Games</a>
+    </div>
+
+    <aside>
+    Since publication two more people won:
+    <a href="http://abc7ny.com/archive/6451733/">Autumn Erhard</a> on May 30, 2013, and
+    <a href="http://myfox8.com/2014/09/17/math-teacher-becomes-only-third-million-dollar-wheel-of-fortune-winner/">Sarah Manchester</a> won the third million
+    on September 17, 2014. That's three winners in six years!
+</aside>
+
+<figure class="r-2">
+    <img src="media/2013/wheel-of-fortune/million_dollar_wedge_in_board.png" />
+    <figcaption>Fig 1: Million dollar wedge</figcaption>
+</figure>
+
+<p>
+    Michelle Loewenstein became the first-ever <i>Wheel of Fortune</i> millionaire on
+    October 14, 2008&mdash;a mere four days after her honeymoon and six weeks after
+    the Million Dollar Wedge was first introduced. It was perfect timing: Wheel's new
+    million-dollar fanfare was very much at its peak, Ms. Loewenstein&mdash;a
+    young florist née teacher and newlywed from New Jersey&mdash;had just come home
+    from Hawaii, and on the very first spin of the game<sup>1</sup> and with a fresh
+    field of letters Ms. Loewenstein landed on the sparkly wedge.
+</p>
+<p>
+    While the Million Dollar Wedge (MDW) has certainly added renewed spectacle and a
+    much higher ceiling to the game, no one has won the million since Ms. Loewenstein
+    and few others have even had the opportunity. Just how winnable <i>is</i>
+    this million, and just how peculiar is Ms. Loewenstein's win? The odds are so
+    low and her circumstances so peculiar that Michelle Loewenstein's million dollar
+    game is in all likelihood a Sony Television Pictures<sup>2</sup> creation.
+</p>
+
+<h3>A Closer Look</h3>
+
+<figure class="r-2">
+    <iframe src="https://www.youtube.com/embed/Q_rLkEXU4o4" frameborder="0" allowfullscreen></iframe>
+    <figcaption>Fig 2: First million dollar win<sup>3</sup></figcaption>
+</figure>
+
+<p>
+    Such a bold claim requires some explanation! Before getting into the data,
+    however, let's first take a look at the Path to Victory, or PtV, in winning a
+    million dollars:
+</p>
+
+<ol>
+    <li>Spin and land on the Million Dollar Wedge</li>
+    <li>Guess a correct consonant</li>
+    <li>Win that round</li>
+    <li>Go the rest of the game without hitting a Bankrupt</li>
+    <li>Finish the game with the most winnings (i.e. win the game)</li>
+    <li>Spin the correct Bonus Round card</li>
+    <li>Solve the Bonus Round puzzle</li>
+</ol>
+
+<p>
+    Unfortunately, the networks don't release any data whatsoever about
+    _Wheel of Fortune_ (or any game show for that matter). Path to Victory steps
+    1, 3, 5, and 6 can all be mathematically assumed (more on that in a moment!)
+    but steps 2, 4, and 7 present somewhat of a problem in requiring real-world
+    data. With that in mind, I decided to watch 41    games<sup>4</sup> and record the following set of data points as a
+    representative<sup>5</sup>:
+</p>
+
+<ul>
+    <li>Player and round</li>
+    <li>Letter guessed</li>
+    <li>If they guessed correctly</li>
+    <li>Who won the round and each round's prize (in USD)</li>
+    <li>If they spun the MDW</li>
+    <li>If they spun a Bankrupt</li>
+    <li>If the spin should be ignored (i.e. Pat's final spin)</li>
+</ul>
+
+<p>
+    This data serves to calculate the odds of guessing a letter correctly and how
+    often players are spinning a Bankrupt in a given game. The remaining data that
+    needs to be gathered are the odds of solving the Bonus Puzzle. For that, I used
+    six years of historic data gathered from the The <i>Wheel of Fortune</i> Bonus
+    Puzzle Compendium<sup>6</sup>, which can be seen in sheet "Bonus Rounds" of the
+    spreadsheet.
+</p>
+
+<h3>Calculating the Odds</h3>
+
+<p>
+    The probability calculations for each step in the PtV are defined as follows:
+</p>
+
+<table class="centered">
+    <tr>
+        <th>Step</th>
+        <th>Formula</th>
+        <th>Probability</th>
+    </tr>
+    <tr>
+        <td>Odds of player spinning million (A)</td>
+        <td>1 &divide; 72 &times; [valid spins per game]</td>
+        <td class="centered-text">8.74%</td>
+    </tr>
+    <tr>
+        <td>Odds of guessing letter correctly (B)</td>
+        <td><em>from collected data</em></td>
+        <td class="centered-text">86.55%</td>
+    </tr>
+    <tr>
+        <td>Odds of winning round (C)</td>
+        <td>1 &divide; 3</td>
+        <td class="centered-text">33.33%</td>
+    </tr>
+    <tr>
+        <td>Odds of post-million Bankrupt (D)</td>
+        <td><em>from collected data</em></td>
+        <td class="centered-text">5.91%</td>
+    </tr>
+    <tr>
+        <td>Odds of winning game (E)</td>
+        <td>1 &divide; 3</td>
+        <td class="centered-text">33.33%</td>
+    </tr>
+    <tr>
+        <td>Odds of spinning $1M bonus card (F)</td>
+        <td>1 &divide; 24</td>
+        <td class="centered-text">4.17%</td>
+    </tr>
+    <tr>
+        <td>Odds of solving bonus puzzle (G)</td>
+        <td><em>historic data used</em></td>
+        <td class="centered-text">37.48</td>
+    </tr>
+</table>
+
+<p>
+    Before we calculate the final probability, I'd like to cover a few assumptions
+    and calculations I made:
+</p>
+
+<ol>
+    <li>
+        The odds of <b>winning the puzzle and the game</b> are 1:3. I made no attempt
+        to calculate the odds to win the round and game given any other factors. The
+        main reason why I feel 1:3 is a valid assumption is because the game itself
+        is subject to many random factors, and winning a big round (and thus the
+        game) can happen at any moment.
+    </li>
+    <li>
+        <b>Valid spins per game</b> is the average number of actual spins a
+        singular player will make during a given game. Valid spins are any that
+        occur in Rounds 1 through 3, are not vowel guesses, and are not part of
+        Pat's final spin. As of this article's publishing, each player only actually
+        takes and average of 6 of these "million possible"
+        spins per game.
+    </li>
+    <li>
+        The odds of a <b>post-million Bankrupt</b> are an attempt to calculate the
+        likelihood of spinning a Bankrupt wedge *after* spinning the MDW (and thus
+        losing the MDW). To calculate this we take the average number of Bankrupts
+        from Rounds 1 through 3 and divide that number in half, assuming a 50/50
+        likelihood that you spin it after or before you actually hit the MDW. Then,
+        we add on the odds of spinning a Bankrupt after Round 3.
+    </li>
+    <li>
+        The odds of <b>solving the bonus puzzle</b> come from six years worth of
+        historic data and thus can be assumed to be "complete".
+    </li>
+</ol>
+
+<h4>The Grand Probability</h4>
+
+<p>
+    With our table above, the final probability can be calculated using the formula:
+</p>
+
+<blockquote>
+    A &times; B &times; C &times; (1 - D) &times; E &times; F &times; G
+</blockquote>
+
+<p>
+    resulting in a final probability of:
+</p>
+
+<blockquote>
+    <b>0.012349%</b>
+</blockquote>
+
+<p>
+    That's about 1 in 8,098 players,
+    2,699 games, or
+    <b>every 13.8 years</b><sup>7</sup>!
+</p>
+
+<h4>The Grand Probability&hellip; With the Producers' Help</h4>
+
+<p>
+    Throughout the course of this project I've made a few notable discoveries, all
+    of which have led me to believe that the producers manufactured this million
+    dollar win.
+</p>
+<p>
+    One obvious oddity regarding Ms. Loewenstein's victory is that it happened a
+    mere <b>27 games</b> after Wheel even debuted the MDW!
+</p>
+<p>
+    This is absolutely astonishing given the proposed
+    2,700-game average timespan for a million dollar
+    game. While this may be attributed to common luck, it becomes much less
+    likely when looking at the two variables the producers control and assuming
+    foul play:
+</p>
+
+<blockquote>
+    Odds of spinning $1M bonus card (F)<br>
+    Odds of solving bonus puzzle (G)
+</blockquote>
+
+<p>
+    For (F), Wheel could put Million Dollar Bonus Cards for all 24 cards in the Bonus
+    Wheel very easily, with neither Ms. Loewenstein nor the audience the wiser.
+    I'll cover (G) in the next section more thoroughly,but for now it can be assumed
+    trivial for Wheel to issue a very easy Bonus Puzzle.
+</p>
+<p>
+    Removing (F) and (G) from our formula results in a final probability of:
+</p>
+
+<blockquote>
+    <b>0.790809%</b>
+</blockquote>
+
+<p>
+    That's about 1 in 126 players&mdash;or <b>every
+    42 games</b>!&mdash;much closer to the 27 game mark
+    when Ms. Loewenstein won. The show merely controlling for (F) and (G) allows for
+    much more mathematical sense.
+</p>
+
+<h4>The CDMA Assumption</h4>
+
+<figure class="r-2">
+    <img src="media/2013/wheel-of-fortune/leaky_faucet.png" />
+    <figcaption>Fig 3: Michelle's Bonus Puzzle</figcaption>
+</figure>
+
+<p>
+    How could the producers know that Ms. Loewenstein would solve the Bonus Puzzle,
+    though? If she failed to solve this, it would be politically difficult for Wheel to
+    orchestrate <i>another</i> contestant spinning one million dollars from the Bonus
+    Wheel. She simply had to get a
+    <a href="media/2013/wheel-of-fortune/leaky_faucet.png">ridiculously easy one</a> (see Figure 3).
+</p>
+<p>
+    First, <i>Wheel of Fortune</i> provides RSTLNE for the Bonus Puzzle right out of the
+    gate. Applying these letters to Ms. Loewenstein's Bonus Puzzle, "Leaky Faucet",
+    only yields:
+</p>
+
+<blockquote class="fixed-width">
+    L E _ _ _<br>
+    _ _ _ _ E T
+</blockquote>
+
+<p>
+    While this isn't <i>immediately solvable</i>, it still contains the beginning and
+    ending letters of the phrase.
+</p>
+<p>
+    However, both Wheel-Watchers and a quick look at the underlying Bonus Puzzle
+    data will tell you that CDMA (by far) represents the four most commonly selected
+    Bonus Round letters<sup>8</sup>. Additionally, there are only <b>11 words in the
+    English language ending in the suffix "cet"</b>&mdash;only two of which would ever
+    appear in a puzzle or ever be generally known by a contestant (i.e., "facet" and
+    "faucet")<sup>9</sup>.
+</p>
+
+<h4>The Financial Gains</h4>
+
+<figure class="r-2">
+    <img src="media/2013/wheel-of-fortune/10000_dollar_wedge_in_board.png" />
+    <figcaption>Fig 4: $10,000 wedge</figcaption>
+</figure>
+
+<p>
+    Finally, <i>Wheel</i> introduced the MDW to replace the $10,000 Wedge. As can be
+    expected, this wedge had the same requirements to win as any other normal cash
+    wedge:
+</p>
+
+<ol>
+    <li>Spin the $10,000 Wedge</li>
+    <li>Guess the correct consonant</li>
+    <li>Win the round</li>
+</ol>
+
+<p>
+    The probability here is <b>2.521578%</b>. That's about 1 in
+    40 players, or once every
+    13 games.
+</p>
+<p>
+    Now, if <i>Wheel</i> pays out $10,000 from this wedge once every
+    13 games that would mean the wedge has a cost per game
+    (CPG) of $10,000 &divide; 13, or
+    $769.23. The MDW, however, has a CPG of $1,000,000 &divide;
+    2,699, or $370.51.
+</p>
+<p>
+    The difference between these costs ($769.23 -
+    $769.23) reveals the savings <i>Wheel</i> realizes each game
+    upon switching to the MDW: an average of $398.72 every
+    game. The peculiarity here grows when we extend these cost savings throughout
+    the 2,699 game (or 13.8 years)
+    timespan:
+</p>
+
+<blockquote>
+    $398.72 &times; 2,699 =
+    <b>$1,076,145.28</b>
+</blockquote>
+
+<p>
+    By switching over from the $10,000 Wedge to the Million Dollar Wedge, Sony has
+    effectively saved themselves more than $1,000,000 over
+    the probabilistic estimate for each Million Dollar Winner!
+</p>
+
+<h3>Final Thoughts</h3>
+
+<p>
+    Given the extremely low odds of winning $1 million, the speed with which Ms.
+    Loewenstein won, the relative ease with which Sony may control the Bonus Wheel
+    and Bonus Puzzle, and the hype and positive press Sony stood to gain from getting
+    an early winner, it becomes much more likely that Sony did in fact fix the
+    million dollar win from 2008.
+</p>
+<p>
+    This is pure speculation, however, and I have no actual evidence that Sony did
+    anything that I'm claiming. I'm a huge fan of the show and I've loved watching
+    and recording this game data &mdash; it was a lot of fun and I've grown to love
+    Wheel and Wheel culture. I will more than likely continue recording more and more
+    game data and updating the spreadsheet for a while.
+</p>
+<p>
+    Finally, I think Sony and other game show networks should release historical data
+    (as much as possible) to allow hobbyists and fans to do interesting and fun
+    things. There's so many insights that we can get from these games and having
+    structured data would be fantastic!
+</p>
+<p>
+    Please feel free to leave comments below, and I would greatly appreciate any
+    corrections or fixes if you've noticed anything from my analysis and spreadsheet
+    calculations.
+</p>
+
+<h3>Special Thanks</h3>
+
+<p>
+    A lot of work went into this analysis and I would like to thank:
+</p>
+
+<ol>
+    <li>
+        Cactus Bob for his <b>unbelievably</b> comprehensive Bonus Puzzle Compendium,
+        and James E. Pettis at <i>Wheel of Fortune</i> Solutions<sup>10</sup>.
+    </li>
+    <li>
+        The Buy a Vowel Boards userbase, for their incredible vigilance in
+        record-keeping and providing public services like their
+        weekly stat recaps<sup>11</sup>&nbsp;<sup>12</sup> and Wheel of Fortune
+        History Wiki<sup>13</sup>.
+    </li>
+</ol>
+
+<h3>References</h3>
+
+<ol id="appendix">
+    <li>
+        <a href="http://abc7ny.com/archive/6451733/">Article about Michelle Lowenstein's Win</a>,
+        <i>ABC 7 NY</i>
+    </li>
+    <li>
+        <a href="https://web.archive.org/web/20130922130711/http://www.tvweek.com/news/2007/08/merv_griffin_jeopardy_wheel_of.php">Sony Pictures Television</a> is the parent
+        company that owns the rights to <i>Wheel of Fortune</i>, <i>Web Archive</i>
+    </li>
+    <li>
+        <a href="https://www.youtube.com/embed/Q_rLkEXU4o4">Video of Michelle's winning game</a>,
+        <i>YouTube</i>
+    </li>
+    <li>
+        I originally chose 40 as the number of games' data to collect. I felt like
+        40 games was more than enough to get the numbers I needed.
+    </li>
+    <li>
+        <a href="https://docs.google.com/spreadsheet/ccc?key=0As8PVFJBR9khdHIxamVDUUVVU2RDUTZjRzNQM1RJRlE&usp=sharing">Data collected</a>, <i>Google Spreadsheet</i>
+    </li>
+    <li>
+        <a href="http://www.angelfire.com/mi4/malldirectories/wheel/wheelbonus.html">The Wheel of Fortune Bonus Puzzle Compendium</a>,
+        <i>CactusBob</i><br>Contains many years worth of historic Bonus Puzzle results
+    </li>
+    <li>
+        It should be noted that the final probability has been calculated using
+        41 games worth of data at the time of writing this.
+        I will continue to add more game data to the spreadsheet in the future;
+        however, the probabilities have not fluctuated very much at all after about
+        10-20 games' worth of data.
+    </li>
+    <li>
+        Sheet "Letter Frequency" in the collected data spreadsheet shows a
+        calculated letter frequency for the letters selected in the Bonus Round from
+        2007 through 2012. The letters "C", "D", "M", and "A" account for 57% of
+        possible letters guessed.
+    </li>
+    <li>
+        <a href="http://www.scrabblefinder.com/ends-with/cet/">Possible words ending in CET</a>,
+        <i>Scrabblefinder</i>
+    </li>
+    <li>
+        <a href="http://www.wheeloffortunesolutions.com">Wheel of Fortune puzzle solutions</a>,
+        <i>James E. Pettis</i><br>
+        A large collection of puzzles used in games over the years
+    </li>
+    <li>
+        <a href="http://buyavowel.boards.net/">Buy a Vowel Boards, A Wheel of Fortune Community</a>
+    </li>
+    <li>
+        <a href="http://buyavowel.boards.net/board/17/tonight-on-wof">Weekly stat recap</a>, <i>Buy a Vowel Boards</i>
+    </li>
+    <li>
+        <a href="http://wheeloffortunehistory.wikia.com/wiki/Wheel_of_Fortune_History_Wiki">Wheel of Fortune History Wiki</a>,
+        <i>Wikia</i><br />
+        Comprehensive wiki and historical resource covering all aspects of the game's
+        colorful history.
+    </li>
+</ol>
+    <h3>Reader Comments</h3>
+    <div class="comments">
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/b052623bdd9c4898e9c3b8bdec69e7b9?s=200">
+            <div class="content">
+                <div class="body">
+                    I thought I was the only one to ever thoroughly try to understand how there have been now 2 millionaire dollar winners. I couldn't believe I found this article! I completely agree that they did at least plan the first one if not the second too. Regardless its nice enough to see someone win it. Great work!                </div>
+                <div class="meta">
+                    lily wrote on
+                    <span class="userdate" data-timestamp="1411515299">23 Sep 2014 at 11:34 pm</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/2ed7034e40be1ab4744ea75bd49951c4?s=200">
+            <div class="content">
+                <div class="body">
+                    good wheel of fortune no spin zipper!!!                </div>
+                <div class="meta">
+                    emmanuel wrote on
+                    <span class="userdate" data-timestamp="1428761504">11 Apr 2015 at 2:11 pm</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/41d012408f2e820d45ef4c40b66cdcee?s=200">
+            <div class="content">
+                <div class="body">
+                    Great article? Have you considered the odds accounting for the MDW being physically smaller? I would love to see more data I'm wheel fan and love to see more stats on players decisions. Also data on how much money players win relative to the other players since everyone "wins". Last thought: could her winning only 27 games actually prove the game is truly random?                </div>
+                <div class="meta">
+                    Justin wrote on
+                    <span class="userdate" data-timestamp="1432858684">29 May 2015 at 12:18 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/2fa939061cb20ea2cdb56979260a5dfe?s=200">
+            <div class="content">
+                <div class="body">
+                    I googled this because I saw a lady win a million on "loud laughter" and before they revealed the prize I already knew what was up... it was fixed for sure.                </div>
+                <div class="meta">
+                    bone wrote on
+                    <span class="userdate" data-timestamp="1448172193">22 Nov 2015 at 6:03 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/48a8a9d23fa1eff02b5bc015778f4cfa?s=200">
+            <div class="content">
+                <div class="body">
+                    No anything else                </div>
+                <div class="meta">
+                    Dhanya wrote on
+                    <span class="userdate" data-timestamp="1465613920">11 Jun 2016 at 2:58 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/8c55ee6544768b66ac1e1555ed8999b3?s=200">
+            <div class="content">
+                <div class="body">
+                    i love it                </div>
+                <div class="meta">
+                    paul wrote on
+                    <span class="userdate" data-timestamp="1473825286">14 Sep 2016 at 3:54 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/8c55ee6544768b66ac1e1555ed8999b3?s=200">
+            <div class="content">
+                <div class="body">
+                    yes i love it                </div>
+                <div class="meta">
+                    paul wrote on
+                    <span class="userdate" data-timestamp="1473825358">14 Sep 2016 at 3:55 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/78e75e8920aa7c80186d54c3beb556c4?s=200">
+            <div class="content">
+                <div class="body">
+                    Justin: "Have you considered the odds accounting for the MDW being physically smaller?"
+
+He did... there are 24 normal-size slots on the wheel, and the MDW is 1/3rd the size of a normal slot, so 24*3 = 72.
+
+"Odds of player spinning million (A)    1 ÷ 72 × [valid spins per game]"                </div>
+                <div class="meta">
+                    Ann wrote on
+                    <span class="userdate" data-timestamp="1489316451">12 Mar 2017 at 11:00 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/78e75e8920aa7c80186d54c3beb556c4?s=200">
+            <div class="content">
+                <div class="body">
+                    What I'm wondering about is why all the mentions of 'ABC' as if they're responsible for production decisions? Wheel is a syndicated show airing on many channels including some ABC channels, but everything I've seen indicates the companies responsible for producing it are Sony and CBS.                </div>
+                <div class="meta">
+                    Ann wrote on
+                    <span class="userdate" data-timestamp="1489316967">12 Mar 2017 at 11:09 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/c6d731e67c7659c94b00c2ac95fe7ff1?s=200">
+            <div class="content">
+                <div class="body">
+                    @Ann There's no reason why, I just assumed it was ABC since it airs on ABC in New York! I didn't realize the show was syndicated so much.
+
+Sony does in fact own the rights to the show, and CBS has the US distribution rights. I would say in this case it was Sony then that is the "owner". I should update this to reflect that and add a footnote.                </div>
+                <div class="meta">
+                    Mike Gioia wrote on
+                    <span class="userdate" data-timestamp="1492034043">12 Apr 2017 at 9:54 pm</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/5356627df3b53b6a90983206e07d435e?s=200">
+            <div class="content">
+                <div class="body">
+                    How much a player would win if he/she answered the $1M question right on the bonus round but did not have the MDW?                </div>
+                <div class="meta">
+                    JDP wrote on
+                    <span class="userdate" data-timestamp="1516841473">25 Jan 2018 at 12:51 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/5ddd510f60137df339875d10378ce8b0?s=200">
+            <div class="content">
+                <div class="body">
+                    The small wheel contains a $100,000 card (amongst the other smaller prize cards) which is replaced with a $1M card if the player has the MDW.                </div>
+                <div class="meta">
+                    Cam wrote on
+                    <span class="userdate" data-timestamp="1519458134">24 Feb 2018 at 7:42 am</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/c14a55a21ebc55e0efee46fb47282bce?s=200">
+            <div class="content">
+                <div class="body">
+                    One has a better 'chance' and that is what it is of obtaining the correct '6' numbers in the Florida lottery.   275,000,000: 1.  Good Luck to all.  Fun for ALL but in the end it's a [suckers] game thinking that 'you' will be the sole winner.                </div>
+                <div class="meta">
+                    Michael wrote on
+                    <span class="userdate" data-timestamp="1519741602">27 Feb 2018 at 2:26 pm</span>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="notice">
+            Commenting will be enabled as soon as I can do it.<br>
+            <a href="mailto:mike@particlebits.com">Email me</a>
+            for now and I'll post your comment by hand :P
+        </div>
+    </div>
+</article>            </section>
+            <section class="topics">
+                <h2>Topics</h2>
+                            <ul>
+                                    <li class="topic">
+                        <a href="topics/privacy" class="topic-privacy topic-privacy-text">
+                            <span class="label">Privacy</span>
+                            <span class="count">1</span>
+                        </a>
+                    </li>
+                                    <li class="topic">
+                        <a href="topics/fungames" class="topic-fungames topic-fungames-text">
+                            <span class="label">Fun & Games</span>
+                            <span class="count">1</span>
+                        </a>
+                    </li>
+                                </ul>
+                        </section>
+            <section class="contributors">
+                    <h2>Contributors</h2>
+    <div class="contributor" title="Primary contributor">
+        <div class="meta group">
+            <img class="avatar" src="media/mike.jpeg" width="50" alt="Mike Gioia" />
+            <div class="name">Mike Gioia</div>
+            <div class="website">
+                <a href="https://mikegioia.com">
+                    mikegioia.com                </a>
+            </div>
+        </div>
+        <div class="bio">Chief Architect at TeachBoost. FOSS and digital privacy enthusiast. Environmentalist.</div>
+    </div>
+            </section>
+        </main>
+    </body>
+</html>
