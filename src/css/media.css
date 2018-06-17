@@ -126,13 +126,13 @@
     }
     main section.content {
         margin-left: 12rem;
-        width: calc(100% - 28rem);
+        width: calc(100% - 24rem);
     }
     main section.content h3 {
         font-size: 1.5em;
     }
     main section.topics {
-        width: 16rem;
+        width: 12rem;
     }
     body.sitemap main section.content {
         width: calc(100% - 12rem);
@@ -167,6 +167,9 @@
     }
     main section.topics li a {
         padding: 0.33rem 0.5rem 0.25rem
+    }
+    body.sitemap main section.content {
+        width: calc(100% - 14rem);
     }
 }
 @media screen and (min-width: 1400px) {

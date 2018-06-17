@@ -66,6 +66,11 @@ class Article
         return $this->_topic;
     }
 
+    public function getComments()
+    {
+        return $this->meta->comments;
+    }
+
     public function render()
     {
         // Set up helper functions for processing config

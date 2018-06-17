@@ -7,4 +7,36 @@
     </div>
 
     <?php echo $content; ?>
+
+<?php
+if ($article->getComments()): ?>
+    <h3>Reader Comments</h3>
+    <div class="comments">
+    <?php
+    foreach ($article->getComments() as $comment): ?>
+
+        <div class="comment group">
+            <img class="avatar" src="https://www.gravatar.com/avatar/<?php echo md5($comment->email); ?>?s=200">
+            <div class="content">
+                <div class="body">
+                    <?php echo $comment->body; ?>
+                </div>
+                <div class="meta">
+                    <?php echo $comment->name; ?> wrote on
+                    <span class="userdate" data-timestamp="<?php echo strtotime($comment->created_on); ?>"><?php echo date("j M Y \a\\t g:i a", strtotime($comment->created_on)); ?></span>
+                </div>
+            </div>
+        </div>
+
+    <?php
+    endforeach; ?>
+
+        <div class="notice">
+            Commenting will be enabled as soon as I can do it.<br>
+            <a href="mailto:mike@particlebits.com">Email me</a>
+            for now and I'll post your comment by hand :P
+        </div>
+    </div>
+<?php
+endif; ?>
 </article>

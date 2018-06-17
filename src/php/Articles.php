@@ -102,7 +102,7 @@ class Articles
 
         $meta = json_decode($this->sites->read("{$slug['path']}/about.json"));
 
-        if (is_null($meta)) {
+        if (! $meta) {
             error("Failed parsing JSON in {$slug['path']}/about.json");
             return;
         }
@@ -113,6 +113,17 @@ class Articles
         if ($this->sites->has("{$slug['path']}/media")) {
             foreach ($this->sites->listContents("{$slug['path']}/media") as $media) {
                 $meta->medias[] = $media;
+            }
+        }
+
+        $meta->comments = [];
+
+        if ($this->sites->has("{$slug['path']}/comments.json")) {
+            $meta->comments = json_decode($this->sites->read("{$slug['path']}/comments.json"));
+
+            if (! $meta->comments) {
+                error("Failed parsing JSON in {$slug['path']}/comments.json");
+                $meta->comments = [];
             }
         }
 
