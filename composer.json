@@ -18,7 +18,7 @@
         }
     },
     "scripts": {
-        "server": "php -d variables_order=EGPCS -S localhost:8000 index.php",
-        "watch": "watch -b -c -e -n 5 php compile.php"
+        "server": "php -d variables_order=EGPCS -S localhost:8000 -t build/particlebits.com",
+        "watch": "watch -b -c -e -n 5 php compile.php local"
     }
 }

@@ -4,7 +4,9 @@ foreach ($contributors as $contributor):
     $websiteUrl = parse_url( $contributor->website ); ?>
     <div class="contributor" title="Primary contributor">
         <div class="meta group">
-            <img class="avatar" src="media/<?php echo $contributor->avatar; ?>" width="50" alt="<?php echo $contributor->name; ?>" />
+            <a class="avatar" href="media/<?php echo $contributor->avatar; ?>" target="_blank" alt="<?php echo $contributor->name; ?>">
+                <img src="media/<?php echo $contributor->avatar; ?>" width="50">
+            </a>
             <div class="name"><?php echo $contributor->name; ?></div>
             <div class="website">
                 <a href="<?php echo $contributor->website; ?>">

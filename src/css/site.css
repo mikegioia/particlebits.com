@@ -164,6 +164,8 @@ main nav {
 }
 main .contributor .avatar {
     float: left;
+    line-height: 0;
+    text-decoration: none;
     margin: 0 0.5rem 0.5rem 0;
 }
 main .contributor .name {

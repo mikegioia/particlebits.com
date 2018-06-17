@@ -6,17 +6,23 @@
     "subtitle": "Collection of Thoughts and Works",
     "subtitleTagline": "on a wide variety of topics",
     "theme": "paper",
-    "build": {
+    "local": {
         "basepath": null,
         "homeUrl": "index.html",
         "sitemapUrl": "sitemap.html",
         "urlFormat": "articles/%YEAR%/%SLUG%.html"
     },
+    "build": {
+        "basepath": "http://localhost:8000",
+        "homeUrl": "http://localhost:8000",
+        "sitemapUrl": "sitemap.html",
+        "urlFormat": "%YEAR%/%SLUG%.html"
+    },
     "dist": {
         "basepath": "https://particlebits.com",
         "homeUrl": "https://particlebits.com",
         "sitemapUrl": "sitemap",
-        "urlFormat": "%YEAR%/%SLUG%.html"
+        "urlFormat": "%YEAR%/%SLUG%"
     },
     "contributors": [
         {

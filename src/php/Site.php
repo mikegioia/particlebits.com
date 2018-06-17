@@ -60,8 +60,8 @@ class Site
 
         message("Wrote $fileWriteCount files");
 
-        if ($this->env === BUILD) {
-            info("Open file://". WD ."/build/{$site['basename']}/index.html");
+        if ($this->env === LOCAL) {
+            info("Open file://". WD ."/local/{$site['basename']}/index.html");
         } else {
             info("Open {$config->basepath}");
         }

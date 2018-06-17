@@ -53,8 +53,13 @@ class Topic
 
     public function getUrl()
     {
-        $filename = $this->env === BUILD ? '/index.html' : '';
+        $filename = $this->env === LOCAL ? '/index.html' : '';
 
         return "topics/{$this->slug}{$filename}";
+    }
+
+    public function getPath()
+    {
+        return "topics/{$this->slug}/index.html";
     }
 }

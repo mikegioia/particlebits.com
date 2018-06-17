@@ -26,6 +26,7 @@ require("$WD/vendor/autoload.php");
 define('WD', $WD);
 define('DIST', 'dist');
 define('BUILD', 'build');
+define('LOCAL', 'local');
 define('TYPE_DIR', 'dir');
 define('TYPE_FILE', 'file');
 define('TPL_HOME', 'home.phtml');
@@ -36,16 +37,19 @@ define('TPL_SITEMAP', 'sitemap.phtml');
 define('TPL_CONTRIBUTORS', 'contributors.phtml');
 // Set up directories if they don't exist
 @mkdir("$WD/build", 0755, true);
+@mkdir("$WD/local", 0755, true);
 @mkdir("$WD/sites", 0755, true);
 // Environment can be one of 'build' or 'dist'
 $env = get($argv, 1, BUILD);
-$env = in_array($env, [BUILD, DIST]) ? $env : BUILD;
+$env = in_array($env, [BUILD, DIST, LOCAL]) ? $env : LOCAL;
 // Set up file system drivers
 $src = new FileSystem(new Local("$WD/src"));
 $dist = new FileSystem(new Local("$WD/dist"));
 $build = new Filesystem(new Local("$WD/build"));
+$local = new Filesystem(new Local("$WD/local"));
 $sites = new Filesystem(new Local("$WD/sites"));
-$target = $env === BUILD ? $build : $dist;
+// ATTENZIONE! This is either $build, $local, or $dist
+$target = $$env;
 // Set up system classes
 $pages = new Pages($target, $sites, $env);
 $articles = new Articles($src, $sites, $env);
@@ -54,6 +58,9 @@ $site = new Site($src, $target, $sites, $env);
 if (! $argc) {
     exit('Must be run from the command line!');
 }
+
+// Set this for the app to use
+define('ENV', $env);
 
 // Get by key, return default if not set
 function get($mixed, $key, $default = null) {

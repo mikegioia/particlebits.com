@@ -15,7 +15,6 @@ class Pages
         'css' => '',
         'theme' => '',
         'logo' => 'AZ',
-        'local' => true,
         'basepath' => '',
         'title' => 'TITLE',
         'contributors' => [],
@@ -50,8 +49,9 @@ class Pages
 
         if (! $this->config['basepath']) {
             $this->config['basepath'] = sprintf(
-                "file://%s/build/%s/",
+                "file://%s/%s/%s/",
                 WD,
+                ENV,
                 $this->site['basename']);
         }
     }
@@ -60,7 +60,6 @@ class Pages
     {
         $data = $this->config;
         // Set up common base data
-        $data['local'] = $this->env === BUILD;
         $data['topics'] = $articles->topics->getActive();
 
         $this->home($articles, $data, $fileWriteCount);
@@ -97,9 +96,12 @@ class Pages
             $data['content'] = $article->render();
 
             // Write out the article file. Writing file implicitly
-            // creates directories
+            // creates directories. This MUST have a .html extension.
+            $articleUrl = substr($article->url, -5) === '.html'
+                ? $article->url
+                : "{$article->url}.html";
             $this->target->put(
-                "{$this->site['basename']}/{$article->url}",
+                "{$this->site['basename']}/{$articleUrl}",
                 render(TPL_MAIN, $data));
             $fileWriteCount++;
 
@@ -128,7 +130,7 @@ class Pages
             // Write out the article file. Writing file implicitly
             // creates directories
             $this->target->put(
-                "{$this->site['basename']}/{$topic->url}",
+                "{$this->site['basename']}/{$topic->getPath()}",
                 render(TPL_MAIN, $data));
             $fileWriteCount++;
         }
