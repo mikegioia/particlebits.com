@@ -29,7 +29,7 @@
             foreach ($topicArticles as $article): ?>
 
             <article class="<?php echo implode(' ', $classes); ?>">
-                <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
+                <a class="topic-<?php echo $topic->slug; ?>-text" href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
                 <em class="date"><?php echo $article->dateString('j F Y'); ?></em>
             </article>
 
