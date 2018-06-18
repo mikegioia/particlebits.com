@@ -347,7 +347,7 @@ article > .meta a.topic {
     transform: translateX(0.125rem) translateY(-0.125rem);
 }
 article aside {
-    color: #999;
+    color: #777;
     padding: 1rem;
     text-align: center;
     margin-bottom: 1.5rem;
@@ -543,8 +543,10 @@ body.theme-paper header section.subtitle,
 body.theme-paper header section.subtitle:hover {
     color: #444d45;
 }
+body.theme-paper article aside {
+    color: #777d75;
+}
 body.theme-paper article h2,
-body.theme-paper article aside,
 body.theme-paper article figure,
 body.theme-paper header section.subtitle.muted,
 body.theme-paper header section.subtitle span.smaller,
