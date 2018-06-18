@@ -19,8 +19,8 @@
         "urlFormat": "%YEAR%/%SLUG%.html"
     },
     "dist": {
-        "basepath": "http://particlebits.com",
-        "homeUrl": "http://particlebits.com",
+        "basepath": "https://particlebits.com",
+        "homeUrl": "https://particlebits.com",
         "sitemapUrl": "sitemap",
         "urlFormat": "%YEAR%/%SLUG%"
     },
