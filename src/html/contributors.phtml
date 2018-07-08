@@ -1,4 +1,4 @@
-    <h2>Contributors</h2>
+    <h2>Contributor<?php echo count($contributors) !== 1 ? 's' : ''; ?></h2>
 <?php
 foreach ($contributors as $contributor):
     $websiteUrl = parse_url( $contributor->website ); ?>

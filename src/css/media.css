@@ -22,6 +22,9 @@
     section.sitemap .columns {
         column-count: 1;
     }
+    section.sitemap .column article {
+        margin-bottom: 0.5rem;
+    }
 }
 @media screen and (max-width: 440px) {
     header {
@@ -57,6 +60,17 @@
         width: 100%;
         margin-left: 0;
     }
+    main section.content h3 a {
+        display: block;
+        margin: 0 0 0.33rem;
+    }
+    main section.content h3 span.badge {
+        transform: none;
+        padding: 0.66rem 0.33rem;
+    }
+    main section.content blockquote {
+        margin-top: 0.5rem;
+    }
     main section.topics {
         width: 100%;
         display: block;
@@ -72,6 +86,7 @@
     body.article section.topics {
         margin-top: 0;
         padding: 0 1rem;
+        position: static !important;
     }
     body.article section.contributors {
         padding: 0 1rem 1rem;
@@ -118,7 +133,7 @@
     }
     header nav.logo .name {
         font-size: 1.33rem;
-        padding-top: 0.25rem;
+        padding-top: 0.33rem;
     }
     header section.subtitle {
         margin-left: 12rem;
@@ -129,7 +144,7 @@
         width: calc(100% - 24rem);
     }
     main section.content h3 {
-        font-size: 1.5em;
+        font-size: 1.33em;
     }
     main section.topics {
         width: 12rem;
@@ -152,7 +167,7 @@
         width: 14rem;
     }
     header nav.logo .name {
-        padding-top: 0.2rem;
+        padding-top: 0.25rem;
     }
     header section.subtitle {
         margin-left: 14rem;
