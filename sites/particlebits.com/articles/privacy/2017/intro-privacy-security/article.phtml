@@ -1,5 +1,7 @@
 <aside>
-    This article is the first in a series on Privacy and Security.
+    This article is the first in a
+    <a href="<?php echo $article->getTopic()->url; ?>">series</a>
+    on Privacy and Security.
 </aside>
 
 <blockquote>
@@ -103,3 +105,8 @@
     <li>Professional</li>
     <li>Public</li>
 </ol>
+
+<aside>
+    Continue reading other articles in the
+    <a href="<?php echo $article->getTopic()->url; ?>">Privacy and Security series</a>.
+</aside>

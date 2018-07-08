@@ -60,7 +60,9 @@ class Pages
     {
         $data = $this->config;
         // Set up common base data
+        $data['env'] = $this->env;
         $data['topics'] = $articles->topics->getActive();
+        $data['basepath'] = rtrim($data['basepath'], '/');
 
         $this->home($articles, $data, $fileWriteCount);
         $this->topics($articles, $data, $fileWriteCount);
@@ -93,6 +95,7 @@ class Pages
         $data['page'] = self::PAGE_ARTICLE;
 
         foreach ($articles->articles as $article) {
+            $data['article'] = $article;
             $data['content'] = $article->render();
 
             // Write out the article file. Writing file implicitly

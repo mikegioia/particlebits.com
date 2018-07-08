@@ -6,14 +6,9 @@
         <title><?php echo $title; ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <base href="<?php echo $basepath; ?>">
-
-        <link rel="icon" href="<?php echo rtrim($basepath, '/'); ?>/favicon.ico">
-
-        <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/site.css">
-        <link rel="stylesheet" href="css/media.css">
-
+        <base href="<?php echo $basepath; ?>/">
+        <link rel="icon" href="<?php echo $basepath; ?>/favicon.ico">
+        <link rel="stylesheet" href="css/<?php echo $env; ?>.css">
         <style type="text/css">
         <?php
         foreach ($topics as $slug => $topic):
@@ -72,6 +67,35 @@
             <?php
             else: ?>
                 <div class="no-results">No topics yet</div>
+            <?php
+            endif;
+            if (isset($article) && $article->toc): ?>
+                <h2>Table of Contents</h2>
+                <ol class="toc">
+                <?php
+                foreach ($article->toc as $slug => $value):
+                    if (is_string($value)): ?>
+                    <li>
+                        <a href="<?php echo $article->getUrl() .'#'. $slug; ?>"><?php echo $value; ?></a>
+                    </li>
+                    <?php
+                    else: ?>
+                    <li>
+                        <a href="<?php echo $article->getUrl() .'#'. $slug; ?>"><?php echo $value->label; ?></a>
+                        <ol>
+                        <?php
+                        foreach ($value->contents as $childSlug => $childValue): ?>
+                            <li>
+                                <a href="<?php echo $article->getUrl() .'#'. $slug; ?>"><?php echo $childValue; ?></a>
+                            </li>
+                        <?php
+                        endforeach; ?>
+                        </ol>
+                    </li>
+                    <?php
+                    endif;
+                endforeach; ?>
+                </ol>
             <?php
             endif; ?>
             </section>

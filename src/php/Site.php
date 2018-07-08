@@ -4,6 +4,7 @@ namespace Legacy;
 
 use League\Flysystem\File;
 use League\Flysystem\Filesystem as FS;
+use MatthiasMullie\Minify\CSS as CSSMinifier;
 
 class Site
 {
@@ -48,6 +49,7 @@ class Site
 
         $this->createDirectories($site);
         $this->writeAssets($site, $fileWriteCount);
+        $this->minifyAssets($site, $fileWriteCount);
 
         message('Writing HTML files');
 
@@ -128,5 +130,13 @@ class Site
                 $this->target->put("{$site['basename']}/$icon", $file->read());
             }
         }
+    }
+
+    private function minifyAssets($site, &$fileWriteCount)
+    {
+        // First combine all the source CSS files into build.css
+        
+
+        // Then minify the file into dist.css
     }
 }

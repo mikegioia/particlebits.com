@@ -245,21 +245,36 @@ main section.topics ul {
     padding: 0;
     list-style-type: none;
 }
-main section.topics li {
+main section.topics ul li {
     font-size: 1rem;
     margin-right: 0.4rem;
     margin-bottom: 0.5rem;
     display: inline-block;
     font-family: 'Signika Negative';
 }
-main section.topics li a {
+main section.topics ul li a {
     display: block;
     line-height: 1.4;
     text-decoration: none;
     padding: 0.33rem 0.5rem;
 }
-main section.topics li a:hover {
+main section.topics ul li a:hover {
     color: inherit;
+}
+main section.topics h2:not(:first-of-type) {
+    margin-top: 2rem;
+}
+main section.topics ol.toc {
+    margin: 0;
+    font-size: 0.875rem;
+    padding: 0 0 0 1rem;
+}
+main section.topics ol.toc li {
+    padding: 0 0 0.25rem 0.25rem;
+}
+main section.topics ol.toc ol {
+    margin: 0.25rem 0 0 0;
+    padding: 0 0 0 1rem;
 }
 .topics .topic span.count {
     font-size: 0.75rem;
@@ -323,6 +338,18 @@ body.article main section.content article h3 {
     font-size: 1.5rem;
     text-align: center;
     margin: 2rem 0 1.25rem;
+}
+article h3:target {
+    background: #ffd700;
+    padding: 5rem 0 1rem;
+    color: #333 !important;
+    /*
+    Uncomment to use gradient
+    background: linear-gradient(
+        to bottom,
+        rgba(255,215,0,1) 0%,
+        rgba(255,255,255,0) 100%);
+    */
 }
 article h4 {
     color: #666;

@@ -1,0 +1,30 @@
+{
+    "title": "The Six Spheres of Privacy",
+    "date": "2018-07-02",
+    "author": "Mike Gioia",
+    "topic": "privacy",
+    "slug": "six-privacy-spheres",
+    "featured": false,
+    "snippet": "Part II in a series on digital privacy and security, this article explains a system for modelling and understanding privacy in our own lives. Six categories are presented for organizing the way we think about and secure our personal data and information among the various groups of people in our lives.",
+    "toc": {
+        "personal": "Personal Sphere",
+        "private": "Private Shere",
+        "family-social-professional": "Family, Social, and Professional Spheres",
+        "public": "Public Sphere",
+        "info-overlap": "Information Overlap",
+        "privacy-balance": "Privacy as a Balance",
+        "practicing-exercising": {
+            "label": "Practicing and Exercising",
+            "contents": {
+                "step-1-inventory": "Step 1: Inventory what you’re sharing",
+                "step-2-decide": "Step 2: Decide what and with whom you want to share"
+            }
+        }
+    },
+    "assets": {
+    },
+    "weblinks": {
+    },
+    "data": {
+    }
+}

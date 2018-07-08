@@ -13,6 +13,7 @@ class Article
     public $topic;
     public $author;
     public $snippet;
+    public $toc = [];
     public $data = [];
     public $assets = [];
     public $medias = [];

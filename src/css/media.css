@@ -165,7 +165,7 @@
     main section.topics {
         width: 18rem;
     }
-    main section.topics li a {
+    main section.topics ul li a {
         padding: 0.33rem 0.5rem 0.25rem
     }
     body.sitemap main section.content {
@@ -179,7 +179,7 @@
     main section.topics {
         width: 20rem;
     }
-    main section.topics li {
+    main section.topics ul li {
         font-size: 1.125rem;
     }
 }
@@ -193,10 +193,10 @@
     main section.topics {
         width: calc(30%);
     }
-    main section.topics li {
+    main section.topics ul li {
         font-size: 1.25rem;
     }
-    main section.topics li a span.count {
+    main section.topics ul li a span.count {
         transform: translateY(-0.1rem);
     }
 }
