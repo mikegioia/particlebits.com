@@ -134,9 +134,24 @@ class Site
 
     private function minifyAssets($site, &$fileWriteCount)
     {
+        message('Combining and minifying CSS files');
+
         // First combine all the source CSS files into build.css
-        
+        $combined = '';
+
+        foreach (['fonts.css', 'site.css', 'media.css'] as $file) {
+            $combined .= $this->src->read("css/$file") . PHP_EOL;
+        }
+
+        $this->target->put("{$site['basename']}/css/build.css", $combined);
+        $fileWriteCount++;
 
         // Then minify the file into dist.css
+        $minifier = new CSSMinifier($combined);
+
+        $this->target->put(
+            "{$site['basename']}/css/dist.css",
+            $minifier->minify());
+        $fileWriteCount++;
     }
 }
