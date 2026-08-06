@@ -2,8 +2,6 @@
 
 namespace Legacy;
 
-use League\Flysystem\Filesystem;
-
 class Article
 {
     public $url;
@@ -26,6 +24,8 @@ class Article
     private $meta;
     // Topic object
     private $_topic;
+    // URL format string, e.g. articles/%YEAR%/%SLUG%.html
+    private $urlFormat;
 
     const NOT_FOUND = 'notfound.jpg';
     const ASSET_URL_FORMAT = 'media/%YEAR%/%SLUG%/';

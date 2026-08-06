@@ -2,8 +2,6 @@
 
 namespace Legacy;
 
-use League\Flysystem\Filesystem;
-
 class Pages
 {
     private $env;

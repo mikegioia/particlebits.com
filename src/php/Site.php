@@ -2,10 +2,6 @@
 
 namespace Legacy;
 
-use League\Flysystem\File;
-use League\Flysystem\Filesystem as FS;
-use MatthiasMullie\Minify\CSS as CSSMinifier;
-
 class Site
 {
     private $env;
@@ -13,7 +9,7 @@ class Site
     private $sites;
     private $target;
 
-    public function __construct(FS $src, FS $target, FS $sites, $env)
+    public function __construct(Filesystem $src, Filesystem $target, Filesystem $sites, $env)
     {
         $this->env = $env;
         $this->src = $src;
@@ -108,8 +104,9 @@ class Site
         foreach (['css', 'fonts', 'media'] as $type) {
             foreach ($this->sites->listContents($type) as $meta) {
                 $fileWriteCount++;
-                $file = new File($this->sites, $meta['path']);
-                $this->target->put("{$site['basename']}/{$meta['path']}", $file->read());
+                $this->target->put(
+                    "{$site['basename']}/{$meta['path']}",
+                    $this->sites->read($meta['path']));
             }
         }
 
@@ -117,8 +114,9 @@ class Site
         foreach (['css', 'fonts', 'media'] as $type) {
             foreach ($this->src->listContents($type) as $meta) {
                 $fileWriteCount++;
-                $file = new File($this->src, $meta['path']);
-                $this->target->put("{$site['basename']}/{$meta['path']}", $file->read());
+                $this->target->put(
+                    "{$site['basename']}/{$meta['path']}",
+                    $this->src->read($meta['path']));
             }
         }
 
@@ -126,8 +124,9 @@ class Site
         foreach(['favicon.ico', 'favicon-256.png'] as $icon) {
             if ($this->sites->has("{$site['basename']}/$icon")) {
                 $fileWriteCount++;
-                $file = new File($this->sites, "{$site['basename']}/$icon");
-                $this->target->put("{$site['basename']}/$icon", $file->read());
+                $this->target->put(
+                    "{$site['basename']}/$icon",
+                    $this->sites->read("{$site['basename']}/$icon"));
             }
         }
     }
@@ -147,11 +146,25 @@ class Site
         $fileWriteCount++;
 
         // Then minify the file into dist.css
-        $minifier = new CSSMinifier($combined);
-
         $this->target->put(
             "{$site['basename']}/css/dist.css",
-            $minifier->minify());
+            $this->minifyCss($combined));
         $fileWriteCount++;
+    }
+
+    /**
+     * Basic CSS minification: strips comments, collapses
+     * whitespace, and drops semicolons before closing braces.
+     * The source CSS keeps no whitespace-sensitive content
+     * (strings, data URIs) so this is safe here.
+     */
+    private function minifyCss($css)
+    {
+        $css = preg_replace('!/\*.*?\*/!s', '', $css);
+        $css = preg_replace('/\s+/', ' ', $css);
+        $css = preg_replace('/\s*([{};:,>])\s*/', '$1', $css);
+        $css = str_replace(';}', '}', $css);
+
+        return trim($css);
     }
 }

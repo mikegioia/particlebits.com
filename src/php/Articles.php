@@ -2,8 +2,6 @@
 
 namespace Legacy;
 
-use League\Flysystem\Filesystem;
-
 class Articles
 {
     // Environment
@@ -58,7 +56,7 @@ class Articles
         $sorted = $this->articles;
 
         usort($sorted, function ($a, $b) {
-            return $a->date < $b->date;
+            return $b->date <=> $a->date;
         });
 
         return $sorted;

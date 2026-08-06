@@ -12,16 +12,19 @@
 use Legacy\Site;
 use Legacy\Pages;
 use Legacy\Articles;
-use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local;
+use Legacy\Filesystem;
 
 // Set up maximum error reporting and UTC time
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 date_default_timezone_set('UTC');
-// Load our source files and vendor libraries and constants
+// Load our source files and constants
 $WD = __DIR__;
-require("$WD/vendor/autoload.php");
+spl_autoload_register(function ($class) use ($WD) {
+    if (str_starts_with($class, 'Legacy\\')) {
+        require "$WD/src/php/" . substr($class, strlen('Legacy\\')) . '.php';
+    }
+});
 // Application constants
 define('WD', $WD);
 define('DIST', 'dist');
@@ -43,11 +46,11 @@ define('TPL_CONTRIBUTORS', 'contributors.phtml');
 $env = get($argv, 1, BUILD);
 $env = in_array($env, [BUILD, DIST, LOCAL]) ? $env : LOCAL;
 // Set up file system drivers
-$src = new FileSystem(new Local("$WD/src"));
-$dist = new FileSystem(new Local("$WD/dist"));
-$build = new Filesystem(new Local("$WD/build"));
-$local = new Filesystem(new Local("$WD/local"));
-$sites = new Filesystem(new Local("$WD/sites"));
+$src = new Filesystem("$WD/src");
+$dist = new Filesystem("$WD/dist");
+$build = new Filesystem("$WD/build");
+$local = new Filesystem("$WD/local");
+$sites = new Filesystem("$WD/sites");
 // ATTENZIONE! This is either $build, $local, or $dist
 $target = $$env;
 // Set up system classes
