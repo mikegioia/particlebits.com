@@ -361,6 +361,7 @@ article figure.r-3 {
     width: 50%;
 }
 article figure img,
+article figure video,
 article figure iframe {
     width: 100%;
     display: block;
