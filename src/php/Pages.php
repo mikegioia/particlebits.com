@@ -115,6 +115,27 @@ class Pages
                     $this->sites->read($media['path']));
                 $fileWriteCount++;
             }
+
+            // Render standalone .phtml pages into the media directory
+            foreach ($article->standalones as $standalone) {
+                $standaloneBasename = substr($standalone, 0, -6) . '.html';
+                $standaloneUrl = $article->getAssetUrl($standaloneBasename);
+
+                foreach ($article->medias as $media) {
+                    if ($media['basename'] === $standaloneBasename) {
+                        error(sprintf(
+                            "Standalone %s overwrites a media file in %s",
+                            $standaloneBasename,
+                            $article->slug));
+                        break;
+                    }
+                }
+
+                $this->target->put(
+                    "{$this->site['basename']}/{$standaloneUrl}",
+                    $article->renderStandalone($standalone));
+                $fileWriteCount++;
+            }
         }
     }
 

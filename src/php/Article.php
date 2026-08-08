@@ -16,6 +16,7 @@ class Article
     public $data = [];
     public $assets = [];
     public $medias = [];
+    public $standalones = [];
     public $weblinks = [];
     public $featured = false;
 
@@ -75,8 +76,27 @@ class Article
 
     public function render()
     {
-        // Set up helper functions for processing config
-        $data = [
+        $data = $this->helpers();
+        $data['content'] = render("{$this->path}/article.phtml", $data, false);
+
+        return render(TPL_ARTICLE, $data);
+    }
+
+    /**
+     * Renders an extra .phtml file from the article's directory as a
+     * standalone page: same helper closures, no article or site template.
+     */
+    public function renderStandalone($basename)
+    {
+        return render("{$this->path}/{$basename}", $this->helpers(), false);
+    }
+
+    /**
+     * Set up helper functions available inside article templates
+     */
+    private function helpers()
+    {
+        return [
             'e' => function ($string) {
                 echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
             },
@@ -88,13 +108,12 @@ class Article
             },
             'wl' => function ($key) {
                 echo get($this->weblinks, $key, '#notfound' );
-            }
+            },
+            'al' => function ($year, $slug) {
+                echo $this->makeUrlFor($year, $slug);
+            },
+            'article' => $this
         ];
-
-        $data['article'] = $this;
-        $data['content'] = render("{$this->path}/article.phtml", $data, false);
-
-        return render(TPL_ARTICLE, $data);
     }
 
     private function convertHtml(&$text)
@@ -126,6 +145,17 @@ class Article
     public function getAssetUrl($filename)
     {
         return $this->makeUrl(self::ASSET_URL_FORMAT . $filename);
+    }
+
+    /**
+     * Builds an env-correct URL to another article from its year and
+     * slug, using the same urlFormat as this article.
+     */
+    public function makeUrlFor($year, $slug)
+    {
+        $url = str_replace('%YEAR%', $year, $this->urlFormat);
+
+        return str_replace('%SLUG%', $slug, $url);
     }
 
     private function makeUrl($format)

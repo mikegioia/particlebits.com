@@ -1,8 +1,8 @@
 /**
  * Shared data model and scoring for the Privacy Balance exercises
- * from "The Six Spheres of Privacy". Loaded by quiz.html (interactive
- * quiz) and worksheet.html (the PDF print source), and by the node
- * test suite in tests/quiz-data.test.js.
+ * from "The Six Spheres of Privacy". Loaded by the quiz article's
+ * page (article.phtml) and by worksheet.phtml (the PDF print source),
+ * and by the node test suite in tests/quiz-data.test.js.
  *
  * Each category x sphere cell is rated twice on a 0-4 scale: how much
  * is actually shared vs how much the person wants shared. The gap

@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const PQ = require('../sites/particlebits.com/articles/privacy/2017/six-privacy-spheres/media/quiz-data.js');
+const PQ = require('../sites/particlebits.com/articles/privacy/2018/privacy-quiz/media/quiz-data.js');
 
 // Build a full answers object where every cell is {actual: a, desired: d}
 function uniformAnswers(a, d) {

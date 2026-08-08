@@ -114,6 +114,18 @@ class Articles
             }
         }
 
+        $meta->standalones = [];
+
+        // Extra .phtml files compile to standalone pages in media output
+        foreach ($this->sites->listContents($slug['path']) as $file) {
+            if ($file['type'] === TYPE_FILE
+                && substr($file['basename'], -6) === '.phtml'
+                && $file['basename'] !== 'article.phtml'
+            ) {
+                $meta->standalones[] = $file['basename'];
+            }
+        }
+
         $meta->comments = [];
 
         if ($this->sites->has("{$slug['path']}/comments.json")) {

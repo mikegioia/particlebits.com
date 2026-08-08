@@ -10,7 +10,7 @@ body {
     margin: 0;
     color: #333;
     font-family: 'Alegreya Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.45;
 }
 .page { page-break-after: always; }
@@ -29,7 +29,7 @@ td.blank { height: 22px; min-width: 52px; }
 td.rowlabel { color: #666; font-style: italic; }
 .legend td:first-child { font-weight: bold; text-align: center; width: 28px; }
 p { margin: 0 0 8px; }
-.small { font-size: 9px; color: #666; }
+.small { font-size: 11px; color: #666; }
 </style>
 </head>
 <body>
@@ -50,8 +50,8 @@ p { margin: 0 0 8px; }
     <p>
         On the next page, for every row (category of information) and
         every column (sphere of your life), write two numbers from the
-        scale below: <b>A</b> for how much you <i>actually</i> share, and
-        <b>W</b> for how much you <i>want</i> to share. Go with your first
+        scale below: <b>Actual</b> for how much you <i>actually</i> share, and
+        <b>Want</b> for how much you <i>want</i> to share. Go with your first
         instinct; there are no wrong answers.
     </p>
     <table class="legend"><tbody id="legend"></tbody></table>
@@ -66,8 +66,8 @@ p { margin: 0 0 8px; }
 <section class="page">
     <h2>Steps 1 &amp; 2: The inventory</h2>
     <p class="small">
-        A = how much you actually share today &nbsp;&bull;&nbsp;
-        W = how much you want to share &nbsp;&bull;&nbsp;
+        Actual = how much you actually share today &nbsp;&bull;&nbsp;
+        Want = how much you want to share &nbsp;&bull;&nbsp;
         each is a number from 0 (nothing) to 4 (everything)
     </p>
     <table id="grid"></table>
@@ -76,7 +76,7 @@ p { margin: 0 0 8px; }
 <section class="page">
     <h2>Scoring</h2>
     <p>
-        For each cell in your grid, the <b>gap</b> is A&nbsp;&minus;&nbsp;W.
+        For each cell in your grid, the <b>gap</b> is Actual&nbsp;&minus;&nbsp;Want.
         A positive gap means you are sharing <i>more</i> than you want
         (over-sharing); a negative gap means <i>less</i> (under-sharing).
     </p>
@@ -107,7 +107,7 @@ p { margin: 0 0 8px; }
     <table id="advice"></table>
 </section>
 
-<script src="media/quiz-data.js"></script>
+<script src="quiz-data.js"></script>
 <script>
 (function () {
     document.getElementById('legend').innerHTML =
@@ -133,8 +133,8 @@ p { margin: 0 0 8px; }
 
             return '<tr><td class="category" rowspan="2">' + category.name
                 + '<br><small>' + category.description + '</small></td>'
-                + '<td class="rowlabel">A</td>' + blanks + '</tr>'
-                + '<tr><td class="rowlabel">W</td>' + blanks + '</tr>';
+                + '<td class="rowlabel">Actual</td>' + blanks + '</tr>'
+                + '<tr><td class="rowlabel">Want</td>' + blanks + '</tr>';
         }).join('');
 
     document.getElementById('tally').innerHTML =

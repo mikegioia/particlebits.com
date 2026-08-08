@@ -1,0 +1,19 @@
+{
+    "title": "The 15-Minute Privacy Quiz",
+    "date": "2018-07-09",
+    "author": "Mike Gioia",
+    "topic": "privacy",
+    "slug": "privacy-quiz",
+    "featured": false,
+    "hero": "six_spheres.png",
+    "snippet": "An interactive companion to _The Six Spheres of Privacy_: inventory what you share, see where your privacy is out of balance, and get a personalized list of actions. Also available as a printable worksheet.",
+    "assets": {
+        "data": "quiz-data.js",
+        "worksheet": "privacy-worksheet.pdf",
+        "spheres": "six_spheres.png"
+    },
+    "weblinks": {
+    },
+    "data": {
+    }
+}

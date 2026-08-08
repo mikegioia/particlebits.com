@@ -23,9 +23,7 @@
         }
     },
     "assets": {
-        "spheres": "six_spheres.png",
-        "quiz": "quiz.html",
-        "worksheet": "privacy-worksheet.pdf"
+        "spheres": "six_spheres.png"
     },
     "weblinks": {
         "opsec": "https://en.wikipedia.org/wiki/Operations_security"
