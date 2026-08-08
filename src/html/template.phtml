@@ -86,7 +86,7 @@
                         <?php
                         foreach ($value->contents as $childSlug => $childValue): ?>
                             <li>
-                                <a href="<?php echo $article->getUrl() .'#'. $slug; ?>"><?php echo $childValue; ?></a>
+                                <a href="<?php echo $article->getUrl() .'#'. $childSlug; ?>"><?php echo $childValue; ?></a>
                             </li>
                         <?php
                         endforeach; ?>

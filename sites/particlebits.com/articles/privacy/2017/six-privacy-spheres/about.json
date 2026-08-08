@@ -9,7 +9,7 @@
     "snippet": "Part II in a series on digital privacy and security, this article explains a system for modelling and understanding privacy in our own lives. Six categories are presented for organizing the way we think about and secure our personal data among the various groups in our lives.",
     "toc": {
         "personal": "Personal Sphere",
-        "private": "Private Shere",
+        "private": "Private Sphere",
         "family-social-professional": "Family, Social, and Professional Spheres",
         "public": "Public Sphere",
         "info-overlap": "Information Overlap",
@@ -23,7 +23,9 @@
         }
     },
     "assets": {
-        "spheres": "six_spheres.png"
+        "spheres": "six_spheres.png",
+        "quiz": "quiz.html",
+        "worksheet": "privacy-worksheet.pdf"
     },
     "weblinks": {
         "opsec": "https://en.wikipedia.org/wiki/Operations_security"

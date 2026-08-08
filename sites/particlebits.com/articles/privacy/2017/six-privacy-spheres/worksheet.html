@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Privacy Balance Worksheet</title>
+<style>
+@page { size: letter; margin: 0.6in; }
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    color: #333;
+    font-family: 'Alegreya Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.45;
+}
+.page { page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+tr { page-break-inside: avoid; }
+h1 { font-weight: normal; font-size: 22px; margin: 0 0 2px; }
+h2 { font-weight: normal; font-size: 17px; margin: 0 0 10px; padding-bottom: 4px; border-bottom: 2px solid #87cefa; }
+h3 { font-size: 13px; margin: 14px 0 4px; }
+.subtitle { color: #888; margin: 0 0 14px; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; }
+th, td { border: 1px solid #999; padding: 3px 6px; text-align: left; vertical-align: top; }
+th { background: rgba(135, 206, 250, 0.2); font-weight: bold; }
+td.category { font-weight: bold; }
+td.category small { font-weight: normal; color: #666; }
+td.blank { height: 22px; min-width: 52px; }
+td.rowlabel { color: #666; font-style: italic; }
+.legend td:first-child { font-weight: bold; text-align: center; width: 28px; }
+p { margin: 0 0 8px; }
+.small { font-size: 9px; color: #666; }
+</style>
+</head>
+<body>
+
+<section class="page">
+    <h1>The Privacy Balance Worksheet</h1>
+    <p class="subtitle">From &ldquo;The Six Spheres of Privacy&rdquo; &mdash; particlebits.com</p>
+    <h2>How this works</h2>
+    <p>
+        Privacy is the balance between three things: what you share, what
+        you feel comfortable sharing, and with whom. This worksheet takes
+        you through the article&rsquo;s two exercises: <b>Step&nbsp;1</b>,
+        inventory what you are sharing today; <b>Step&nbsp;2</b>, decide
+        what you actually <i>want</i> to share. The difference between the
+        two answers &mdash; not how private or open you are &mdash; is
+        what gets scored.
+    </p>
+    <p>
+        On the next page, for every row (category of information) and
+        every column (sphere of your life), write two numbers from the
+        scale below: <b>A</b> for how much you <i>actually</i> share, and
+        <b>W</b> for how much you <i>want</i> to share. Go with your first
+        instinct; there are no wrong answers.
+    </p>
+    <table class="legend"><tbody id="legend"></tbody></table>
+    <h3 id="sphere-list-heading">The five spheres you will rate</h3>
+    <p class="small">
+        (Your Personal sphere is the baseline &mdash; it always holds
+        everything, so it has no column.)
+    </p>
+    <ul id="sphere-list"></ul>
+</section>
+
+<section class="page">
+    <h2>Steps 1 &amp; 2: The inventory</h2>
+    <p class="small">
+        A = how much you actually share today &nbsp;&bull;&nbsp;
+        W = how much you want to share &nbsp;&bull;&nbsp;
+        each is a number from 0 (nothing) to 4 (everything)
+    </p>
+    <table id="grid"></table>
+</section>
+
+<section class="page">
+    <h2>Scoring</h2>
+    <p>
+        For each cell in your grid, the <b>gap</b> is A&nbsp;&minus;&nbsp;W.
+        A positive gap means you are sharing <i>more</i> than you want
+        (over-sharing); a negative gap means <i>less</i> (under-sharing).
+    </p>
+    <p>
+        For each sphere (column), add up the gaps <i>ignoring their
+        signs</i> &mdash; six numbers per column, each between 0 and 4.
+        Write the total below, then look up your verdict.
+    </p>
+    <table id="tally"></table>
+    <table id="bands"></table>
+    <p class="small">
+        Direction: if most of a column&rsquo;s gaps were positive, read
+        the &ldquo;over-sharing&rdquo; guidance on the next page for that
+        sphere; if mostly negative, read &ldquo;under-sharing&rdquo;; if
+        both, read both &mdash; each direction has its own fix.
+    </p>
+</section>
+
+<section class="page">
+    <h2>What your results mean</h2>
+    <div id="verdicts"></div>
+    <h3>Your action items</h3>
+    <p>
+        Circle every cell in your grid where the gap is <b>2 or more</b>
+        in either direction. Each circled cell is one concrete action
+        item &mdash; use the guidance below for its sphere and direction.
+    </p>
+    <table id="advice"></table>
+</section>
+
+<script src="media/quiz-data.js"></script>
+<script>
+(function () {
+    document.getElementById('legend').innerHTML =
+        PrivacyQuiz.scale.map(function (label, value) {
+            return '<tr><td>' + value + '</td><td>' + label + '</td></tr>';
+        }).join('');
+
+    document.getElementById('sphere-list').innerHTML =
+        PrivacyQuiz.spheres.map(function (sphere) {
+            return '<li><b>' + sphere.name + '</b> &mdash; '
+                + sphere.audience + '</li>';
+        }).join('');
+
+    document.getElementById('grid').innerHTML =
+        '<tr><th></th><th></th>'
+        + PrivacyQuiz.spheres.map(function (sphere) {
+            return '<th>' + sphere.name + '</th>';
+        }).join('') + '</tr>'
+        + PrivacyQuiz.categories.map(function (category) {
+            var blanks = PrivacyQuiz.spheres.map(function () {
+                return '<td class="blank"></td>';
+            }).join('');
+
+            return '<tr><td class="category" rowspan="2">' + category.name
+                + '<br><small>' + category.description + '</small></td>'
+                + '<td class="rowlabel">A</td>' + blanks + '</tr>'
+                + '<tr><td class="rowlabel">W</td>' + blanks + '</tr>';
+        }).join('');
+
+    document.getElementById('tally').innerHTML =
+        '<tr><th></th>'
+        + PrivacyQuiz.spheres.map(function (sphere) {
+            return '<th>' + sphere.name + '</th>';
+        }).join('') + '</tr>'
+        + '<tr><td class="rowlabel">Total of |gaps| (0&ndash;24)</td>'
+        + PrivacyQuiz.spheres.map(function () {
+            return '<td class="blank"></td>';
+        }).join('') + '</tr>'
+        + '<tr><td class="rowlabel">Verdict</td>'
+        + PrivacyQuiz.spheres.map(function () {
+            return '<td class="blank"></td>';
+        }).join('') + '</tr>';
+
+    var previousMax = -1;
+
+    document.getElementById('bands').innerHTML =
+        '<tr><th>Total</th><th>Verdict</th></tr>'
+        + PrivacyQuiz.bands.map(function (band) {
+            var label = (previousMax + 1) + '&ndash;' + band.max;
+
+            previousMax = band.max;
+
+            return '<tr><td>' + label + '</td><td>' + band.name + '</td></tr>';
+        }).join('');
+
+    document.getElementById('verdicts').innerHTML =
+        PrivacyQuiz.spheres.map(function (sphere) {
+            var text = PrivacyQuiz.verdictText[sphere.key];
+
+            return '<h3>' + sphere.name + '</h3>'
+                + '<p><b>Balanced:</b> ' + text.balanced + '</p>'
+                + '<p><b>Over-sharing:</b> ' + text.over + '</p>'
+                + '<p><b>Under-sharing:</b> ' + text.under + '</p>';
+        }).join('')
+        + '<p class="small"><b>Both directions at once?</b> '
+        + PrivacyQuiz.mixedText.replace('below', 'from your circled cells')
+        + '</p>';
+
+    document.getElementById('advice').innerHTML =
+        '<tr><th>Sphere</th><th>Gap of +2 or more (over-sharing)</th>'
+        + '<th>Gap of &minus;2 or less (under-sharing)</th></tr>'
+        + PrivacyQuiz.spheres.map(function (sphere) {
+            var advice = PrivacyQuiz.cellAdvice[sphere.key];
+
+            return '<tr><td class="category">' + sphere.name + '</td>'
+                + '<td>' + advice.over + '</td>'
+                + '<td>' + advice.under + '</td></tr>';
+        }).join('');
+})();
+</script>
+</body>
+</html>
