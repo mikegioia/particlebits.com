@@ -5,7 +5,8 @@
     "topic": "privacy",
     "slug": "six-privacy-spheres",
     "featured": false,
-    "snippet": "Part II in a series on digital privacy and security, this article explains a system for modelling and understanding privacy in our own lives. Six categories are presented for organizing the way we think about and secure our personal data and information among the various groups of people in our lives.",
+    "hero": "six_spheres.png",
+    "snippet": "Part II in a series on digital privacy and security, this article explains a system for modelling and understanding privacy in our own lives. Six categories are presented for organizing the way we think about and secure our personal data among the various groups in our lives.",
     "toc": {
         "personal": "Personal Sphere",
         "private": "Private Shere",
@@ -22,6 +23,7 @@
         }
     },
     "assets": {
+        "spheres": "six_spheres.png"
     },
     "weblinks": {
         "opsec": "https://en.wikipedia.org/wiki/Operations_security"

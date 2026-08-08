@@ -6,6 +6,7 @@ class Article
 {
     public $url;
     public $date;
+    public $hero;
     public $slug;
     public $title;
     public $topic;

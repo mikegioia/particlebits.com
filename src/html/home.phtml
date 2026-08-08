@@ -12,18 +12,29 @@ foreach ($articles as $article):
 
     if ($article->featured === TRUE):
         $classes[] = 'featured';
+    endif;
+
+    if ($article->hero):
+        $classes[] = 'has-hero';
     endif; ?>
 
     <article class="<?php echo implode( ' ', $classes ); ?>">
-        <h3>
-            <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
-            <span class="topic-<?php echo $topic->slug; ?> topic-<?php echo $topic->slug; ?>-text badge"><?php echo $topic->label; ?></span>
-        </h3>
-        <blockquote>
-            <em class="date"><?php echo $article->dateString('j F Y'); ?></em>
-            <span>&mdash;</span>
-            <span class="snippet"><?php echo $article->snippet; ?></span>
-        </blockquote>
+    <?php
+    if ($article->hero): ?>
+        <img class="hero" src="<?php echo $article->getAssetUrl($article->hero); ?>" alt="" />
+    <?php
+    endif; ?>
+        <div class="summary">
+            <h3>
+                <a href="<?php echo $article->url; ?>"><?php echo $article->title; ?></a>
+                <span class="topic-<?php echo $topic->slug; ?> topic-<?php echo $topic->slug; ?>-text badge"><?php echo $topic->label; ?></span>
+            </h3>
+            <blockquote>
+                <em class="date"><?php echo $article->dateString('j F Y'); ?></em>
+                <span>&mdash;</span>
+                <span class="snippet"><?php echo $article->snippet; ?></span>
+            </blockquote>
+        </div>
     </article>
 
 <?php

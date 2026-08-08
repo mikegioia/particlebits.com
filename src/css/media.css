@@ -71,6 +71,15 @@
     main section.content blockquote {
         margin-top: 0.5rem;
     }
+    body.home main section.content article.has-hero {
+        min-height: 6rem;
+        padding-left: 7.5rem;
+    }
+    body.home main section.content article img.hero {
+        left: 0.75rem;
+        width: 6rem;
+        height: 6rem;
+    }
     main section.topics {
         width: 100%;
         display: block;

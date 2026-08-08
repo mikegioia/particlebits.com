@@ -249,6 +249,21 @@ main section.content article {
 main section.content article:last-child {
     margin-bottom: 0;
 }
+body.home main section.content article.has-hero {
+    min-height: 8.5rem;
+    padding-left: 10.5rem;
+}
+body.home main section.content article img.hero {
+    top: 50%;
+    left: 0.875rem;
+    width: 8.5rem;
+    height: 8.5rem;
+    object-fit: cover;
+    position: absolute;
+    box-sizing: border-box;
+    border: 0.25rem solid #fff;
+    transform: translateY(-50%);
+}
 main section.content blockquote {
     padding: 0;
     color: #444;
@@ -733,6 +748,15 @@ body.theme-paper article table th {
     }
     main section.content blockquote {
         margin-top: 0.5rem;
+    }
+    body.home main section.content article.has-hero {
+        min-height: 6rem;
+        padding-left: 7.5rem;
+    }
+    body.home main section.content article img.hero {
+        left: 0.75rem;
+        width: 6rem;
+        height: 6rem;
     }
     main section.topics {
         width: 100%;
