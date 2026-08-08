@@ -9,10 +9,10 @@
     "assets": {
         "wedge": "million_dollar_wedge_in_board.png",
         "leaky_faucet": "leaky_faucet.png",
-        "10k_wedge": "10000_dollar_wedge_in_board.png"
+        "10k_wedge": "10000_dollar_wedge_in_board.png",
+        "winner_video": "million_dollar_winner.mp4"
     },
     "weblinks": {
-        "million-1": "https://www.youtube.com/embed/Q_rLkEXU4o4",
         "million-2": "https://www.youtube.com/watch?v=dFfRASXusQo",
         "million-3": "https://www.youtube.com/watch?v=zDSETMZ4YEM",
         "abc7ny": "http://abc7ny.com/archive/6451733/",
