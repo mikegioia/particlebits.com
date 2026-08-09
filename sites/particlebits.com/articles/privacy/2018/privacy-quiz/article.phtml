@@ -1,28 +1,27 @@
 <div id="pq-intro">
+<aside>
+    This quiz is a companion to
+    <a href="<?php $al('2018', 'six-privacy-spheres'); ?>">The Six Spheres
+    of Privacy</a>, part of the
+    <a href="<?php echo $article->getTopic()->url; ?>">Privacy and Security
+    series</a>.
+</aside>
 <p>
     This quiz walks you through the two exercises from the article: taking
     inventory of what you share, and deciding what you actually <i>want</i>
     to share.
 </p>
 <p>
-    There are no wrong answers. <b>Nothing is sent or saved anywhere.</b>
-    If you&rsquo;d rather work on paper, you can
+    There are no wrong answers. <b>Nothing is sent anywhere</b> &mdash;
+    your answers stay in this browser, and your results are kept on this
+    device so you can come back to them. If you&rsquo;d rather work on
+    paper, you can
     <a href="<?php $a('worksheet'); ?>">download the printable worksheet
     (PDF)</a> instead.
 </p>
 </div>
 
 <div id="pq-app" class="pq-app"></div>
-
-<div id="pq-side-intro" hidden>
-    <aside>
-        This quiz is a companion to
-        <a href="<?php $al('2018', 'six-privacy-spheres'); ?>">The Six Spheres
-        of Privacy</a>, part of the
-        <a href="<?php echo $article->getTopic()->url; ?>">Privacy and Security
-        series</a>.
-    </aside>
-</div>
 
 <style>
 .pq-app { font-size: 1.15rem; }
@@ -40,15 +39,50 @@
 .pq-button.pq-secondary:hover { background: #ddd; }
 .pq-button.pq-primary { background: #007db6; color: #fff; }
 .pq-button.pq-primary:hover { background: #006ca0; }
+.pq-button.pq-results { background: #2f8a4c; color: #fff; }
+.pq-button.pq-results:hover { background: #27753f; }
 .pq-start {
     display: block;
-    margin: 0 auto 2rem;
+    margin: 0 auto 0.75rem;
     font-size: 1.25em;
     padding: 0.75rem 2rem;
 }
+.pq-hero {
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+    margin: 1.5rem auto 0;
+    border-radius: 0.25rem;
+}
 .pq-audience { color: #888; font-size: 0.875em; margin: 0 0 0.5rem; }
-.pq-cat-head { margin: 0 0 0.125rem; text-align: center; }
-.pq-cat-desc { text-align: center; margin: 0 0 0.75rem; }
+#pq-app .pq-progress {
+    position: relative;
+    height: 1.5rem;
+    overflow: hidden;
+    background: #eceff1;
+    border-radius: 0.75rem;
+    margin: 0.25rem 0 0.875rem;
+}
+#pq-app .pq-pfill {
+    height: 100%;
+    width: 0%;
+    background: #a9d7ec;
+    transition: width 0.2s;
+}
+#pq-app .pq-plabel {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    color: #2c4a5a;
+    position: absolute;
+    align-items: center;
+    font-size: 0.875rem;
+    justify-content: center;
+}
+#pq-app .pq-cat-head { margin: 0 0 0.125rem; text-align: center; }
+#pq-app .pq-cat-desc { text-align: center; text-indent: 0; margin: 0 0 0.75rem; }
 .pq-sphere {
     border: 1px solid #ddd;
     border-radius: 0.25rem;
@@ -58,38 +92,34 @@
 }
 .pq-sphere-head { margin-bottom: 0.125rem; }
 .pq-sphere-aud { color: #888; font-size: 0.8125em; }
-.pq-rating { display: flex; flex-wrap: wrap; align-items: baseline; margin: 0.125rem 0; }
-.pq-rating > span { flex: 0 0 10rem; font-size: 0.9375em; }
+.pq-rating {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding-left: 0.5rem;
+    margin: 0.125rem 0 0.125rem -0.5rem;
+}
+.pq-rating .pq-q { flex: 0 0 10rem; font-size: 0.9375em; }
+.pq-options {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 24rem;
+    max-width: 40rem;
+    justify-content: space-between;
+}
 .pq-rating label {
     cursor: pointer;
     white-space: nowrap;
     font-size: 0.9375em;
-    margin: 0.125rem 0.875rem 0.125rem 0;
+    margin: 0.125rem 0.5rem 0.125rem 0;
 }
+.pq-options label:last-child { margin-right: 0; }
 .pq-rating.pq-missing {
     background: #fdecea;
     border-radius: 0.125rem;
     box-shadow: inset 3px 0 0 #e34948;
 }
-#app-side .pq-side-progress { margin-bottom: 0.75rem; }
-#app-side .pq-hprogress {
-    height: 0.375rem;
-    background: #f0f0f0;
-    border-radius: 0.1875rem;
-    overflow: hidden;
-}
-#app-side .pq-hfill {
-    height: 100%;
-    width: 0%;
-    background: #007db6;
-    transition: width 0.2s;
-}
-#app-side .pq-hlabel {
-    color: #888;
-    font-size: 0.8125rem;
-    margin-top: 0.25rem;
-    line-height: 1.2;
-}
+#app-side:empty { display: none; }
 #app-side .pq-button {
     width: 100%;
     display: block;
@@ -97,26 +127,25 @@
     box-sizing: border-box;
     margin-bottom: 0.5rem;
 }
-#app-side aside {
-    margin: 0;
-    color: #777;
-    line-height: 1.4;
-    font-size: 0.9375rem;
-}
 #app-side .pq-invalid-msg {
     color: #b3261e;
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
 @media screen and (max-width: 768px) {
-    #app-side .pq-side-progress { flex: 1 1 8rem; margin-bottom: 0; }
-    #app-side .pq-hlabel { margin-top: 0.125rem; }
     #app-side .pq-button {
         width: auto;
         margin-bottom: 0;
         display: inline-block;
     }
-    #app-side aside { font-size: 0.8125rem; }
+    #app-side #pq-next { order: 2; margin-left: auto; }
+    #app-side .pq-invalid-msg { margin-top: 0; }
+}
+@media screen and (max-width: 480px) {
+    .pq-rating label { font-size: 0.875em; margin-right: 0.375rem; }
+}
+@media screen and (max-width: 380px) {
+    .pq-options { flex-wrap: wrap; justify-content: flex-start; }
 }
 .pq-card {
     border: 1px solid #ddd;
@@ -142,39 +171,58 @@
 .pq-badge.pq-major { background: #fdecea; border-color: #f5c6c0; }
 .pq-card p { margin: 0.375rem 0 0; text-indent: 0; font-size: 1em; }
 .pq-actions li { margin-bottom: 0.5rem; }
-.pq-viz { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; margin: 1rem 0; }
-.pq-pie svg { display: block; }
-.pq-slice { cursor: pointer; stroke: #fff; stroke-width: 2; }
-.pq-slice:hover { opacity: 0.85; }
-.pq-slice:focus { outline: none; }
-.pq-slice.pq-selected, .pq-slice:focus-visible { stroke: #333; }
-.pq-center-name { font-size: 1rem; fill: #333; text-anchor: middle; }
-.pq-center-weight { font-size: 0.8125rem; fill: #888; text-anchor: middle; }
-.pq-legend { list-style: none; margin: 0; padding: 0; font-size: 1rem; }
-.pq-legend li { margin-bottom: 0.375rem; }
-.pq-legend button {
-    font: inherit;
+.pq-chart { margin: 1rem 0 1.25rem; }
+.pq-bar-row {
     border: 0;
-    padding: 0.125rem 0.25rem;
-    background: none;
-    cursor: pointer;
+    width: 100%;
     color: #333;
-    border-radius: 0.125rem;
+    display: flex;
+    font: inherit;
+    background: none;
+    text-align: left;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.375rem;
 }
-.pq-legend button:hover { background: #f0f0f0; }
-.pq-legend li.pq-selected button { font-weight: bold; }
-.pq-legend .pq-swatch {
-    width: 0.75rem;
-    height: 0.75rem;
-    display: inline-block;
-    border-radius: 0.125rem;
-    margin-right: 0.375rem;
-    vertical-align: baseline;
+button.pq-bar-row { cursor: pointer; }
+button.pq-bar-row:hover { background: #f5f5f5; }
+.pq-bar-row.pq-selected { background: #f0f0f0; }
+.pq-bar-row.pq-selected .pq-bar-label { font-weight: bold; }
+.pq-bar-label {
+    flex: 0 0 11rem;
+    font-size: 0.9375rem;
+    padding-right: 0.75rem;
+    box-sizing: border-box;
 }
-.pq-legend li.pq-zero { color: #888; }
-.pq-legend li.pq-zero .pq-swatch { background: #e5e5e5 !important; }
+.pq-bar-track {
+    height: 0.875rem;
+    min-width: 0;
+    flex: 1 1 auto;
+    background: #f6f6f6;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+.pq-bar {
+    display: block;
+    height: 100%;
+    min-width: 2px;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+.pq-bar-val {
+    flex: 0 0 6.5rem;
+    color: #555;
+    font-size: 0.8125rem;
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.pq-bar-row.pq-zero { color: #888; }
+.pq-bar-row.pq-zero .pq-bar-note { font-size: 0.8125rem; }
+@media screen and (max-width: 560px) {
+    .pq-bar-row { flex-wrap: wrap; }
+    .pq-bar-label { flex: 1 1 100%; padding: 0 0 0.125rem; }
+}
 .pq-panel {
-    flex: 1 1 16rem;
     border: 1px solid #ddd;
     border-radius: 0.25rem;
     padding: 0.75rem 1rem;
@@ -182,9 +230,27 @@
 .pq-panel h4 { margin: 0 0 0.5rem; }
 .pq-panel ol { margin: 0; padding-left: 1.25rem; }
 .pq-panel li { margin-bottom: 0.5rem; }
+.pq-print-only { display: none; }
 @media print {
-    header, .sidebar, .topics, .app-side, footer { display: none; }
-    .pq-card { break-inside: avoid; }
+    @page { size: letter; margin: 0.6in 0.7in; }
+    html { font-size: 13px; }
+    header, main nav, main section.topics, main section.app-side,
+    main section.contributors, #pq-intro { display: none !important; }
+    main { padding: 0 !important; }
+    main section.content {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .pq-screen-only { display: none !important; }
+    .pq-print-only { display: block; }
+    .pq-print-head { color: #888; font-size: 0.875rem; margin: 0 0 1rem; }
+    .pq-print-only h4 { break-after: avoid; }
+    .pq-card, .pq-bar-row { break-inside: avoid; }
+    .pq-bar, .pq-bar-track, .pq-badge, .pq-card {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 }
 </style>
 <script src="<?php $a('data'); ?>"></script>
@@ -211,7 +277,6 @@
     // at parse time. Resolve it lazily on first use instead of caching a
     // premature (and permanently null) lookup here.
     var sideSlot = null;
-    var sideIntro = document.getElementById('pq-side-intro');
     var appAction = document.getElementById('app-action');
     var intro = document.getElementById('pq-intro');
 
@@ -239,29 +304,21 @@
 
     function progressLabel(index, percent) {
         return 'Category ' + (index + 1) + ' of '
-            + PrivacyQuiz.categories.length
-            + ' &middot; ' + percent + '% answered';
+            + PrivacyQuiz.categories.length + ' (' + percent + '%)';
     }
 
-    function sideProgressHtml(index) {
+    function progressHtml(index) {
         var percent = progressPercent();
 
-        return '<div class="pq-side-progress">'
-            + '<div class="pq-hprogress"><div class="pq-hfill" style="width:'
-            + percent + '%"></div></div>'
-            + '<div class="pq-hlabel">' + progressLabel(index, percent)
+        return '<div class="pq-progress">'
+            + '<div class="pq-pfill" style="width:' + percent + '%"></div>'
+            + '<div class="pq-plabel">' + progressLabel(index, percent)
             + '</div></div>';
     }
 
-    function updateSideProgress(index) {
-        sideSlot = sideSlot || document.getElementById('app-side');
-
-        if (!sideSlot) {
-            return;
-        }
-
-        var fill = sideSlot.querySelector('.pq-hfill');
-        var label = sideSlot.querySelector('.pq-hlabel');
+    function updateProgress(index) {
+        var fill = app.querySelector('.pq-pfill');
+        var label = app.querySelector('.pq-plabel');
         var percent = progressPercent();
 
         if (fill) {
@@ -315,14 +372,13 @@
         }
 
         if (screen === -1) {
-            sideSlot.innerHTML = sideIntro ? sideIntro.innerHTML : '';
+            sideSlot.innerHTML = '';
             return;
         }
 
         if (screen < PrivacyQuiz.categories.length) {
             sideSlot.innerHTML =
-                sideProgressHtml(screen)
-                + '<button id="pq-next" class="pq-button pq-primary">'
+                '<button id="pq-next" class="pq-button pq-primary">'
                 + (screen === PrivacyQuiz.categories.length - 1
                     ? 'See my results' : 'Next')
                 + '</button>'
@@ -337,6 +393,11 @@
                 }
 
                 screen += 1;
+
+                if (screen === PrivacyQuiz.categories.length) {
+                    saveResults();
+                }
+
                 render();
             };
             document.getElementById('pq-back').onclick = function () {
@@ -376,6 +437,69 @@
         render();
     }
 
+    var STORAGE_KEY = 'pq-results';
+
+    function saveResults() {
+        try {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                savedAt: new Date().toISOString(),
+                answers: answers
+            }));
+        } catch (e) {
+            // Storage unavailable (private browsing, disabled); the
+            // quiz still works, results just are not kept.
+        }
+    }
+
+    function loadResults() {
+        var data;
+
+        try {
+            data = JSON.parse(window.localStorage.getItem(STORAGE_KEY));
+        } catch (e) {
+            return null;
+        }
+
+        if (!data || !data.answers) {
+            return null;
+        }
+
+        var valid = PrivacyQuiz.categories.every(function (category) {
+            var row = data.answers[category.key];
+
+            return row && PrivacyQuiz.spheres.every(function (sphere) {
+                var cell = row[sphere.key];
+
+                return cell && typeof cell.actual === 'number'
+                    && typeof cell.desired === 'number';
+            });
+        });
+
+        if (!valid) {
+            return null;
+        }
+
+        var date = new Date(data.savedAt);
+
+        data.label = isNaN(date)
+            ? ''
+            : date.toLocaleDateString(undefined,
+                { month: 'short', day: 'numeric' });
+
+        return data;
+    }
+
+    function applyAnswers(saved) {
+        PrivacyQuiz.categories.forEach(function (category) {
+            PrivacyQuiz.spheres.forEach(function (sphere) {
+                var cell = saved[category.key][sphere.key];
+
+                answers[category.key][sphere.key].actual = cell.actual;
+                answers[category.key][sphere.key].desired = cell.desired;
+            });
+        });
+    }
+
     function render() {
         if (screen === -1) {
             renderIntro();
@@ -395,14 +519,34 @@
     }
 
     function renderIntro() {
+        var saved = loadResults();
+
         app.innerHTML =
             '<button id="pq-next" class="pq-button pq-primary pq-start">'
-            + 'Start the quiz</button>';
+            + 'Start the quiz</button>'
+            + (saved
+                ? '<button id="pq-view" class="pq-button pq-results pq-start">'
+                    + 'See my latest results'
+                    + (saved.label ? ' (' + saved.label + ')' : '')
+                    + '</button>'
+                : '')
+            + '<img class="pq-hero" src="<?php $a('spheres'); ?>" '
+            + 'alt="Illustration of the six spheres of privacy">';
 
         document.getElementById('pq-next').onclick = function () {
             screen = 0;
             render();
         };
+
+        var view = document.getElementById('pq-view');
+
+        if (view) {
+            view.onclick = function () {
+                applyAnswers(saved.answers);
+                screen = PrivacyQuiz.categories.length;
+                render();
+            };
+        }
     }
 
     function isScreenComplete(index) {
@@ -419,21 +563,23 @@
         var name = category.key + '-' + sphere.key + '-' + field;
         var current = answers[category.key][sphere.key][field];
 
-        return '<div class="pq-rating"><span>' + label + '</span>'
+        return '<div class="pq-rating"><span class="pq-q">' + label + '</span>'
+            + '<span class="pq-options">'
             + PrivacyQuiz.scale.map(function (option, value) {
                 return '<label><input type="radio" name="' + name
                     + '" value="' + value + '"'
                     + (current === value ? ' checked' : '')
                     + '> ' + option + '</label>';
             }).join('')
-            + '</div>';
+            + '</span></div>';
     }
 
     function renderCategory(index) {
         var category = PrivacyQuiz.categories[index];
 
         app.innerHTML =
-            '<h3 class="pq-cat-head">' + category.name + '</h3>'
+            progressHtml(index)
+            + '<h3 class="pq-cat-head">' + category.name + '</h3>'
             + '<p class="pq-audience pq-cat-desc">' + category.description + '</p>'
             + PrivacyQuiz.spheres.map(function (sphere) {
                 return '<fieldset class="pq-sphere">'
@@ -466,7 +612,7 @@
                     }
                 }
 
-                updateSideProgress(index);
+                updateProgress(index);
             };
         });
     }
@@ -507,27 +653,7 @@
         });
     }
 
-    function arcPath(cx, cy, rOuter, rInner, startAngle, sweep) {
-        // Angles in radians from 12 o'clock, clockwise. Sweeps >= 360deg
-        // break SVG arcs, so cap just below a full turn.
-        sweep = Math.min(sweep, 2 * Math.PI - 0.0001);
-
-        var a0 = startAngle - Math.PI / 2;
-        var a1 = a0 + sweep;
-        var large = sweep > Math.PI ? 1 : 0;
-        var p = function (r, a) {
-            return (cx + r * Math.cos(a)).toFixed(2) + ' '
-                + (cy + r * Math.sin(a)).toFixed(2);
-        };
-
-        return 'M ' + p(rOuter, a0)
-            + ' A ' + rOuter + ' ' + rOuter + ' 0 ' + large + ' 1 ' + p(rOuter, a1)
-            + ' L ' + p(rInner, a1)
-            + ' A ' + rInner + ' ' + rInner + ' 0 ' + large + ' 0 ' + p(rInner, a0)
-            + ' Z';
-    }
-
-    function renderPie(selectedKey) {
+    function renderChart(selectedKey) {
         var extra = document.getElementById('pq-results-extra');
         var hadFocus = extra.contains(document.activeElement);
         var weights = categoryWeights();
@@ -540,62 +666,46 @@
             return;
         }
 
+        var max = weights.reduce(function (best, w) {
+            return Math.max(best, w.weight);
+        }, 0);
+        var sorted = weights.slice().sort(function (a, b) {
+            return b.weight - a.weight;
+        });
         var selected = weights.find(function (w) {
             return w.key === selectedKey;
         });
         var items = PrivacyQuiz.actionItems(answers).filter(function (item) {
             return item.categoryKey === selectedKey;
         });
-        var angle = 0;
-        var slices = '';
-
-        weights.forEach(function (w) {
-            if (w.weight === 0) {
-                return;
-            }
-
-            var sweep = 2 * Math.PI * w.weight / total;
-
-            slices += '<path class="pq-slice'
-                + (w.key === selectedKey ? ' pq-selected' : '')
-                + '" d="' + arcPath(110, 110, 100, 55, angle, sweep)
-                + '" fill="' + PQ_COLORS[w.key] + '"'
-                + ' data-key="' + w.key + '" tabindex="0" role="button"'
-                + ' aria-label="' + w.name + ' &mdash; ' + w.weight
-                + ' points, view recommendations"></path>';
-            angle += sweep;
-        });
 
         extra.innerHTML =
-            '<div class="pq-viz">'
-            + '<div class="pq-pie"><svg width="220" height="220" '
-            + 'viewBox="0 0 220 220" aria-hidden="false">'
-            + slices
-            + '<text class="pq-center-name" x="110" y="106">'
-            + selected.name + '</text>'
-            + '<text class="pq-center-weight" x="110" y="126">'
-            + selected.weight + ' pts</text>'
-            + '</svg></div>'
-            + '<div>'
-            + '<ul class="pq-legend">'
-            + weights.map(function (w) {
-                var zero = w.weight === 0;
+            '<div class="pq-chart">'
+            + sorted.map(function (w) {
+                if (w.weight === 0) {
+                    return '<div class="pq-bar-row pq-zero">'
+                        + '<span class="pq-bar-label">' + w.name + '</span>'
+                        + '<span class="pq-bar-note">balanced &mdash; '
+                        + '0 pts</span></div>';
+                }
 
-                return '<li class="'
-                    + (w.key === selectedKey ? 'pq-selected ' : '')
-                    + (zero ? 'pq-zero' : '') + '">'
-                    + (zero
-                        ? '<span class="pq-swatch"></span>' + w.name
-                            + ' &mdash; balanced'
-                        : '<button type="button" data-key="' + w.key + '">'
-                            + '<span class="pq-swatch" style="background:'
-                            + PQ_COLORS[w.key] + '"></span>'
-                            + w.name + ' &mdash; ' + w.weight + ' pts'
-                            + '</button>')
-                    + '</li>';
+                var isSelected = w.key === selectedKey;
+
+                return '<button type="button" class="pq-bar-row'
+                    + (isSelected ? ' pq-selected' : '')
+                    + '" data-key="' + w.key + '"'
+                    + ' aria-pressed="' + isSelected + '">'
+                    + '<span class="pq-bar-label">' + w.name + '</span>'
+                    + '<span class="pq-bar-track"><span class="pq-bar" '
+                    + 'style="width:' + (100 * w.weight / max).toFixed(1)
+                    + '%;background:' + PQ_COLORS[w.key] + '"></span></span>'
+                    + '<span class="pq-bar-val">' + w.weight
+                    + (w.weight === 1 ? ' pt' : ' pts') + ' &middot; '
+                    + Math.round(100 * w.weight / total) + '%</span>'
+                    + '</button>';
             }).join('')
-            + '</ul></div>'
-            + '<div class="pq-panel">'
+            + '</div>'
+            + '<div class="pq-panel pq-screen-only">'
             + '<h4>Recommendations: ' + selected.name + '</h4>'
             + (items.length === 0
                 ? '<p>No single gap here is 2 or more &mdash; small '
@@ -603,24 +713,16 @@
                 : '<ol>' + items.map(function (item) {
                     return '<li>' + item.text + '</li>';
                 }).join('') + '</ol>')
-            + '</div></div>';
+            + '</div>';
 
-        extra.querySelectorAll('.pq-slice, .pq-legend button').forEach(
-            function (el) {
-                el.onclick = function () {
-                    selectCategory(el.getAttribute('data-key'));
-                };
-                el.onkeydown = function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        selectCategory(el.getAttribute('data-key'));
-                    }
-                };
-            });
+        extra.querySelectorAll('button.pq-bar-row').forEach(function (el) {
+            el.onclick = function () {
+                renderChart(el.getAttribute('data-key'));
+            };
+        });
 
         if (hadFocus) {
-            var focusTarget = extra.querySelector('.pq-slice.pq-selected')
-                || extra.querySelector('.pq-legend li.pq-selected button');
+            var focusTarget = extra.querySelector('.pq-bar-row.pq-selected');
 
             if (focusTarget) {
                 focusTarget.focus();
@@ -628,23 +730,48 @@
         }
     }
 
-    function selectCategory(key) {
-        renderPie(key);
+    function printActionsHtml(items) {
+        if (items.length === 0) {
+            return '';
+        }
+
+        return '<div class="pq-print-only">'
+            + PrivacyQuiz.categories.map(function (category) {
+                var catItems = items.filter(function (item) {
+                    return item.categoryKey === category.key;
+                });
+
+                if (catItems.length === 0) {
+                    return '';
+                }
+
+                return '<h4>Recommendations: ' + category.name + '</h4>'
+                    + '<ol>' + catItems.map(function (item) {
+                        return '<li>' + item.text + '</li>';
+                    }).join('') + '</ol>';
+            }).join('')
+            + '</div>';
     }
 
     function renderResults() {
         var items = PrivacyQuiz.actionItems(answers);
+        var printedOn = new Date().toLocaleDateString(undefined,
+            { year: 'numeric', month: 'long', day: 'numeric' });
 
         app.innerHTML =
-            '<h3>Your Privacy Balance</h3>'
+            '<div class="pq-print-only pq-print-head">The 15-Minute '
+            + 'Privacy Quiz &middot; particlebits.com &middot; '
+            + printedOn + '</div>'
+            + '<h3>Your Privacy Balance</h3>'
             + (items.length === 0
                 ? '<p>No action items &mdash; every gap is small. Your '
                     + 'sharing closely matches your intent.</p>'
                 : '<p class="pq-audience">The chart shows how much each '
-                    + 'category contributes to your overall imbalance. '
-                    + 'Click a slice or its legend entry to see the '
-                    + 'recommendations for that category.</p>')
+                    + 'category contributes to your overall imbalance.'
+                    + '<span class="pq-screen-only"> Click a category to '
+                    + 'see its recommendations.</span></p>')
             + '<div id="pq-results-extra"></div>'
+            + printActionsHtml(items)
             + '<h3>Sphere by sphere</h3>'
             + '<p class="pq-audience">Scores measure the gap between what '
             + 'you share and what you want to share &mdash; per sphere, '
@@ -666,13 +793,13 @@
                 return w.weight > best.weight ? w : best;
             });
 
-            renderPie(heaviest.key);
+            renderChart(heaviest.key);
         }
     }
 
     // Fixed sample answers for ?preview=results: exercises Major/over,
     // Minor/under, Minor/mixed, Balanced-nonzero, Balanced-zero, a
-    // zero-weight grayed category, and a slice with no action items.
+    // zero-weight grayed category, and a category with no action items.
     var PQ_SAMPLE = [
         ['money', 'professional', 4, 0],
         ['beliefs', 'professional', 4, 1],
@@ -708,12 +835,23 @@
         appAction.textContent = 'End Quiz';
         appAction.onclick = function (event) {
             event.preventDefault();
+
+            var inQuiz = screen >= 0
+                && screen < PrivacyQuiz.categories.length;
+
+            if (inQuiz && answeredCount() > 0 && !window.confirm(
+                    'End the quiz? Your answers so far will be lost.')) {
+                return;
+            }
+
             resetQuiz();
         };
     }
 
     window.addEventListener('beforeunload', function (event) {
-        if (!previewMode && answeredCount() > 0) {
+        var inQuiz = screen >= 0 && screen < PrivacyQuiz.categories.length;
+
+        if (!previewMode && inQuiz && answeredCount() > 0) {
             event.preventDefault();
             event.returnValue = '';
         }
