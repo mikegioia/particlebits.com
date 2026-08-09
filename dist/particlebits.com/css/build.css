@@ -190,6 +190,12 @@ header nav.menu a.button[hidden] {
     display: none;
 }
 
+body.app header section.subtitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
 /* Content area */
 main {
     padding-top: calc(4rem + 1px);
@@ -297,6 +303,18 @@ main section.topics {
 body.article main section.topics {
     bottom: auto;
     position: absolute;
+}
+
+/* Per-article right-column slot for layout:"app" pages; stays fixed */
+main section.app-side {
+    right: 0;
+    width: 14rem;
+    bottom: 0;
+    padding: 1rem;
+    position: fixed;
+    top: calc(4rem + 1px);
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 main section.topics ul {
     margin: 0;
@@ -706,6 +724,24 @@ body.theme-paper article table th {
     main section.topics {
         display: none;
     }
+    main section.app-side {
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 10;
+        display: flex;
+        gap: 0.75rem;
+        background: #fff;
+        position: fixed;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #ddd;
+    }
+    body.app main {
+        padding-bottom: 5rem;
+    }
     main section.content {
         width: calc(100% - 10rem);
     }
@@ -738,7 +774,14 @@ body.theme-paper article table th {
         display: none;
     }
     body.app header section.subtitle {
-        display: block;
+        display: flex;
+        font-size: 1.15rem;
+        height: auto;
+        min-height: 3.5rem;
+    }
+    body.app header {
+        height: auto;
+        min-height: 3.5rem;
     }
     header nav.logo .name {
         font-size: 1.2rem;
@@ -856,7 +899,7 @@ body.theme-paper article table th {
     main section.content h3 {
         font-size: 1.33em;
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: 12rem;
     }
     body.sitemap main section.content {
@@ -887,7 +930,7 @@ body.theme-paper article table th {
         margin-left: 14rem;
         width: calc(100% - 32rem);
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: 18rem;
     }
     main section.topics ul li a {
@@ -901,7 +944,7 @@ body.theme-paper article table th {
     main section.content {
         width: calc(100% - 34rem);
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: 20rem;
     }
     main section.topics ul li {
@@ -915,7 +958,7 @@ body.theme-paper article table th {
     main section.content {
         width: calc(70% - 14rem);
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: calc(30%);
     }
     main section.topics ul li {

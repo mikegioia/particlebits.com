@@ -8,6 +8,24 @@
     main section.topics {
         display: none;
     }
+    main section.app-side {
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 10;
+        display: flex;
+        gap: 0.75rem;
+        background: #fff;
+        position: fixed;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #ddd;
+    }
+    body.app main {
+        padding-bottom: 5rem;
+    }
     main section.content {
         width: calc(100% - 10rem);
     }
@@ -40,7 +58,14 @@
         display: none;
     }
     body.app header section.subtitle {
-        display: block;
+        display: flex;
+        font-size: 1.15rem;
+        height: auto;
+        min-height: 3.5rem;
+    }
+    body.app header {
+        height: auto;
+        min-height: 3.5rem;
     }
     header nav.logo .name {
         font-size: 1.2rem;
@@ -158,7 +183,7 @@
     main section.content h3 {
         font-size: 1.33em;
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: 12rem;
     }
     body.sitemap main section.content {
@@ -189,7 +214,7 @@
         margin-left: 14rem;
         width: calc(100% - 32rem);
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: 18rem;
     }
     main section.topics ul li a {
@@ -203,7 +228,7 @@
     main section.content {
         width: calc(100% - 34rem);
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: 20rem;
     }
     main section.topics ul li {
@@ -217,7 +242,7 @@
     main section.content {
         width: calc(70% - 14rem);
     }
-    main section.topics {
+    main section.topics, main section.app-side {
         width: calc(30%);
     }
     main section.topics ul li {

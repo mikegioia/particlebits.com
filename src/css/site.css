@@ -150,6 +150,12 @@ header nav.menu a.button[hidden] {
     display: none;
 }
 
+body.app header section.subtitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
 /* Content area */
 main {
     padding-top: calc(4rem + 1px);
@@ -257,6 +263,18 @@ main section.topics {
 body.article main section.topics {
     bottom: auto;
     position: absolute;
+}
+
+/* Per-article right-column slot for layout:"app" pages; stays fixed */
+main section.app-side {
+    right: 0;
+    width: 14rem;
+    bottom: 0;
+    padding: 1rem;
+    position: fixed;
+    top: calc(4rem + 1px);
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 main section.topics ul {
     margin: 0;

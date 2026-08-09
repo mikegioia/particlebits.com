@@ -35,7 +35,6 @@
             <section class="subtitle">
 <?php if ($isAppLayout): ?>
                 <span class="larger"><?php echo $article->title; ?></span>
-                <div id="app-header-slot"></div>
 <?php else: ?>
                 <span class="larger"><?php echo $subtitle; ?></span><br>
                 <span class="smaller"><?php echo $subtitleTagline; ?></span>
@@ -58,6 +57,9 @@
             <section class="content">
                 <?php echo $content; ?>
             </section>
+<?php if ($isAppLayout): ?>
+            <section class="app-side" id="app-side"></section>
+<?php else: ?>
             <section class="topics">
                 <h2>Topics</h2>
             <?php
@@ -109,6 +111,7 @@
             <?php
             endif; ?>
             </section>
+<?php endif; ?>
             <section class="contributors">
                 <?php echo render(TPL_CONTRIBUTORS, ['contributors' => $contributors]); ?>
             </section>

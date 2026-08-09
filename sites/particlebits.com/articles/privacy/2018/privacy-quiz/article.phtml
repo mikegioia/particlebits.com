@@ -1,12 +1,4 @@
 <div id="pq-intro">
-<aside>
-    This quiz is a companion to
-    <a href="<?php $al('2018', 'six-privacy-spheres'); ?>">The Six Spheres
-    of Privacy</a>, part of the
-    <a href="<?php echo $article->getTopic()->url; ?>">Privacy and Security
-    series</a>.
-</aside>
-
 <p>
     This quiz walks you through the two exercises from the article: taking
     inventory of what you share, and deciding what you actually <i>want</i>
@@ -22,29 +14,18 @@
 
 <div id="pq-app" class="pq-app"></div>
 
+<div id="pq-side-intro" hidden>
+    <aside>
+        This quiz is a companion to
+        <a href="<?php $al('2018', 'six-privacy-spheres'); ?>">The Six Spheres
+        of Privacy</a>, part of the
+        <a href="<?php echo $article->getTopic()->url; ?>">Privacy and Security
+        series</a>.
+    </aside>
+</div>
+
 <style>
 .pq-app { font-size: 1.15rem; }
-#app-header-slot { margin-top: 0.25rem; }
-#app-header-slot .pq-hprogress {
-    width: 16rem;
-    max-width: 100%;
-    height: 0.375rem;
-    background: #f0f0f0;
-    border-radius: 0.1875rem;
-    overflow: hidden;
-}
-#app-header-slot .pq-hfill {
-    height: 100%;
-    width: 0%;
-    background: #007db6;
-    transition: width 0.2s;
-}
-#app-header-slot .pq-hlabel {
-    color: #888;
-    font-size: 0.8125rem;
-    margin-top: 0.125rem;
-    line-height: 1.2;
-}
 .pq-button {
     font: inherit;
     border: 0;
@@ -55,7 +36,6 @@
     border-radius: 0.25rem;
     padding: 0.625rem 1.25rem;
 }
-.pq-button:disabled { opacity: 0.4; cursor: not-allowed; }
 .pq-button.pq-secondary { background: #eee; }
 .pq-button.pq-secondary:hover { background: #ddd; }
 .pq-button.pq-primary { background: #007db6; color: #fff; }
@@ -66,15 +46,19 @@
     font-size: 1.25em;
     padding: 0.75rem 2rem;
 }
+.pq-audience { color: #888; font-size: 0.875em; margin: 0 0 0.5rem; }
+.pq-cat-head { margin: 0 0 0.125rem; text-align: center; }
+.pq-cat-desc { text-align: center; margin: 0 0 0.75rem; }
 .pq-sphere {
     border: 1px solid #ddd;
     border-radius: 0.25rem;
-    margin: 0 0 1rem;
-    padding: 0.75rem 1rem;
+    margin: 0 0 0.5rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
 }
-.pq-sphere legend { font-weight: bold; padding: 0 0.375rem; }
-.pq-audience { color: #888; font-size: 0.875em; margin: 0 0 0.5rem; }
-.pq-rating { display: flex; flex-wrap: wrap; align-items: baseline; margin: 0.375rem 0; }
+.pq-sphere-head { margin-bottom: 0.125rem; }
+.pq-sphere-aud { color: #888; font-size: 0.8125em; }
+.pq-rating { display: flex; flex-wrap: wrap; align-items: baseline; margin: 0.125rem 0; }
 .pq-rating > span { flex: 0 0 10rem; font-size: 0.9375em; }
 .pq-rating label {
     cursor: pointer;
@@ -82,7 +66,58 @@
     font-size: 0.9375em;
     margin: 0.125rem 0.875rem 0.125rem 0;
 }
-.pq-nav { display: flex; justify-content: space-between; margin-top: 1.5rem; }
+.pq-rating.pq-missing {
+    background: #fdecea;
+    border-radius: 0.125rem;
+    box-shadow: inset 3px 0 0 #e34948;
+}
+#app-side .pq-side-progress { margin-bottom: 0.75rem; }
+#app-side .pq-hprogress {
+    height: 0.375rem;
+    background: #f0f0f0;
+    border-radius: 0.1875rem;
+    overflow: hidden;
+}
+#app-side .pq-hfill {
+    height: 100%;
+    width: 0%;
+    background: #007db6;
+    transition: width 0.2s;
+}
+#app-side .pq-hlabel {
+    color: #888;
+    font-size: 0.8125rem;
+    margin-top: 0.25rem;
+    line-height: 1.2;
+}
+#app-side .pq-button {
+    width: 100%;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+#app-side aside {
+    margin: 0;
+    color: #777;
+    line-height: 1.4;
+    font-size: 0.9375rem;
+}
+#app-side .pq-invalid-msg {
+    color: #b3261e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+@media screen and (max-width: 768px) {
+    #app-side .pq-side-progress { flex: 1 1 8rem; margin-bottom: 0; }
+    #app-side .pq-hlabel { margin-top: 0.125rem; }
+    #app-side .pq-button {
+        width: auto;
+        margin-bottom: 0;
+        display: inline-block;
+    }
+    #app-side aside { font-size: 0.8125rem; }
+}
 .pq-card {
     border: 1px solid #ddd;
     border-left-width: 0.375rem;
@@ -148,7 +183,7 @@
 .pq-panel ol { margin: 0; padding-left: 1.25rem; }
 .pq-panel li { margin-bottom: 0.5rem; }
 @media print {
-    header, .pq-nav, .sidebar, .topics, footer { display: none; }
+    header, .sidebar, .topics, .app-side, footer { display: none; }
     .pq-card { break-inside: avoid; }
 }
 </style>
@@ -171,7 +206,12 @@
     // -1 = intro, 0..5 = category screens, 6 = results
     var screen = -1;
     var previewMode = /[?&]preview=results\b/.test(window.location.search);
-    var headerSlot = document.getElementById('app-header-slot');
+    // #app-side is rendered by the page template *after* this article's
+    // markup (and this inline script), so it does not exist in the DOM yet
+    // at parse time. Resolve it lazily on first use instead of caching a
+    // premature (and permanently null) lookup here.
+    var sideSlot = null;
+    var sideIntro = document.getElementById('pq-side-intro');
     var appAction = document.getElementById('app-action');
     var intro = document.getElementById('pq-intro');
 
@@ -203,31 +243,126 @@
             + ' &middot; ' + percent + '% answered';
     }
 
-    function updateHeaderProgress(index) {
-        if (!headerSlot) {
-            return;
-        }
-
-        if (index === null) {
-            headerSlot.innerHTML = '';
-            return;
-        }
-
-        var fill = headerSlot.querySelector('.pq-hfill');
-        var label = headerSlot.querySelector('.pq-hlabel');
-
-        if (!fill) {
-            headerSlot.innerHTML =
-                '<div class="pq-hprogress"><div class="pq-hfill"></div></div>'
-                + '<div class="pq-hlabel"></div>';
-            fill = headerSlot.querySelector('.pq-hfill');
-            label = headerSlot.querySelector('.pq-hlabel');
-        }
-
+    function sideProgressHtml(index) {
         var percent = progressPercent();
 
-        fill.style.width = percent + '%';
-        label.innerHTML = progressLabel(index, percent);
+        return '<div class="pq-side-progress">'
+            + '<div class="pq-hprogress"><div class="pq-hfill" style="width:'
+            + percent + '%"></div></div>'
+            + '<div class="pq-hlabel">' + progressLabel(index, percent)
+            + '</div></div>';
+    }
+
+    function updateSideProgress(index) {
+        sideSlot = sideSlot || document.getElementById('app-side');
+
+        if (!sideSlot) {
+            return;
+        }
+
+        var fill = sideSlot.querySelector('.pq-hfill');
+        var label = sideSlot.querySelector('.pq-hlabel');
+        var percent = progressPercent();
+
+        if (fill) {
+            fill.style.width = percent + '%';
+        }
+
+        if (label) {
+            label.innerHTML = progressLabel(index, percent);
+        }
+    }
+
+    function showValidation(index) {
+        var category = PrivacyQuiz.categories[index];
+        var first = null;
+
+        PrivacyQuiz.spheres.forEach(function (sphere) {
+            var cell = answers[category.key][sphere.key];
+
+            ['actual', 'desired'].forEach(function (field) {
+                if (cell[field] !== null) {
+                    return;
+                }
+
+                var input = app.querySelector('input[name="' + category.key
+                    + '-' + sphere.key + '-' + field + '"]');
+                var row = input && input.closest('.pq-rating');
+
+                if (row) {
+                    row.classList.add('pq-missing');
+                    first = first || row;
+                }
+            });
+        });
+
+        var msg = document.getElementById('pq-invalid-msg');
+
+        if (msg) {
+            msg.hidden = false;
+        }
+
+        if (first) {
+            first.scrollIntoView({ block: 'center' });
+        }
+    }
+
+    function renderSide() {
+        sideSlot = sideSlot || document.getElementById('app-side');
+
+        if (!sideSlot) {
+            return;
+        }
+
+        if (screen === -1) {
+            sideSlot.innerHTML = sideIntro ? sideIntro.innerHTML : '';
+            return;
+        }
+
+        if (screen < PrivacyQuiz.categories.length) {
+            sideSlot.innerHTML =
+                sideProgressHtml(screen)
+                + '<button id="pq-next" class="pq-button pq-primary">'
+                + (screen === PrivacyQuiz.categories.length - 1
+                    ? 'See my results' : 'Next')
+                + '</button>'
+                + '<button id="pq-back" class="pq-button pq-secondary">Back</button>'
+                + '<div id="pq-invalid-msg" class="pq-invalid-msg" hidden>'
+                + 'Please answer the highlighted rows.</div>';
+
+            document.getElementById('pq-next').onclick = function () {
+                if (!isScreenComplete(screen)) {
+                    showValidation(screen);
+                    return;
+                }
+
+                screen += 1;
+                render();
+            };
+            document.getElementById('pq-back').onclick = function () {
+                screen -= 1;
+                render();
+            };
+            return;
+        }
+
+        sideSlot.innerHTML =
+            '<button id="pq-print" class="pq-button pq-primary">'
+            + 'Print my results</button>'
+            + '<button id="pq-retake" class="pq-button pq-secondary">'
+            + 'Start over</button>'
+            + '<button id="pq-back" class="pq-button pq-secondary">Back</button>';
+
+        document.getElementById('pq-print').onclick = function () {
+            window.print();
+        };
+        document.getElementById('pq-retake').onclick = function () {
+            resetQuiz();
+        };
+        document.getElementById('pq-back').onclick = function () {
+            screen -= 1;
+            render();
+        };
     }
 
     function resetQuiz() {
@@ -250,13 +385,10 @@
             renderResults();
         }
 
-        var onCategories = screen >= 0 && screen < PrivacyQuiz.categories.length;
-
-        updateHeaderProgress(onCategories ? screen : null);
+        renderSide();
 
         if (intro) {
-            intro.style.display =
-                screen === PrivacyQuiz.categories.length ? 'none' : '';
+            intro.style.display = screen === -1 ? '' : 'none';
         }
 
         window.scrollTo(0, 0);
@@ -264,16 +396,7 @@
 
     function renderIntro() {
         app.innerHTML =
-            '<p>The five groups you&rsquo;ll rate, from the article&rsquo;s '
-            + 'six spheres (your Personal sphere is the baseline &mdash; it '
-            + 'always holds everything):</p>'
-            + '<ul>'
-            + PrivacyQuiz.spheres.map(function (sphere) {
-                return '<li><b>' + sphere.name + '</b> &mdash; '
-                    + sphere.audience + '</li>';
-            }).join('')
-            + '</ul>'
-            + '<button id="pq-next" class="pq-button pq-primary pq-start">'
+            '<button id="pq-next" class="pq-button pq-primary pq-start">'
             + 'Start the quiz</button>';
 
         document.getElementById('pq-next').onclick = function () {
@@ -310,22 +433,17 @@
         var category = PrivacyQuiz.categories[index];
 
         app.innerHTML =
-            '<h3>' + category.name + '</h3>'
-            + '<p class="pq-audience">' + category.description + '</p>'
+            '<h3 class="pq-cat-head">' + category.name + '</h3>'
+            + '<p class="pq-audience pq-cat-desc">' + category.description + '</p>'
             + PrivacyQuiz.spheres.map(function (sphere) {
-                return '<fieldset class="pq-sphere"><legend>'
-                    + sphere.name + '</legend>'
-                    + '<p class="pq-audience">' + sphere.audience + '</p>'
+                return '<fieldset class="pq-sphere">'
+                    + '<div class="pq-sphere-head"><b>' + sphere.name
+                    + '</b> <span class="pq-sphere-aud">&ndash; '
+                    + sphere.audience + '</span></div>'
                     + ratingRow(category, sphere, 'actual', 'I currently share:')
                     + ratingRow(category, sphere, 'desired', 'I want to share:')
                     + '</fieldset>';
-            }).join('')
-            + '<div class="pq-nav">'
-            + '<button id="pq-back" class="pq-button pq-secondary">Back</button>'
-            + '<button id="pq-next" class="pq-button pq-primary" disabled>'
-            + (index === PrivacyQuiz.categories.length - 1
-                ? 'See my results' : 'Next')
-            + '</button></div>';
+            }).join('');
 
         app.querySelectorAll('input[type=radio]').forEach(function (input) {
             input.onchange = function () {
@@ -333,21 +451,24 @@
 
                 answers[parts[0]][parts[1]][parts[2]] =
                     parseInt(input.value, 10);
-                document.getElementById('pq-next').disabled =
-                    !isScreenComplete(index);
-                updateHeaderProgress(index);
+
+                var row = input.closest('.pq-rating');
+
+                if (row) {
+                    row.classList.remove('pq-missing');
+                }
+
+                if (isScreenComplete(index)) {
+                    var msg = document.getElementById('pq-invalid-msg');
+
+                    if (msg) {
+                        msg.hidden = true;
+                    }
+                }
+
+                updateSideProgress(index);
             };
         });
-
-        document.getElementById('pq-next').disabled = !isScreenComplete(index);
-        document.getElementById('pq-next').onclick = function () {
-            screen += 1;
-            render();
-        };
-        document.getElementById('pq-back').onclick = function () {
-            screen -= 1;
-            render();
-        };
     }
 
     function badgeClass(band) {
@@ -538,23 +659,7 @@
                     + '</span></h3>'
                     + '<p>' + result.verdict + '</p></div>';
             }).join('')
-            + '<div class="pq-nav">'
-            + '<button id="pq-back" class="pq-button pq-secondary">Back</button>'
-            + '<span><button id="pq-retake" class="pq-button pq-secondary">'
-            + 'Start over</button> '
-            + '<button id="pq-print" class="pq-button pq-primary">'
-            + 'Print my results</button></span></div>';
-
-        document.getElementById('pq-back').onclick = function () {
-            screen -= 1;
-            render();
-        };
-        document.getElementById('pq-retake').onclick = function () {
-            resetQuiz();
-        };
-        document.getElementById('pq-print').onclick = function () {
-            window.print();
-        };
+            ;
 
         if (items.length > 0) {
             var heaviest = categoryWeights().reduce(function (best, w) {
@@ -614,6 +719,13 @@
         }
     });
 
-    render();
+    // The initial render populates #app-side (see above), which is only
+    // safe once the rest of the document (including that element) has
+    // been parsed.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', render);
+    } else {
+        render();
+    }
 })();
 </script>

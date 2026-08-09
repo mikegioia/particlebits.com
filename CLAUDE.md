@@ -40,7 +40,7 @@ An article lives at `sites/particlebits.com/articles/<topic>/<year>/<slug>/` and
 - `about.json` — title, date, author, topic, slug, snippet, plus optional `featured`, `assets`, `weblinks`, `data` maps, and `layout`
 - `article.phtml` — the body markup
 
-Setting `"layout": "app"` in about.json gives the article an app-style header: the site subtitle is replaced by the article title above an empty `#app-header-slot` mount point, the Sitemap button is replaced by a hidden `#app-action` anchor (both for the article's own JS to fill), and the in-body `<h1>`/byline are suppressed.
+Setting `"layout": "app"` in about.json gives the article an app-style layout: the site subtitle is replaced by the article title (vertically centered, title only), the Sitemap button is replaced by a hidden `#app-action` anchor, the right-column Topics section is replaced by an empty `<section class="app-side" id="app-side">` slot (fixed on desktop, a bottom bar ≤768px) — anchor and slot are filled by the article's own JS — and the in-body `<h1>`/byline are suppressed.
 
 Optional: `media/` (files copied to `media/<year>/<slug>/` in the output) and `comments.json`.
 
