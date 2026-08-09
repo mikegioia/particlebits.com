@@ -64,11 +64,13 @@
                     "sort": 3.1,
                     "label": "Management",
                     "articles": [
+                        "management-philosophy",
                         "do-first-ten-percent",
                         "problem-solving-data-in-head",
                         "move-single-direction",
                         "repeat-back-for-clarity",
-                        "building-culture-of-feedback"
+                        "building-culture-of-feedback",
+                        "product-development-process"
                     ]
                 },
                 "relationships": {
