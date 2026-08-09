@@ -376,6 +376,13 @@ body.article main section.content article h3 {
     text-align: center;
     margin: 2rem 0 1.25rem;
 }
+body.article main section.content article h3:first-of-type {
+    margin-top: 1rem;
+}
+body.article main section.content article .pq-card h3 {
+    margin-top: 0.5rem;
+}
+
 article h3:target {
     background: #ffd700;
     padding: 5rem 0 1rem;
