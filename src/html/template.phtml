@@ -23,7 +23,8 @@
             echo $css; ?>
         </style>
     </head>
-    <body class="<?php echo $page; ?><?php echo $theme ? ' theme-'.$theme : ''; ?>">
+<?php $isAppLayout = $page === 'article' && isset($article) && $article->layout === 'app'; ?>
+    <body class="<?php echo $page; ?><?php echo $theme ? ' theme-'.$theme : ''; ?><?php echo $isAppLayout ? ' app' : ''; ?>">
         <header class="group">
             <nav class="logo group">
                 <a href="<?php echo $homeUrl; ?>">
@@ -32,13 +33,22 @@
                 </a>
             </nav>
             <section class="subtitle">
+<?php if ($isAppLayout): ?>
+                <span class="larger"><?php echo $article->title; ?></span>
+                <div id="app-header-slot"></div>
+<?php else: ?>
                 <span class="larger"><?php echo $subtitle; ?></span><br>
                 <span class="smaller"><?php echo $subtitleTagline; ?></span>
+<?php endif; ?>
             </section>
             <nav class="menu group">
+<?php if ($isAppLayout): ?>
+                <a class="button" id="app-action" href="#" hidden></a>
+<?php else: ?>
                 <a class="button sitemap" href="<?php echo $sitemapUrl; ?>">
                     <span>Sitemap</span>
                 </a>
+<?php endif; ?>
             </nav>
         </header>
         <main class="group">

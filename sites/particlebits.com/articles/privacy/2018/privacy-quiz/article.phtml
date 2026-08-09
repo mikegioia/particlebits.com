@@ -1,3 +1,4 @@
+<div id="pq-intro">
 <aside>
     This quiz is a companion to
     <a href="<?php $al('2018', 'six-privacy-spheres'); ?>">The Six Spheres
@@ -9,47 +10,40 @@
 <p>
     This quiz walks you through the two exercises from the article: taking
     inventory of what you share, and deciding what you actually <i>want</i>
-    to share. For six categories of information in your life, you&rsquo;ll
-    rate &mdash; for each group of people around you &mdash; how much you
-    currently share and how much you would want to share, from
-    &ldquo;nothing&rdquo; to &ldquo;everything.&rdquo;
+    to share.
 </p>
 <p>
-    There are no wrong answers. The quiz measures the <i>gap</i> between
-    what you share and what you want to share &mdash; not how private or
-    how open you are &mdash; so answer with your first instinct. Your
-    answers never leave your browser: nothing is sent or saved anywhere.
+    There are no wrong answers. <b>Nothing is sent or saved anywhere.</b>
     If you&rsquo;d rather work on paper, you can
     <a href="<?php $a('worksheet'); ?>">download the printable worksheet
     (PDF)</a> instead.
 </p>
+</div>
 
 <div id="pq-app" class="pq-app"></div>
 
 <style>
 .pq-app { font-size: 1.15rem; }
-.pq-progress {
-    position: relative;
-    height: 1.75rem;
+#app-header-slot { margin-top: 0.25rem; }
+#app-header-slot .pq-hprogress {
+    width: 16rem;
+    max-width: 100%;
+    height: 0.375rem;
     background: #f0f0f0;
-    border-radius: 0.875rem;
+    border-radius: 0.1875rem;
     overflow: hidden;
-    margin-bottom: 1.25rem;
 }
-.pq-progress .pq-fill {
-    top: 0;
-    left: 0;
-    bottom: 0;
+#app-header-slot .pq-hfill {
+    height: 100%;
     width: 0%;
-    position: absolute;
+    background: #007db6;
     transition: width 0.2s;
 }
-.pq-progress .pq-label {
-    position: relative;
-    color: #333;
-    text-align: center;
-    line-height: 1.75rem;
-    font-size: 0.875rem;
+#app-header-slot .pq-hlabel {
+    color: #888;
+    font-size: 0.8125rem;
+    margin-top: 0.125rem;
+    line-height: 1.2;
 }
 .pq-button {
     font: inherit;
@@ -64,6 +58,14 @@
 .pq-button:disabled { opacity: 0.4; cursor: not-allowed; }
 .pq-button.pq-secondary { background: #eee; }
 .pq-button.pq-secondary:hover { background: #ddd; }
+.pq-button.pq-primary { background: #007db6; color: #fff; }
+.pq-button.pq-primary:hover { background: #006ca0; }
+.pq-start {
+    display: block;
+    margin: 0 auto 2rem;
+    font-size: 1.25em;
+    padding: 0.75rem 2rem;
+}
 .pq-sphere {
     border: 1px solid #ddd;
     border-radius: 0.25rem;
@@ -168,6 +170,10 @@
 
     // -1 = intro, 0..5 = category screens, 6 = results
     var screen = -1;
+    var previewMode = /[?&]preview=results\b/.test(window.location.search);
+    var headerSlot = document.getElementById('app-header-slot');
+    var appAction = document.getElementById('app-action');
+    var intro = document.getElementById('pq-intro');
 
     function answeredCount() {
         var count = 0;
@@ -197,35 +203,42 @@
             + ' &middot; ' + percent + '% answered';
     }
 
-    function progressBar(index) {
-        var percent = progressPercent();
-
-        return '<div class="pq-progress">'
-            + '<div class="pq-fill topic-privacy" style="width:'
-            + percent + '%"></div>'
-            + '<div class="pq-label">' + progressLabel(index, percent)
-            + '</div>'
-            + '</div>';
-    }
-
-    function updateProgress(index) {
-        var bar = app.querySelector('.pq-progress');
-
-        if (!bar) {
+    function updateHeaderProgress(index) {
+        if (!headerSlot) {
             return;
         }
 
-        var fill = bar.querySelector('.pq-fill');
-        var label = bar.querySelector('.pq-label');
+        if (index === null) {
+            headerSlot.innerHTML = '';
+            return;
+        }
+
+        var fill = headerSlot.querySelector('.pq-hfill');
+        var label = headerSlot.querySelector('.pq-hlabel');
+
+        if (!fill) {
+            headerSlot.innerHTML =
+                '<div class="pq-hprogress"><div class="pq-hfill"></div></div>'
+                + '<div class="pq-hlabel"></div>';
+            fill = headerSlot.querySelector('.pq-hfill');
+            label = headerSlot.querySelector('.pq-hlabel');
+        }
+
         var percent = progressPercent();
 
-        if (fill) {
-            fill.style.width = percent + '%';
-        }
+        fill.style.width = percent + '%';
+        label.innerHTML = progressLabel(index, percent);
+    }
 
-        if (label) {
-            label.innerHTML = progressLabel(index, percent);
-        }
+    function resetQuiz() {
+        PrivacyQuiz.categories.forEach(function (category) {
+            PrivacyQuiz.spheres.forEach(function (sphere) {
+                answers[category.key][sphere.key].actual = null;
+                answers[category.key][sphere.key].desired = null;
+            });
+        });
+        screen = -1;
+        render();
     }
 
     function render() {
@@ -235,6 +248,15 @@
             renderCategory(screen);
         } else {
             renderResults();
+        }
+
+        var onCategories = screen >= 0 && screen < PrivacyQuiz.categories.length;
+
+        updateHeaderProgress(onCategories ? screen : null);
+
+        if (intro) {
+            intro.style.display =
+                screen === PrivacyQuiz.categories.length ? 'none' : '';
         }
 
         window.scrollTo(0, 0);
@@ -251,9 +273,8 @@
                     + sphere.audience + '</li>';
             }).join('')
             + '</ul>'
-            + '<div class="pq-nav"><span></span>'
-            + '<button id="pq-next" class="pq-button topic-privacy">'
-            + 'Start the quiz</button></div>';
+            + '<button id="pq-next" class="pq-button pq-primary pq-start">'
+            + 'Start the quiz</button>';
 
         document.getElementById('pq-next').onclick = function () {
             screen = 0;
@@ -289,8 +310,7 @@
         var category = PrivacyQuiz.categories[index];
 
         app.innerHTML =
-            progressBar(index)
-            + '<h3>' + category.name + '</h3>'
+            '<h3>' + category.name + '</h3>'
             + '<p class="pq-audience">' + category.description + '</p>'
             + PrivacyQuiz.spheres.map(function (sphere) {
                 return '<fieldset class="pq-sphere"><legend>'
@@ -302,7 +322,7 @@
             }).join('')
             + '<div class="pq-nav">'
             + '<button id="pq-back" class="pq-button pq-secondary">Back</button>'
-            + '<button id="pq-next" class="pq-button topic-privacy" disabled>'
+            + '<button id="pq-next" class="pq-button pq-primary" disabled>'
             + (index === PrivacyQuiz.categories.length - 1
                 ? 'See my results' : 'Next')
             + '</button></div>';
@@ -315,7 +335,7 @@
                     parseInt(input.value, 10);
                 document.getElementById('pq-next').disabled =
                     !isScreenComplete(index);
-                updateProgress(index);
+                updateHeaderProgress(index);
             };
         });
 
@@ -495,7 +515,16 @@
         var items = PrivacyQuiz.actionItems(answers);
 
         app.innerHTML =
-            '<h3>Your privacy balance</h3>'
+            '<h3>Your Privacy Balance</h3>'
+            + (items.length === 0
+                ? '<p>No action items &mdash; every gap is small. Your '
+                    + 'sharing closely matches your intent.</p>'
+                : '<p class="pq-audience">The chart shows how much each '
+                    + 'category contributes to your overall imbalance. '
+                    + 'Click a slice or its legend entry to see the '
+                    + 'recommendations for that category.</p>')
+            + '<div id="pq-results-extra"></div>'
+            + '<h3>Sphere by sphere</h3>'
             + '<p class="pq-audience">Scores measure the gap between what '
             + 'you share and what you want to share &mdash; per sphere, '
             + 'out of a possible 24.</p>'
@@ -509,20 +538,11 @@
                     + '</span></h3>'
                     + '<p>' + result.verdict + '</p></div>';
             }).join('')
-            + '<h3>Your action items</h3>'
-            + '<div id="pq-results-extra"></div>'
-            + (items.length === 0
-                ? '<p>No action items &mdash; every gap is small. Your '
-                    + 'sharing closely matches your intent.</p>'
-                : '<p class="pq-audience">The chart shows how much each '
-                    + 'category contributes to your overall imbalance. '
-                    + 'Click a slice or its legend entry to see the '
-                    + 'recommendations for that category.</p>')
             + '<div class="pq-nav">'
             + '<button id="pq-back" class="pq-button pq-secondary">Back</button>'
             + '<span><button id="pq-retake" class="pq-button pq-secondary">'
             + 'Start over</button> '
-            + '<button id="pq-print" class="pq-button topic-privacy">'
+            + '<button id="pq-print" class="pq-button pq-primary">'
             + 'Print my results</button></span></div>';
 
         document.getElementById('pq-back').onclick = function () {
@@ -530,7 +550,7 @@
             render();
         };
         document.getElementById('pq-retake').onclick = function () {
-            window.location.reload();
+            resetQuiz();
         };
         document.getElementById('pq-print').onclick = function () {
             window.print();
@@ -544,6 +564,55 @@
             renderPie(heaviest.key);
         }
     }
+
+    // Fixed sample answers for ?preview=results: exercises Major/over,
+    // Minor/under, Minor/mixed, Balanced-nonzero, Balanced-zero, a
+    // zero-weight grayed category, and a slice with no action items.
+    var PQ_SAMPLE = [
+        ['money', 'professional', 4, 0],
+        ['beliefs', 'professional', 4, 1],
+        ['daily', 'professional', 3, 1],
+        ['emotions', 'family', 0, 3],
+        ['daily', 'family', 1, 3],
+        ['money', 'social', 4, 1],
+        ['emotions', 'social', 0, 3],
+        ['romantic', 'private', 3, 4]
+    ];
+
+    function applySample() {
+        PrivacyQuiz.categories.forEach(function (category) {
+            PrivacyQuiz.spheres.forEach(function (sphere) {
+                answers[category.key][sphere.key].actual = 2;
+                answers[category.key][sphere.key].desired = 2;
+            });
+        });
+
+        PQ_SAMPLE.forEach(function (row) {
+            answers[row[0]][row[1]].actual = row[2];
+            answers[row[0]][row[1]].desired = row[3];
+        });
+    }
+
+    if (previewMode) {
+        applySample();
+        screen = PrivacyQuiz.categories.length;
+    }
+
+    if (appAction) {
+        appAction.hidden = false;
+        appAction.textContent = 'End Quiz';
+        appAction.onclick = function (event) {
+            event.preventDefault();
+            resetQuiz();
+        };
+    }
+
+    window.addEventListener('beforeunload', function (event) {
+        if (!previewMode && answeredCount() > 0) {
+            event.preventDefault();
+            event.returnValue = '';
+        }
+    });
 
     render();
 })();

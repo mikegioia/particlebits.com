@@ -39,6 +39,9 @@
     header section.subtitle {
         display: none;
     }
+    body.app header section.subtitle {
+        display: block;
+    }
     header nav.logo .name {
         font-size: 1.2rem;
     }

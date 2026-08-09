@@ -146,6 +146,9 @@ header nav.menu a.button:hover {
     color: #333;
     background: #ddd;
 }
+header nav.menu a.button[hidden] {
+    display: none;
+}
 
 /* Content area */
 main {
@@ -400,7 +403,7 @@ article aside {
 
 /* Large call-to-action button; pair with a topic-<slug> class for color */
 article a.cta-button {
-    color: #333;
+    color: #fff;
     display: block;
     margin: 1.5rem auto;
     max-width: 24rem;
@@ -409,9 +412,10 @@ article a.cta-button {
     padding: 0.875rem 1rem;
     border-radius: 0.25rem;
     text-decoration: none;
+    background: #007db6;
 }
 article a.cta-button:hover {
-    filter: brightness(0.96);
+    background: #006ca0;
 }
 article p {
     text-indent: 2rem;

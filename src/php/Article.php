@@ -19,6 +19,7 @@ class Article
     public $standalones = [];
     public $weblinks = [];
     public $featured = false;
+    public $layout = '';
 
     // Path to article's directory
     private $path;

@@ -1,10 +1,12 @@
 <article>
+<?php if ($article->layout !== 'app'): ?>
     <h1><?php echo $article->title; ?></h1>
     <div class="meta">
         <?php echo $article->author; ?> wrote this on
         <?php echo $article->dateString(); ?> in
         <a class="topic topic-<?php echo $article->getTopic()->slug; ?> topic-<?php echo $article->getTopic()->slug; ?>-text" href="<?php echo $article->getTopic()->getUrl(); ?>"><?php echo $article->getTopic()->label; ?></a>
     </div>
+<?php endif; ?>
 
     <?php echo $content; ?>
 

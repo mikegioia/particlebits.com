@@ -5,6 +5,7 @@
     "topic": "privacy",
     "slug": "privacy-quiz",
     "featured": false,
+    "layout": "app",
     "hero": "six_spheres.png",
     "snippet": "An interactive companion to _The Six Spheres of Privacy_: inventory what you share, see where your privacy is out of balance, and get a personalized list of actions. Also available as a printable worksheet.",
     "assets": {
