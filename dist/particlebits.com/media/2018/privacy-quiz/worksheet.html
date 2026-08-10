@@ -30,31 +30,35 @@
 }
 @page { size: letter; margin: 0.6in; }
 * { box-sizing: border-box; }
+/* Master font size: every rem value below scales off this. */
+html { font-size: 16px; }
 body {
     margin: 0;
     color: #333;
     font-family: 'Alegreya Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 12px;
+    font-size: 1rem;
     line-height: 1.45;
 }
 .page { page-break-after: always; }
 .page:last-child { page-break-after: auto; }
 tr { page-break-inside: avoid; }
-h1 { font-weight: normal; font-size: 22px; margin: 0 0 2px; }
-h2 { font-weight: normal; font-size: 17px; margin: 0 0 10px; padding-bottom: 4px; border-bottom: 2px solid #87cefa; }
-h3 { font-size: 13px; margin: 14px 0 4px; }
-h1, h2, h3 { font-family: 'Signika Negative', 'Helvetica Neue', Arial, sans-serif; }
-.subtitle { color: #888; margin: 0 0 14px; }
-table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; }
-th, td { border: 1px solid #999; padding: 3px 6px; text-align: left; vertical-align: top; }
+h1 { font-weight: normal; font-size: 1.833rem; margin: 0 0 0.167rem; }
+h2 { font-weight: normal; font-size: 1.417rem; margin: 0 0 0.833rem; padding-bottom: 0.333rem; border-bottom: 2px solid #87cefa; }
+h3 { font-size: 1.083rem; margin: 1.167rem 0 0.333rem; }
+h1, h2, h3 { font-family: 'Signika Negative', 'Helvetica Neue', Arial, sans-serif; page-break-after: avoid; }
+.subtitle { color: #888; margin: 0 0 1.167rem; }
+table { border-collapse: collapse; width: 100%; margin: 0.667rem 0 1.167rem; }
+th, td { border: 1px solid #999; padding: 0.25rem 0.5rem; text-align: left; vertical-align: top; }
 th { background: rgba(135, 206, 250, 0.2); font-weight: bold; }
 td.category { font-weight: bold; }
 td.category small { font-weight: normal; color: #666; }
-td.blank { height: 22px; min-width: 52px; }
+td.blank { height: 1.833rem; min-width: 4.333rem; }
 td.rowlabel { color: #666; font-style: italic; }
-.legend td:first-child { font-weight: bold; text-align: center; width: 28px; }
-p { margin: 0 0 8px; }
-.small { font-size: 11px; color: #666; }
+.legend td:first-child { font-weight: bold; text-align: center; width: 2.333rem; }
+#verdicts tbody { page-break-inside: avoid; }
+#verdicts td.rowlabel { white-space: nowrap; }
+p { margin: 0 0 0.667rem; }
+.small { font-size: 0.917rem; color: #666; }
 </style>
 </head>
 <body>
@@ -122,7 +126,8 @@ p { margin: 0 0 8px; }
 
 <section class="page">
     <h2>What your results mean</h2>
-    <div id="verdicts"></div>
+    <table id="verdicts"></table>
+    <p class="small" id="mixed"></p>
     <h3>Your action items</h3>
     <p>
         Circle every cell in your grid where the gap is <b>2 or more</b>
@@ -189,17 +194,25 @@ p { margin: 0 0 8px; }
         }).join('');
 
     document.getElementById('verdicts').innerHTML =
-        PrivacyQuiz.spheres.map(function (sphere) {
+        '<thead><tr><th>Sphere</th><th>Verdict</th>'
+        + '<th>What it means</th></tr></thead>'
+        + PrivacyQuiz.spheres.map(function (sphere) {
             var text = PrivacyQuiz.verdictText[sphere.key];
 
-            return '<h3>' + sphere.name + '</h3>'
-                + '<p><b>Balanced:</b> ' + text.balanced + '</p>'
-                + '<p><b>Over-sharing:</b> ' + text.over + '</p>'
-                + '<p><b>Under-sharing:</b> ' + text.under + '</p>';
-        }).join('')
-        + '<p class="small"><b>Both directions at once?</b> '
-        + PrivacyQuiz.mixedText.replace('below', 'from your circled cells')
-        + '</p>';
+            return '<tbody>'
+                + '<tr><td class="category" rowspan="3">' + sphere.name
+                + '</td><td class="rowlabel">Balanced</td>'
+                + '<td>' + text.balanced + '</td></tr>'
+                + '<tr><td class="rowlabel">Over-sharing</td>'
+                + '<td>' + text.over + '</td></tr>'
+                + '<tr><td class="rowlabel">Under-sharing</td>'
+                + '<td>' + text.under + '</td></tr>'
+                + '</tbody>';
+        }).join('');
+
+    document.getElementById('mixed').innerHTML =
+        '<b>Both directions at once?</b> '
+        + PrivacyQuiz.mixedText.replace('below', 'from your circled cells');
 
     document.getElementById('advice').innerHTML =
         '<tr><th>Sphere</th><th>Gap of +2 or more (over-sharing)</th>'
